@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"  // Указываем путь для сгенерированного клиента
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./db.sqlite"
+}
+
+model Replicant {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  snapshots   Snapshot[] // обратная связь от Replicant к Snapshot
+  interview   Interview? @relation(name: "ReplicantInterview") // Указываем имя связи
+}
+
+model Interview {
+  id          Int        @id @default(autoincrement())
+  replicantId Int        @unique // Устанавливаем уникальность для replicantId
+  replicant   Replicant  @relation(name: "ReplicantInterview", fields: [replicantId], references: [id], onDelete: Cascade) // Указываем имя связи
+  createdAt   DateTime @default(now())
+  questions   Question[]
+}
+
+model Snapshot {
+  id          Int       @id @default(autoincrement())
+  replicantId Int
+  data        Bytes
+  createdAt   DateTime @default(now())
+  replicant   Replicant @relation(fields: [replicantId], references: [id], onDelete: Cascade)
+}
+
+model Question {
+  id            Int       @id @default(autoincrement())
+  interviewId   Int
+  questionText  String
+  answerText    String?
+  emotion       String
+  topic         String
+  createdAt     DateTime @default(now())
+  interview     Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+}

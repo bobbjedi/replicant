@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+"noImplicitAny": false
+  },
+
+  "extends": "./.quasar/tsconfig.json",
+  "exclude": ["../backend/node_modules",
+    "../backend/.prisma",
+    "../backend/prisma",
+    "../backend/@prisma"]
+}
