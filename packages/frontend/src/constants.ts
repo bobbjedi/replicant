@@ -26,56 +26,65 @@ export const FIRST_QUESTION = {
 This information will help build a clearer understanding of your life context and create a more accurate personal profile.
 All your data is stored only on your device, encrypted, and never shared externally.`
 }
-
 export const EMOTIONS = [
     {
-        RU: 'Нейтрально',
-        EN: 'Neutral',
-        emoji: '😐'
+      RU: 'Нейтрально',
+      EN: 'Neutral',
+      emoji: '😐',
+      color: '#6C757D' // серый
     },
     {
-        RU: 'Интересно',
-        EN: 'Interested',
-        emoji: '🧐'
+      RU: 'Интересно',
+      EN: 'Interested',
+      emoji: '🧐',
+      color: '#5BC0BE' // морской бирюзовый
     },
     {
-        RU: 'Радость',
-        EN: 'Joy',
-        emoji: '😊'
+      RU: 'Радость',
+      EN: 'Joy',
+      emoji: '😊',
+      color: '#FFB830' // тёплый янтарный
     },
     {
-        RU: 'Грусть',
-        EN: 'Sadness',
-        emoji: '😢'
+      RU: 'Грусть',
+      EN: 'Sadness',
+      emoji: '😢',
+      color: '#4A6572' // приглушённый сине-серый
     },
     {
-        RU: 'Тревога',
-        EN: 'Anxious',
-        emoji: '😰'
+      RU: 'Тревога',
+      EN: 'Anxious',
+      emoji: '😰',
+      color: '#F05454' // кораллово-красный
     },
     {
-        RU: 'Смущение',
-        EN: 'Embarrassed',
-        emoji: '😳'
+      RU: 'Смущение',
+      EN: 'Embarrassed',
+      emoji: '😳',
+      color: '#BB86FC' // сиреневый
     },
     {
-        RU: 'Гнев',
-        EN: 'Anger',
-        emoji: '😠'
+      RU: 'Гнев',
+      EN: 'Anger',
+      emoji: '😠',
+      color: '#D7263D' // насыщенный красный
     },
     {
-        RU: 'Усталость',
-        EN: 'Tired',
-        emoji: '😴'
+      RU: 'Усталость',
+      EN: 'Tired',
+      emoji: '😴',
+      color: '#A9A9A9' // тёмный серый
     },
     {
-        RU: 'Воодушевление',
-        EN: 'Inspired',
-        emoji: '🤩'
+      RU: 'Воодушевление',
+      EN: 'Inspired',
+      emoji: '🤩',
+      color: '#F96D00' // яркий оранжевый
     },
     {
-        RU: 'Замешательство',
-        EN: 'Confused',
-        emoji: '😕'
+      RU: 'Замешательство',
+      EN: 'Confused',
+      emoji: '😕',
+      color: '#9E9E9E' // глухой серо-синий
     }
-]
+  ]

@@ -31,7 +31,7 @@ export const initializeSpeechRecognition = () => {
     recognition.onend = () => {
         isListening.value = false;
     };
-
+    let onTranscript_: (transcript: string) => void;
     // Обработка ошибок
     recognition.onresult = (event: TEvent) => {
         let result = '';
@@ -41,12 +41,21 @@ export const initializeSpeechRecognition = () => {
 
         // Добавляем промежуточные данные, чтобы они не перезаписывались
         if (event?.results?.[event.resultIndex]?.isFinal) {
-            transcript.value += result + ' ';  // Добавляем окончательный текст
+            if (onTranscript_) {
+                onTranscript_(' ' + result + ' ');
+            }
         }
     };
     return {
+        onTranscript: (fn: (transcript: string) => void) => { onTranscript_ = fn },
         isListening,
         transcript,
+        stopRecognition: () => {
+            if (isListening.value) {
+                recognition?.stop(); // Останавливаем распознавание, если оно активно
+            }
+            isListening.value = false;
+        },
         toggleSpeechRecognition: () => {
             if (isListening.value) {
                 recognition?.stop(); // Останавливаем распознавание, если оно активно

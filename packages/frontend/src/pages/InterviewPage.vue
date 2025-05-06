@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useInterviewTopicsList from 'src/api/queries/use-interview-topics-list'
 import { useRoute } from 'vue-router'
 import { useLanguageStore } from 'src/stores/langStorage';
-
 import { initializeSpeechRecognition } from 'src/modules/useSpeechRecognition';
+import { EMOTIONS } from 'src/constants';
 
 const route = useRoute()
 const replicantId = computed(() => Number(route.params.id))
@@ -23,19 +23,24 @@ const onStartInterview = () => {
   question.value = languageStore.firstQuestionMessage
 }
 
+const isChoseEmotion = ref(false)
 const question = ref<string>('')
 const answer = ref<string>('')
 
+const resetQuestion = () => {
+  question.value = ''
+  answer.value = ''
+  isChoseEmotion.value = false
+}
 
-// Флаг для отслеживания, идет ли голосовое распознавание
-
+const onSelectEmotion = (emotionEn: string) => {
+  console.log(emotionEn)
+  resetQuestion()
+}
 // Функция для переключения состояния голосового ввода
-const { isListening, toggleSpeechRecognition, transcript } = initializeSpeechRecognition()
+const { isListening, toggleSpeechRecognition, stopRecognition, onTranscript } = initializeSpeechRecognition()
 
-watch(transcript, () => {
-  answer.value = transcript.value
-})
-
+onTranscript(v => answer.value += v)
 </script>
 
 <template>
@@ -61,7 +66,7 @@ watch(transcript, () => {
         @click="onStartInterview" />
     </q-card>
 
-    <div v-show="question?.length" class="q-pa-md font-size: 20px">
+    <div v-show="question?.length" class="q-pa-md q-mb-md">
       <div class="q-pa-md font-size: 20px">
 
         <b>Question:</b>
@@ -70,8 +75,17 @@ watch(transcript, () => {
         <div class="q-mt-md">Ответь на вопрос, поставь эмоцию и нажми кнопку "Отправить"</div>
       </div>
 
-      <q-btn label="Voice" class="q-mt-md" @click="toggleSpeechRecognition"
+      <q-btn label="Voice" class="q-ma-sm " @click="toggleSpeechRecognition"
         :color="isListening ? 'negative' : 'primary'" :icon="isListening ? 'mic_off' : 'mic'" />
+
+      <q-btn label="I`am answered" class="q-ma-sm" @click="stopRecognition(), isChoseEmotion = true"
+        :color="answer.length < 5 ? 'primary' : 'positive'" icon="done" :disable="isChoseEmotion || answer.length < 5" />
+
+      <div class="emotion-buttons" v-if="isChoseEmotion">
+        <div class="q-ma-sm">Choose your emotion:</div>
+        <q-btn v-for="emotion in EMOTIONS" :key="emotion.EN" :label="`${emotion.emoji} ${emotion[languageStore.lang]}`" :style="{backgroundColor: emotion.color}" flat
+          @click="onSelectEmotion(emotion.EN)" class="q-ma-sm"/>
+      </div>
 
       <q-input v-model="answer" filled type="textarea" />
     </div>
