@@ -438,3 +438,12 @@ OPENAI_API_KEY=sk-or-vv-ab9eeaaf0d90aaa3a60e09d5cd37b1830e4235214ab4377c2b6f42e5
 OPENAI_BASE_URL=https://api.vsegpt.ru/v1
 
 ИНСТРУКЦИЯ ДЛЯ ТЕБЯ: Пиши максимально коротко. прежде чем давать код, проговори словами алгоритм. И по неольшому кусочку кода, а не сразу весь листинг
+
+curl https://api.vsegpt.ru/v1/embeddings
+  -H "Authorization: Bearer $VSEGPT_API_KEY"
+  -H "Content-Type: application/json"
+  -d '{
+    "input": "The food was delicious and the waiter...",
+    "model": "text-embedding-ada-002",
+    "encoding_format": "float"
+  }'
