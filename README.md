@@ -103,4 +103,5 @@ Today, AI models create synthetic personalities without a person’s knowledge.
 
 If you'd like to join the project or share ideas — open an issue in the repo!
 
-(Quasar + Vue 3 / Node.js + Express + Zod) с SQLite и Drizzle ORM RAG (ChromaDB) 
+(Quasar + Vue 3 / Node.js + Express + Zod) SQLite, Plasma, RAG (ChromaDB)
+

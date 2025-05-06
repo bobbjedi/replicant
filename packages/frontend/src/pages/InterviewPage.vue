@@ -1,11 +1,79 @@
+<template>
+  <div class="q-pa-md">
+    <div v-if="isLoading || isCreateQuestionPending" class="flex items-center">
+      <q-spinner size="20px" color="info" class="q-mr-sm" />
+    </div>
+
+    <div v-else-if="isError" class="text-negative">
+      Error loading topics
+    </div>
+
+    <div class="q-py-md text-h5">
+      <q-icon name="arrow_back" size="35px" class="q-mr-sm cursor-pointer" @click="$router.back()" />
+      Interview page of <b>{{ replicant?.name || '...' }}</b>
+    </div>
+
+    <q-card v-if="topics?.length === 0">
+      <q-card-section>
+        <div class="text-weight-medium text-justify">{{ languageStore.introMessage }}</div>
+        <q-separator class="q-my-md" />
+        <div class="text-weight-medium text-justify">{{ languageStore.intro2Message }}</div>
+      </q-card-section>
+      <q-btn color="primary" v-show="!isShowFirstQuestion" label="Start interview" class="q-ma-md"
+        @click="onStartInterview" />
+    </q-card>
+
+    <div class="text-h6 q-pt-md" v-show="topicName?.length">Topic: {{ topicName }}
+      <q-btn label="Change topic" color="primary" icon="add_comment" @click="isShowChangeTopicDialog = true"
+        class="q-ma-sm" :disable="isLoadingNextQuestion" />
+    </div>
+
+    <InterviewChat v-show="topicName?.length" :questionText="questionText"
+      :isLoadingNextQuestion="isLoadingNextQuestion" @on-answer="onSendAnswer" />
+
+    <InterviewTopicsList :topics="topics" @switch-topic="onSwitchTopicTo" />
+
+    <q-dialog v-model="isShowChangeTopicDialog">
+      <q-card>
+        <q-card-section class="row items-center q-pb-none">
+          <div class="text-h6">Please choose new topic</div>
+          <q-space />
+          <q-btn icon="close" flat round dense v-close-popup />
+        </q-card-section>
+
+        <q-card-section>
+          <q-btn v-for="topic in actualTopicsList" color="secondary" :key="topic.EN"
+            :label="`${topic.emoji} ${topic[lang]}`" @click="newTopicName = topic[lang]" class="q-ma-sm" />
+          <div>Other topic:</div>
+          <q-input v-model="newTopicName" label="Input new topic" filled type="textarea" />
+        </q-card-section>
+        <div class="q-pa-md flex justify-end">
+          <q-btn @click="newTopicName = ''" color="negative" label="Cancel" v-close-popup class="q-mr-sm"
+            style="min-width: 130px" />
+          <q-btn @click="onNewTopicChosen" color="positive" label="Confirm change topic" v-close-popup
+            style="min-width: 130px;" />
+        </div>
+      </q-card>
+    </q-dialog>
+
+  </div>
+</template>
+
+
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, unref, watch, watchEffect } from 'vue'
 import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useInterviewTopicsList from 'src/api/queries/use-interview-topics-list'
 import { useRoute } from 'vue-router'
 import { useLanguageStore } from 'src/stores/langStorage';
-import { initializeSpeechRecognition } from 'src/modules/useSpeechRecognition';
-import { EMOTIONS } from 'src/constants';
+import InterviewChat from 'src/components/InterviewChat.vue'
+import InterviewTopicsList from 'src/components/InterviewTopicsList.vue'
+import { BASE_TOPICS, FIRST_TOPIC_NAME } from 'src/constants';
+import useCreateQuestion from 'src/api/mutations/use-create-question';
+import { Notify } from 'quasar';
+import { frontClient } from 'src/api/frontClient';
+
+const { mutateAsync: createQuestion, isPending: isCreateQuestionPending } = useCreateQuestion()
 
 const route = useRoute()
 const replicantId = computed(() => Number(route.params.id))
@@ -17,90 +85,93 @@ const { data: topics, isLoading, isError } = useInterviewTopicsList(replicantId)
 
 const languageStore = useLanguageStore();
 
+const lang = computed(() => languageStore.lang);
 const isShowFirstQuestion = ref(false)
+const isShowChangeTopicDialog = ref(false)
+const questionText = ref<string>('')
+const topicName = ref<string>('')
+const newTopicName = ref<string>('')
+
+const knownTopics = computed(() => topics.value?.map(t => t[lang.value]) || [])
+const actualTopicsList = computed(() => BASE_TOPICS.filter(t => !knownTopics.value.includes(t[lang.value])))
 const onStartInterview = () => {
   isShowFirstQuestion.value = true
-  question.value = languageStore.firstQuestionMessage
+  questionText.value = languageStore.firstQuestionMessage
+  topicName.value = FIRST_TOPIC_NAME[languageStore.lang]
 }
 
-const isChoseEmotion = ref(false)
-const question = ref<string>('')
-const answer = ref<string>('')
+const onSendAnswer = async ({ answerText, emotion }: { answerText: string, emotion: string }) => {
+  const req = {
+    repId: replicantId.value,
+    question: questionText.value,
+    emotion: emotion,
+    topic: topicName.value,
+    answerText: answerText,
+    questionText: questionText.value
+  }
+  const resp = await createQuestion(req)
 
-const resetQuestion = () => {
-  question.value = ''
-  answer.value = ''
-  isChoseEmotion.value = false
+  console.info('Resp create question:', resp)
+
+  if (resp.id) {
+    Notify.create({ message: 'Success', color: 'positive' })
+  } else {
+    Notify.create({ message: 'Error', color: 'negative' })
+  }
+  questionText.value = '' // onGetNextQuestion in watchEffect will be called
 }
 
-const onSelectEmotion = (emotionEn: string) => {
-  console.log(emotionEn)
-  resetQuestion()
+const isLoadingNextQuestion = ref(false)
+const onGetNextQuestion = async (v: string) => {
+  console.info('onGetNextQuestion', topicName.value, lang.value, v)
+  isLoadingNextQuestion.value = true
+  try {
+    const resp = await frontClient.generateNextQuestionText.query({
+      repId: unref(replicantId),
+      topicName: unref(topicName),
+      lang: unref(lang),
+    })
+    console.log('Resp generate next question:', resp)
+    questionText.value = resp
+  } catch (error) {
+    console.error(error)
+  }
+  isLoadingNextQuestion.value = false
 }
-// Функция для переключения состояния голосового ввода
-const { isListening, toggleSpeechRecognition, stopRecognition, onTranscript } = initializeSpeechRecognition()
+const onGetFirstQuestionForNewTopic = async () => {
+  console.info('onGetFirstQuestion', topicName.value, lang.value)
+  isLoadingNextQuestion.value = true
+  try {
+    const resp = await frontClient.generateFirstQuestionOfTopic.query({
+      repId: unref(replicantId),
+      topicName: unref(topicName),
+      lang: unref(lang),
+    })
+    console.log('Resp onGetFirstQuestionForNewTopic:', resp)
+    questionText.value = resp
+  } catch (error) {
+    console.error(error)
+  }
+  isLoadingNextQuestion.value = false
+}
 
-onTranscript(v => answer.value += v)
+const onNewTopicChosen = () => {
+  topicName.value = newTopicName.value
+  newTopicName.value = ''
+  onGetFirstQuestionForNewTopic().catch(console.error)
+}
+
+const onSwitchTopicTo = (topic: string) => {
+  topicName.value = topic
+  onGetNextQuestion('AFTER SWITCH TOPIC').catch(console.error)
+}
+
+watch(replicantId, () => questionText.value = '')
+
+watchEffect(() => {
+  if (topics.value?.length && questionText.value.length === 0) {
+    topicName.value = topics.value[0]?.topic || ''
+    onGetNextQuestion('IN_WATCH_EFFECT').catch(console.error)
+  }
+})
 </script>
-
-<template>
-  <div class="q-pa-md">
-    <div v-if="isLoading" class="flex items-center">
-      <q-spinner size="20px" color="primary" class="q-mr-sm" />
-      Loading...
-    </div>
-
-    <div v-else-if="isError" class="text-negative">
-      Error loading topics
-    </div>
-
-    <div class="q-pa-md text-h6">Interview page of <b>{{ replicant?.name || '...' }}</b></div>
-
-    <q-card v-if="topics?.length === 0">
-      <q-card-section>
-        <div class="text-weight-medium text-justify">{{ languageStore.introMessage }}</div>
-        <q-separator class="q-mt-md" />
-        <div class="text-weight-medium text-justify">{{ languageStore.intro2Message }}</div>
-      </q-card-section>
-      <q-btn color="primary" v-show="!isShowFirstQuestion" label="Start interview" class="q-ma-md"
-        @click="onStartInterview" />
-    </q-card>
-
-    <div v-show="question?.length" class="q-pa-md q-mb-md">
-      <div class="q-pa-md font-size: 20px">
-
-        <b>Question:</b>
-        <div>"{{ question }}"</div>
-
-        <div class="q-mt-md">Ответь на вопрос, поставь эмоцию и нажми кнопку "Отправить"</div>
-      </div>
-
-      <q-btn label="Voice" class="q-ma-sm " @click="toggleSpeechRecognition"
-        :color="isListening ? 'negative' : 'primary'" :icon="isListening ? 'mic_off' : 'mic'" />
-
-      <q-btn label="I`am answered" class="q-ma-sm" @click="stopRecognition(), isChoseEmotion = true"
-        :color="answer.length < 5 ? 'primary' : 'positive'" icon="done" :disable="isChoseEmotion || answer.length < 5" />
-
-      <div class="emotion-buttons" v-if="isChoseEmotion">
-        <div class="q-ma-sm">Choose your emotion:</div>
-        <q-btn v-for="emotion in EMOTIONS" :key="emotion.EN" :label="`${emotion.emoji} ${emotion[languageStore.lang]}`" :style="{backgroundColor: emotion.color}" flat
-          @click="onSelectEmotion(emotion.EN)" class="q-ma-sm"/>
-      </div>
-
-      <q-input v-model="answer" filled type="textarea" />
-    </div>
-
-    <q-list v-if="topics?.length" bordered class="rounded-borders q-pa-md" style="width: 100%; margin: 0 auto">
-      <q-expansion-item v-for="topic in topics" :key="topic.topic" expand-separator icon="perm_identity"
-        label="Account settings" caption="John Doe">
-        <q-card>
-          <q-card-section>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-            commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-            eveniet doloribus ullam aliquid.
-          </q-card-section>
-        </q-card>
-      </q-expansion-item>
-    </q-list>
-  </div>
-</template>

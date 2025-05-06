@@ -3,7 +3,6 @@ import * as cors from 'cors'
 import { createExpressMiddleware } from '@trpc/server/adapters/express'
 import { appRouter } from './trpc/router'
 
-import './ai/example'
 const app = express()
 app.use(cors())
 

@@ -24,7 +24,7 @@ export const useLanguageStore = defineStore('language', {
         },
     },
     getters: {
-        lang: (state) => state.currentLang,
+        lang: (state) => state.currentLang as MessageLanguages,
         introMessage: (state) => state.currentLang === 'EN' ? INTRO.EN : INTRO.RU,
         intro2Message: (state) => state.currentLang === 'EN' ? INTRO_PATH_2.EN : INTRO_PATH_2.RU,
         firstQuestionMessage: (state) => state.currentLang === 'EN' ? FIRST_QUESTION.EN : FIRST_QUESTION.RU,
