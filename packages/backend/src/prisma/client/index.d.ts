@@ -3436,6 +3436,7 @@ export namespace Prisma {
     interviewId: number | null
     name: string | null
     summary: string | null
+    type: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3445,6 +3446,7 @@ export namespace Prisma {
     interviewId: number | null
     name: string | null
     summary: string | null
+    type: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3454,6 +3456,7 @@ export namespace Prisma {
     interviewId: number
     name: number
     summary: number
+    type: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3475,6 +3478,7 @@ export namespace Prisma {
     interviewId?: true
     name?: true
     summary?: true
+    type?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3484,6 +3488,7 @@ export namespace Prisma {
     interviewId?: true
     name?: true
     summary?: true
+    type?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3493,6 +3498,7 @@ export namespace Prisma {
     interviewId?: true
     name?: true
     summary?: true
+    type?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3589,6 +3595,7 @@ export namespace Prisma {
     interviewId: number
     name: string
     summary: string
+    type: string | null
     createdAt: Date
     updatedAt: Date
     _count: InterviewTopicCountAggregateOutputType | null
@@ -3617,6 +3624,7 @@ export namespace Prisma {
     interviewId?: boolean
     name?: boolean
     summary?: boolean
+    type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     questions?: boolean | InterviewTopic$questionsArgs<ExtArgs>
@@ -3629,6 +3637,7 @@ export namespace Prisma {
     interviewId?: boolean
     name?: boolean
     summary?: boolean
+    type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     interview?: boolean | InterviewDefaultArgs<ExtArgs>
@@ -3639,6 +3648,7 @@ export namespace Prisma {
     interviewId?: boolean
     name?: boolean
     summary?: boolean
+    type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     interview?: boolean | InterviewDefaultArgs<ExtArgs>
@@ -3649,11 +3659,12 @@ export namespace Prisma {
     interviewId?: boolean
     name?: boolean
     summary?: boolean
+    type?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type InterviewTopicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "interviewId" | "name" | "summary" | "createdAt" | "updatedAt", ExtArgs["result"]["interviewTopic"]>
+  export type InterviewTopicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "interviewId" | "name" | "summary" | "type" | "createdAt" | "updatedAt", ExtArgs["result"]["interviewTopic"]>
   export type InterviewTopicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     questions?: boolean | InterviewTopic$questionsArgs<ExtArgs>
     interview?: boolean | InterviewDefaultArgs<ExtArgs>
@@ -3677,6 +3688,7 @@ export namespace Prisma {
       interviewId: number
       name: string
       summary: string
+      type: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["interviewTopic"]>
@@ -4108,6 +4120,7 @@ export namespace Prisma {
     readonly interviewId: FieldRef<"InterviewTopic", 'Int'>
     readonly name: FieldRef<"InterviewTopic", 'String'>
     readonly summary: FieldRef<"InterviewTopic", 'String'>
+    readonly type: FieldRef<"InterviewTopic", 'String'>
     readonly createdAt: FieldRef<"InterviewTopic", 'DateTime'>
     readonly updatedAt: FieldRef<"InterviewTopic", 'DateTime'>
   }
@@ -5690,6 +5703,7 @@ export namespace Prisma {
     interviewId: 'interviewId',
     name: 'name',
     summary: 'summary',
+    type: 'type',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5881,6 +5895,7 @@ export namespace Prisma {
     interviewId?: IntFilter<"InterviewTopic"> | number
     name?: StringFilter<"InterviewTopic"> | string
     summary?: StringFilter<"InterviewTopic"> | string
+    type?: StringNullableFilter<"InterviewTopic"> | string | null
     createdAt?: DateTimeFilter<"InterviewTopic"> | Date | string
     updatedAt?: DateTimeFilter<"InterviewTopic"> | Date | string
     questions?: QuestionListRelationFilter
@@ -5892,6 +5907,7 @@ export namespace Prisma {
     interviewId?: SortOrder
     name?: SortOrder
     summary?: SortOrder
+    type?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     questions?: QuestionOrderByRelationAggregateInput
@@ -5906,6 +5922,7 @@ export namespace Prisma {
     interviewId?: IntFilter<"InterviewTopic"> | number
     name?: StringFilter<"InterviewTopic"> | string
     summary?: StringFilter<"InterviewTopic"> | string
+    type?: StringNullableFilter<"InterviewTopic"> | string | null
     createdAt?: DateTimeFilter<"InterviewTopic"> | Date | string
     updatedAt?: DateTimeFilter<"InterviewTopic"> | Date | string
     questions?: QuestionListRelationFilter
@@ -5917,6 +5934,7 @@ export namespace Prisma {
     interviewId?: SortOrder
     name?: SortOrder
     summary?: SortOrder
+    type?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: InterviewTopicCountOrderByAggregateInput
@@ -5934,6 +5952,7 @@ export namespace Prisma {
     interviewId?: IntWithAggregatesFilter<"InterviewTopic"> | number
     name?: StringWithAggregatesFilter<"InterviewTopic"> | string
     summary?: StringWithAggregatesFilter<"InterviewTopic"> | string
+    type?: StringNullableWithAggregatesFilter<"InterviewTopic"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"InterviewTopic"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"InterviewTopic"> | Date | string
   }
@@ -6109,6 +6128,7 @@ export namespace Prisma {
   export type InterviewTopicCreateInput = {
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     questions?: QuestionCreateNestedManyWithoutTopicInput
@@ -6120,6 +6140,7 @@ export namespace Prisma {
     interviewId: number
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutTopicInput
@@ -6128,6 +6149,7 @@ export namespace Prisma {
   export type InterviewTopicUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUpdateManyWithoutTopicNestedInput
@@ -6139,6 +6161,7 @@ export namespace Prisma {
     interviewId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutTopicNestedInput
@@ -6149,6 +6172,7 @@ export namespace Prisma {
     interviewId: number
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6156,6 +6180,7 @@ export namespace Prisma {
   export type InterviewTopicUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6165,6 +6190,7 @@ export namespace Prisma {
     interviewId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6450,6 +6476,7 @@ export namespace Prisma {
     interviewId?: SortOrder
     name?: SortOrder
     summary?: SortOrder
+    type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6464,6 +6491,7 @@ export namespace Prisma {
     interviewId?: SortOrder
     name?: SortOrder
     summary?: SortOrder
+    type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6473,6 +6501,7 @@ export namespace Prisma {
     interviewId?: SortOrder
     name?: SortOrder
     summary?: SortOrder
+    type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6903,6 +6932,7 @@ export namespace Prisma {
   export type InterviewTopicCreateWithoutInterviewInput = {
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     questions?: QuestionCreateNestedManyWithoutTopicInput
@@ -6912,6 +6942,7 @@ export namespace Prisma {
     id?: number
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     questions?: QuestionUncheckedCreateNestedManyWithoutTopicInput
@@ -6976,6 +7007,7 @@ export namespace Prisma {
     interviewId?: IntFilter<"InterviewTopic"> | number
     name?: StringFilter<"InterviewTopic"> | string
     summary?: StringFilter<"InterviewTopic"> | string
+    type?: StringNullableFilter<"InterviewTopic"> | string | null
     createdAt?: DateTimeFilter<"InterviewTopic"> | Date | string
     updatedAt?: DateTimeFilter<"InterviewTopic"> | Date | string
   }
@@ -7077,6 +7109,7 @@ export namespace Prisma {
   export type InterviewTopicCreateWithoutQuestionsInput = {
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     interview: InterviewCreateNestedOneWithoutTopicsInput
@@ -7087,6 +7120,7 @@ export namespace Prisma {
     interviewId: number
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7110,6 +7144,7 @@ export namespace Prisma {
   export type InterviewTopicUpdateWithoutQuestionsInput = {
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interview?: InterviewUpdateOneRequiredWithoutTopicsNestedInput
@@ -7120,6 +7155,7 @@ export namespace Prisma {
     interviewId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7128,6 +7164,7 @@ export namespace Prisma {
     id?: number
     name: string
     summary: string
+    type?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7135,6 +7172,7 @@ export namespace Prisma {
   export type InterviewTopicUpdateWithoutInterviewInput = {
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUpdateManyWithoutTopicNestedInput
@@ -7144,6 +7182,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     questions?: QuestionUncheckedUpdateManyWithoutTopicNestedInput
@@ -7153,6 +7192,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     summary?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

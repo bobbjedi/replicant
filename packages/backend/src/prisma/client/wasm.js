@@ -137,6 +137,7 @@ exports.Prisma.InterviewTopicScalarFieldEnum = {
   interviewId: 'interviewId',
   name: 'name',
   summary: 'summary',
+  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

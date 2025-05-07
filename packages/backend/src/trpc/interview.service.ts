@@ -1,7 +1,8 @@
-import prismaDb, { InterviewModel } from '../prisma/prismaDb'
+import prismaDb from '../prisma/prismaDb'
 import { z } from 'zod'
 import t from './trcpInstance'
 import { generateNextQuestionByQuestionsListFromChat, generateFirstQuestionOfNewTopicFromChat } from '../ai/replicantEngine'
+import { EDefaultTopicType } from '../../../shared/src/types'
 
 const getInterviewTopicsWithQuestions = t.procedure
   .input(z.object({ repId: z.number() }))
@@ -94,7 +95,7 @@ const generateNextQuestionText = t.procedure
       },
     })
 
-    const greetingTopicName = topics[0]?.name as string
+    const greetingTopicName = topics.find((t) => t.type === EDefaultTopicType.GREETING)?.name
 
     // always use greeting topic for generate next questions
     const greetingQuestions = topics.find((t) => t.name === greetingTopicName)?.questions || []
@@ -121,9 +122,10 @@ const generateFirstQuestionTextForTopic = t.procedure
     const { repId, topicName, lang } = input
 
     // первый топик Приветствие
-    const topic = await prismaDb.interviewTopic.findFirst({
+    const greetingTopic = await prismaDb.interviewTopic.findFirst({
       where: {
         interview: { replicantId: repId },
+        type: EDefaultTopicType.GREETING,
       },
       include: {
         questions: {
@@ -134,7 +136,7 @@ const generateFirstQuestionTextForTopic = t.procedure
     })
 
     // always use greeting topic for generate next questions
-    const greetingQuestions = topic?.questions || []
+    const greetingQuestions = greetingTopic?.questions || []
 
     const newQuestionText = await generateFirstQuestionOfNewTopicFromChat({
       greetingQuestions,

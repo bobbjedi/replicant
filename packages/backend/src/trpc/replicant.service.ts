@@ -26,6 +26,7 @@ const createReplicant = t.procedure
                 data: DEFAULT_TOPICS.map(topic => ({
                   name: topic[input.lang],
                   summary: '',
+                  type: topic.type || null,
                 })),
               },
             },

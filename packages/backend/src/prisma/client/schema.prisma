@@ -32,6 +32,7 @@ model InterviewTopic {
   name        String
   questions   Question[]
   summary     String // Заменил Bytes на String
+  type        String?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now())
   interview   Interview  @relation(fields: [interviewId], references: [id], onDelete: Cascade)

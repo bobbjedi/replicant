@@ -9,3 +9,9 @@ export type ReplicantModel = Replicant
 export type InterviewModel = Interview
 export type TopicModel = InterviewTopic
 export type QuestionModel = Question
+
+export enum EDefaultTopicType {
+  GREETING = 'GREETING',
+  OPINION_LEADERS = 'OPINION_LEADERS',
+  CLOSE_ONES = 'CLOSE_ONES',
+}
