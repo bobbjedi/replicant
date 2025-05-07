@@ -4,9 +4,12 @@ import { getSystemPromptNewQuestion, getSystemPromptNewTopic } from './getSystem
 
 export const generateNextQuestionByQuestionsListFromChat = ({ greetingQuestions, currentTopicQuestions, nativeLanguage }: {
   greetingQuestions: QuestionModel[]
-   currentTopicQuestions: QuestionModel[]
-    nativeLanguage: 'RU' | 'EN'
+  currentTopicQuestions: QuestionModel[]
+  nativeLanguage: 'RU' | 'EN'
   }) => {
+
+  console.log('generateNextQuestionByQuestionsListFromChat', { greetingQuestions, currentTopicQuestions }, nativeLanguage)
+
   const questions = [
     ...greetingQuestions.sort((q1, q2) => q1.id - q2.id).slice(0, 3),
     ...currentTopicQuestions.sort((q1, q2) => q1.id - q2.id),
@@ -24,6 +27,8 @@ export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingQuestion
    topicName: string
     nativeLanguage: 'RU' | 'EN'
 }) => {
+
+  console.log('generateFirstQuestionOfNewTopicFromChat', greetingQuestions, topicName, nativeLanguage)
   const systemPrompt = getSystemPromptNewTopic(nativeLanguage, topicName)
   return chat([
     { role: Role.SYSTEM, content: systemPrompt },
@@ -34,6 +39,5 @@ const questionToPromptFormat = (q: QuestionModel) => ({
   question: q.questionText,
   answer: q.answerText,
   emotion: q.emotion,
-  topic: q.topic,
   date: q.createdAt,
 })

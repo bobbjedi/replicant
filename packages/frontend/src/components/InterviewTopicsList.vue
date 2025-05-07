@@ -5,20 +5,20 @@
     <div class="text-h6 q-pt-md">Topics</div>
 
     <q-list bordered class="rounded-borders q-pa-md" style="width: 100%; margin: 0 auto">
-      <q-expansion-item v-for="topic in topics" :key="topic.topic" expand-separator icon="question_answer">
+      <q-expansion-item v-for="topic in topics" :key="topic.name" expand-separator icon="question_answer">
         <template v-slot:header>
           <div class="row items-center justify-between q-gutter-sm" style="width: 100%">
             <div class="row items-center q-gutter-sm">
               <q-icon name="question_answer" size="md" />
               <div>
-                <div class="text-subtitle1">{{ topic.topic }}</div>
+                <div class="text-subtitle1">{{ topic.name }}</div>
                 <div class="text-caption">
                   Questions: {{ topic.questions.length }} |
                   Updated: {{ new Date(topic?.updatedAt || 0).toLocaleString() }}
                 </div>
               </div>
             </div>
-            <q-btn flat dense icon="start" color="positive" @click.stop="switchToTopic(topic.topic)"
+            <q-btn flat dense icon="start" color="positive" @click.stop="switchToTopic(topic.name)"
               :title="'Переключиться на топик'" />
           </div>
         </template>

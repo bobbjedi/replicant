@@ -1,3 +1,5 @@
+import { DEFAULT_TOPICS } from '../../shared/src/constants'
+
 export const INTRO = {
   RU: `Сейчас мы начнем создание твоего цифрового портрета, который будет основываться на твоих взглядах, ценностях и жизненном опыте.\n
     Для этого мы проведем интервью, в котором от тебя потребуется поделиться своими мыслями и переживаниями. \n
@@ -27,10 +29,8 @@ This information will help build a clearer understanding of your life context an
 All your data is stored only on your device, encrypted, and never shared externally.`
 }
 
-export const FIRST_TOPIC_NAME = {
-  RU: 'Знакомство',
-  EN: 'Greeting'
-}
+export const FIRST_TOPIC_NAME = DEFAULT_TOPICS[0] as { RU: string, EN: string }
+
 export const EMOTIONS = [
   {
     RU: 'Нейтрально',

@@ -9,7 +9,7 @@ export default () => {
             repId: number
             question: string
             emotion: string
-            topic: string
+            topicName: string
             answerText: string
             questionText: string
         }) => frontClient.crateInterviewQuestion.mutate(data),

@@ -24,10 +24,10 @@ export type Replicant = $Result.DefaultSelection<Prisma.$ReplicantPayload>
  */
 export type Interview = $Result.DefaultSelection<Prisma.$InterviewPayload>
 /**
- * Model Snapshot
+ * Model InterviewTopic
  * 
  */
-export type Snapshot = $Result.DefaultSelection<Prisma.$SnapshotPayload>
+export type InterviewTopic = $Result.DefaultSelection<Prisma.$InterviewTopicPayload>
 /**
  * Model Question
  * 
@@ -180,14 +180,14 @@ export class PrismaClient<
   get interview(): Prisma.InterviewDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.snapshot`: Exposes CRUD operations for the **Snapshot** model.
+   * `prisma.interviewTopic`: Exposes CRUD operations for the **InterviewTopic** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Snapshots
-    * const snapshots = await prisma.snapshot.findMany()
+    * // Fetch zero or more InterviewTopics
+    * const interviewTopics = await prisma.interviewTopic.findMany()
     * ```
     */
-  get snapshot(): Prisma.SnapshotDelegate<ExtArgs, ClientOptions>;
+  get interviewTopic(): Prisma.InterviewTopicDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.question`: Exposes CRUD operations for the **Question** model.
@@ -640,7 +640,7 @@ export namespace Prisma {
   export const ModelName: {
     Replicant: 'Replicant',
     Interview: 'Interview',
-    Snapshot: 'Snapshot',
+    InterviewTopic: 'InterviewTopic',
     Question: 'Question'
   };
 
@@ -660,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "replicant" | "interview" | "snapshot" | "question"
+      modelProps: "replicant" | "interview" | "interviewTopic" | "question"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -812,77 +812,77 @@ export namespace Prisma {
           }
         }
       }
-      Snapshot: {
-        payload: Prisma.$SnapshotPayload<ExtArgs>
-        fields: Prisma.SnapshotFieldRefs
+      InterviewTopic: {
+        payload: Prisma.$InterviewTopicPayload<ExtArgs>
+        fields: Prisma.InterviewTopicFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.SnapshotFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload> | null
+            args: Prisma.InterviewTopicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.SnapshotFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>
+            args: Prisma.InterviewTopicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>
           }
           findFirst: {
-            args: Prisma.SnapshotFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload> | null
+            args: Prisma.InterviewTopicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.SnapshotFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>
+            args: Prisma.InterviewTopicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>
           }
           findMany: {
-            args: Prisma.SnapshotFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>[]
+            args: Prisma.InterviewTopicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>[]
           }
           create: {
-            args: Prisma.SnapshotCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>
+            args: Prisma.InterviewTopicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>
           }
           createMany: {
-            args: Prisma.SnapshotCreateManyArgs<ExtArgs>
+            args: Prisma.InterviewTopicCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.SnapshotCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>[]
+            args: Prisma.InterviewTopicCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>[]
           }
           delete: {
-            args: Prisma.SnapshotDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>
+            args: Prisma.InterviewTopicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>
           }
           update: {
-            args: Prisma.SnapshotUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>
+            args: Prisma.InterviewTopicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>
           }
           deleteMany: {
-            args: Prisma.SnapshotDeleteManyArgs<ExtArgs>
+            args: Prisma.InterviewTopicDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.SnapshotUpdateManyArgs<ExtArgs>
+            args: Prisma.InterviewTopicUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.SnapshotUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>[]
+            args: Prisma.InterviewTopicUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>[]
           }
           upsert: {
-            args: Prisma.SnapshotUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SnapshotPayload>
+            args: Prisma.InterviewTopicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterviewTopicPayload>
           }
           aggregate: {
-            args: Prisma.SnapshotAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSnapshot>
+            args: Prisma.InterviewTopicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInterviewTopic>
           }
           groupBy: {
-            args: Prisma.SnapshotGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SnapshotGroupByOutputType>[]
+            args: Prisma.InterviewTopicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InterviewTopicGroupByOutputType>[]
           }
           count: {
-            args: Prisma.SnapshotCountArgs<ExtArgs>
-            result: $Utils.Optional<SnapshotCountAggregateOutputType> | number
+            args: Prisma.InterviewTopicCountArgs<ExtArgs>
+            result: $Utils.Optional<InterviewTopicCountAggregateOutputType> | number
           }
         }
       }
@@ -1046,7 +1046,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     replicant?: ReplicantOmit
     interview?: InterviewOmit
-    snapshot?: SnapshotOmit
+    interviewTopic?: InterviewTopicOmit
     question?: QuestionOmit
   }
 
@@ -1138,46 +1138,15 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ReplicantCountOutputType
-   */
-
-  export type ReplicantCountOutputType = {
-    snapshots: number
-  }
-
-  export type ReplicantCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    snapshots?: boolean | ReplicantCountOutputTypeCountSnapshotsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ReplicantCountOutputType without action
-   */
-  export type ReplicantCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ReplicantCountOutputType
-     */
-    select?: ReplicantCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ReplicantCountOutputType without action
-   */
-  export type ReplicantCountOutputTypeCountSnapshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SnapshotWhereInput
-  }
-
-
-  /**
    * Count Type InterviewCountOutputType
    */
 
   export type InterviewCountOutputType = {
-    questions: number
+    topics: number
   }
 
   export type InterviewCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    questions?: boolean | InterviewCountOutputTypeCountQuestionsArgs
+    topics?: boolean | InterviewCountOutputTypeCountTopicsArgs
   }
 
   // Custom InputTypes
@@ -1194,7 +1163,38 @@ export namespace Prisma {
   /**
    * InterviewCountOutputType without action
    */
-  export type InterviewCountOutputTypeCountQuestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewCountOutputTypeCountTopicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InterviewTopicWhereInput
+  }
+
+
+  /**
+   * Count Type InterviewTopicCountOutputType
+   */
+
+  export type InterviewTopicCountOutputType = {
+    questions: number
+  }
+
+  export type InterviewTopicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    questions?: boolean | InterviewTopicCountOutputTypeCountQuestionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InterviewTopicCountOutputType without action
+   */
+  export type InterviewTopicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewTopicCountOutputType
+     */
+    select?: InterviewTopicCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InterviewTopicCountOutputType without action
+   */
+  export type InterviewTopicCountOutputTypeCountQuestionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: QuestionWhereInput
   }
 
@@ -1228,6 +1228,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     createdAt: Date | null
+    snapshot: string | null
   }
 
   export type ReplicantMaxAggregateOutputType = {
@@ -1235,6 +1236,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     createdAt: Date | null
+    snapshot: string | null
   }
 
   export type ReplicantCountAggregateOutputType = {
@@ -1242,6 +1244,7 @@ export namespace Prisma {
     name: number
     description: number
     createdAt: number
+    snapshot: number
     _all: number
   }
 
@@ -1259,6 +1262,7 @@ export namespace Prisma {
     name?: true
     description?: true
     createdAt?: true
+    snapshot?: true
   }
 
   export type ReplicantMaxAggregateInputType = {
@@ -1266,6 +1270,7 @@ export namespace Prisma {
     name?: true
     description?: true
     createdAt?: true
+    snapshot?: true
   }
 
   export type ReplicantCountAggregateInputType = {
@@ -1273,6 +1278,7 @@ export namespace Prisma {
     name?: true
     description?: true
     createdAt?: true
+    snapshot?: true
     _all?: true
   }
 
@@ -1367,6 +1373,7 @@ export namespace Prisma {
     name: string
     description: string | null
     createdAt: Date
+    snapshot: string
     _count: ReplicantCountAggregateOutputType | null
     _avg: ReplicantAvgAggregateOutputType | null
     _sum: ReplicantSumAggregateOutputType | null
@@ -1393,9 +1400,8 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     createdAt?: boolean
-    snapshots?: boolean | Replicant$snapshotsArgs<ExtArgs>
+    snapshot?: boolean
     interview?: boolean | Replicant$interviewArgs<ExtArgs>
-    _count?: boolean | ReplicantCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["replicant"]>
 
   export type ReplicantSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1403,6 +1409,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     createdAt?: boolean
+    snapshot?: boolean
   }, ExtArgs["result"]["replicant"]>
 
   export type ReplicantSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1410,6 +1417,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     createdAt?: boolean
+    snapshot?: boolean
   }, ExtArgs["result"]["replicant"]>
 
   export type ReplicantSelectScalar = {
@@ -1417,13 +1425,12 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     createdAt?: boolean
+    snapshot?: boolean
   }
 
-  export type ReplicantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "createdAt", ExtArgs["result"]["replicant"]>
+  export type ReplicantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "createdAt" | "snapshot", ExtArgs["result"]["replicant"]>
   export type ReplicantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    snapshots?: boolean | Replicant$snapshotsArgs<ExtArgs>
     interview?: boolean | Replicant$interviewArgs<ExtArgs>
-    _count?: boolean | ReplicantCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ReplicantIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type ReplicantIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1431,7 +1438,6 @@ export namespace Prisma {
   export type $ReplicantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Replicant"
     objects: {
-      snapshots: Prisma.$SnapshotPayload<ExtArgs>[]
       interview: Prisma.$InterviewPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1439,6 +1445,7 @@ export namespace Prisma {
       name: string
       description: string | null
       createdAt: Date
+      snapshot: string
     }, ExtArgs["result"]["replicant"]>
     composites: {}
   }
@@ -1833,7 +1840,6 @@ export namespace Prisma {
    */
   export interface Prisma__ReplicantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    snapshots<T extends Replicant$snapshotsArgs<ExtArgs> = {}>(args?: Subset<T, Replicant$snapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     interview<T extends Replicant$interviewArgs<ExtArgs> = {}>(args?: Subset<T, Replicant$interviewArgs<ExtArgs>>): Prisma__InterviewClient<$Result.GetResult<Prisma.$InterviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1868,6 +1874,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Replicant", 'String'>
     readonly description: FieldRef<"Replicant", 'String'>
     readonly createdAt: FieldRef<"Replicant", 'DateTime'>
+    readonly snapshot: FieldRef<"Replicant", 'String'>
   }
     
 
@@ -2254,30 +2261,6 @@ export namespace Prisma {
   }
 
   /**
-   * Replicant.snapshots
-   */
-  export type Replicant$snapshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Snapshot
-     */
-    select?: SnapshotSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Snapshot
-     */
-    omit?: SnapshotOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SnapshotInclude<ExtArgs> | null
-    where?: SnapshotWhereInput
-    orderBy?: SnapshotOrderByWithRelationInput | SnapshotOrderByWithRelationInput[]
-    cursor?: SnapshotWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SnapshotScalarFieldEnum | SnapshotScalarFieldEnum[]
-  }
-
-  /**
    * Replicant.interview
    */
   export type Replicant$interviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2341,18 +2324,21 @@ export namespace Prisma {
     id: number | null
     replicantId: number | null
     createdAt: Date | null
+    summary: string | null
   }
 
   export type InterviewMaxAggregateOutputType = {
     id: number | null
     replicantId: number | null
     createdAt: Date | null
+    summary: string | null
   }
 
   export type InterviewCountAggregateOutputType = {
     id: number
     replicantId: number
     createdAt: number
+    summary: number
     _all: number
   }
 
@@ -2371,18 +2357,21 @@ export namespace Prisma {
     id?: true
     replicantId?: true
     createdAt?: true
+    summary?: true
   }
 
   export type InterviewMaxAggregateInputType = {
     id?: true
     replicantId?: true
     createdAt?: true
+    summary?: true
   }
 
   export type InterviewCountAggregateInputType = {
     id?: true
     replicantId?: true
     createdAt?: true
+    summary?: true
     _all?: true
   }
 
@@ -2476,6 +2465,7 @@ export namespace Prisma {
     id: number
     replicantId: number
     createdAt: Date
+    summary: string
     _count: InterviewCountAggregateOutputType | null
     _avg: InterviewAvgAggregateOutputType | null
     _sum: InterviewSumAggregateOutputType | null
@@ -2501,8 +2491,9 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     createdAt?: boolean
+    summary?: boolean
     replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
-    questions?: boolean | Interview$questionsArgs<ExtArgs>
+    topics?: boolean | Interview$topicsArgs<ExtArgs>
     _count?: boolean | InterviewCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["interview"]>
 
@@ -2510,6 +2501,7 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     createdAt?: boolean
+    summary?: boolean
     replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["interview"]>
 
@@ -2517,6 +2509,7 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     createdAt?: boolean
+    summary?: boolean
     replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["interview"]>
 
@@ -2524,12 +2517,13 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     createdAt?: boolean
+    summary?: boolean
   }
 
-  export type InterviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "replicantId" | "createdAt", ExtArgs["result"]["interview"]>
+  export type InterviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "replicantId" | "createdAt" | "summary", ExtArgs["result"]["interview"]>
   export type InterviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
-    questions?: boolean | Interview$questionsArgs<ExtArgs>
+    topics?: boolean | Interview$topicsArgs<ExtArgs>
     _count?: boolean | InterviewCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type InterviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2543,12 +2537,13 @@ export namespace Prisma {
     name: "Interview"
     objects: {
       replicant: Prisma.$ReplicantPayload<ExtArgs>
-      questions: Prisma.$QuestionPayload<ExtArgs>[]
+      topics: Prisma.$InterviewTopicPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       replicantId: number
       createdAt: Date
+      summary: string
     }, ExtArgs["result"]["interview"]>
     composites: {}
   }
@@ -2944,7 +2939,7 @@ export namespace Prisma {
   export interface Prisma__InterviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     replicant<T extends ReplicantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ReplicantDefaultArgs<ExtArgs>>): Prisma__ReplicantClient<$Result.GetResult<Prisma.$ReplicantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    questions<T extends Interview$questionsArgs<ExtArgs> = {}>(args?: Subset<T, Interview$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    topics<T extends Interview$topicsArgs<ExtArgs> = {}>(args?: Subset<T, Interview$topicsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2977,6 +2972,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Interview", 'Int'>
     readonly replicantId: FieldRef<"Interview", 'Int'>
     readonly createdAt: FieldRef<"Interview", 'DateTime'>
+    readonly summary: FieldRef<"Interview", 'String'>
   }
     
 
@@ -3371,27 +3367,27 @@ export namespace Prisma {
   }
 
   /**
-   * Interview.questions
+   * Interview.topics
    */
-  export type Interview$questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Interview$topicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Question
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: QuestionSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Question
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: QuestionOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: QuestionInclude<ExtArgs> | null
-    where?: QuestionWhereInput
-    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
-    cursor?: QuestionWhereUniqueInput
+    include?: InterviewTopicInclude<ExtArgs> | null
+    where?: InterviewTopicWhereInput
+    orderBy?: InterviewTopicOrderByWithRelationInput | InterviewTopicOrderByWithRelationInput[]
+    cursor?: InterviewTopicWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+    distinct?: InterviewTopicScalarFieldEnum | InterviewTopicScalarFieldEnum[]
   }
 
   /**
@@ -3414,376 +3410,405 @@ export namespace Prisma {
 
 
   /**
-   * Model Snapshot
+   * Model InterviewTopic
    */
 
-  export type AggregateSnapshot = {
-    _count: SnapshotCountAggregateOutputType | null
-    _avg: SnapshotAvgAggregateOutputType | null
-    _sum: SnapshotSumAggregateOutputType | null
-    _min: SnapshotMinAggregateOutputType | null
-    _max: SnapshotMaxAggregateOutputType | null
+  export type AggregateInterviewTopic = {
+    _count: InterviewTopicCountAggregateOutputType | null
+    _avg: InterviewTopicAvgAggregateOutputType | null
+    _sum: InterviewTopicSumAggregateOutputType | null
+    _min: InterviewTopicMinAggregateOutputType | null
+    _max: InterviewTopicMaxAggregateOutputType | null
   }
 
-  export type SnapshotAvgAggregateOutputType = {
+  export type InterviewTopicAvgAggregateOutputType = {
     id: number | null
-    replicantId: number | null
+    interviewId: number | null
   }
 
-  export type SnapshotSumAggregateOutputType = {
+  export type InterviewTopicSumAggregateOutputType = {
     id: number | null
-    replicantId: number | null
+    interviewId: number | null
   }
 
-  export type SnapshotMinAggregateOutputType = {
+  export type InterviewTopicMinAggregateOutputType = {
     id: number | null
-    replicantId: number | null
-    data: Uint8Array | null
+    interviewId: number | null
+    name: string | null
+    summary: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type SnapshotMaxAggregateOutputType = {
+  export type InterviewTopicMaxAggregateOutputType = {
     id: number | null
-    replicantId: number | null
-    data: Uint8Array | null
+    interviewId: number | null
+    name: string | null
+    summary: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type SnapshotCountAggregateOutputType = {
+  export type InterviewTopicCountAggregateOutputType = {
     id: number
-    replicantId: number
-    data: number
+    interviewId: number
+    name: number
+    summary: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type SnapshotAvgAggregateInputType = {
+  export type InterviewTopicAvgAggregateInputType = {
     id?: true
-    replicantId?: true
+    interviewId?: true
   }
 
-  export type SnapshotSumAggregateInputType = {
+  export type InterviewTopicSumAggregateInputType = {
     id?: true
-    replicantId?: true
+    interviewId?: true
   }
 
-  export type SnapshotMinAggregateInputType = {
+  export type InterviewTopicMinAggregateInputType = {
     id?: true
-    replicantId?: true
-    data?: true
+    interviewId?: true
+    name?: true
+    summary?: true
     createdAt?: true
+    updatedAt?: true
   }
 
-  export type SnapshotMaxAggregateInputType = {
+  export type InterviewTopicMaxAggregateInputType = {
     id?: true
-    replicantId?: true
-    data?: true
+    interviewId?: true
+    name?: true
+    summary?: true
     createdAt?: true
+    updatedAt?: true
   }
 
-  export type SnapshotCountAggregateInputType = {
+  export type InterviewTopicCountAggregateInputType = {
     id?: true
-    replicantId?: true
-    data?: true
+    interviewId?: true
+    name?: true
+    summary?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type SnapshotAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Snapshot to aggregate.
+     * Filter which InterviewTopic to aggregate.
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Snapshots to fetch.
+     * Determine the order of InterviewTopics to fetch.
      */
-    orderBy?: SnapshotOrderByWithRelationInput | SnapshotOrderByWithRelationInput[]
+    orderBy?: InterviewTopicOrderByWithRelationInput | InterviewTopicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: SnapshotWhereUniqueInput
+    cursor?: InterviewTopicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Snapshots from the position of the cursor.
+     * Take `±n` InterviewTopics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Snapshots.
+     * Skip the first `n` InterviewTopics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Snapshots
+     * Count returned InterviewTopics
     **/
-    _count?: true | SnapshotCountAggregateInputType
+    _count?: true | InterviewTopicCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: SnapshotAvgAggregateInputType
+    _avg?: InterviewTopicAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: SnapshotSumAggregateInputType
+    _sum?: InterviewTopicSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: SnapshotMinAggregateInputType
+    _min?: InterviewTopicMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: SnapshotMaxAggregateInputType
+    _max?: InterviewTopicMaxAggregateInputType
   }
 
-  export type GetSnapshotAggregateType<T extends SnapshotAggregateArgs> = {
-        [P in keyof T & keyof AggregateSnapshot]: P extends '_count' | 'count'
+  export type GetInterviewTopicAggregateType<T extends InterviewTopicAggregateArgs> = {
+        [P in keyof T & keyof AggregateInterviewTopic]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateSnapshot[P]>
-      : GetScalarType<T[P], AggregateSnapshot[P]>
+        : GetScalarType<T[P], AggregateInterviewTopic[P]>
+      : GetScalarType<T[P], AggregateInterviewTopic[P]>
   }
 
 
 
 
-  export type SnapshotGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SnapshotWhereInput
-    orderBy?: SnapshotOrderByWithAggregationInput | SnapshotOrderByWithAggregationInput[]
-    by: SnapshotScalarFieldEnum[] | SnapshotScalarFieldEnum
-    having?: SnapshotScalarWhereWithAggregatesInput
+  export type InterviewTopicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InterviewTopicWhereInput
+    orderBy?: InterviewTopicOrderByWithAggregationInput | InterviewTopicOrderByWithAggregationInput[]
+    by: InterviewTopicScalarFieldEnum[] | InterviewTopicScalarFieldEnum
+    having?: InterviewTopicScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: SnapshotCountAggregateInputType | true
-    _avg?: SnapshotAvgAggregateInputType
-    _sum?: SnapshotSumAggregateInputType
-    _min?: SnapshotMinAggregateInputType
-    _max?: SnapshotMaxAggregateInputType
+    _count?: InterviewTopicCountAggregateInputType | true
+    _avg?: InterviewTopicAvgAggregateInputType
+    _sum?: InterviewTopicSumAggregateInputType
+    _min?: InterviewTopicMinAggregateInputType
+    _max?: InterviewTopicMaxAggregateInputType
   }
 
-  export type SnapshotGroupByOutputType = {
+  export type InterviewTopicGroupByOutputType = {
     id: number
-    replicantId: number
-    data: Uint8Array
+    interviewId: number
+    name: string
+    summary: string
     createdAt: Date
-    _count: SnapshotCountAggregateOutputType | null
-    _avg: SnapshotAvgAggregateOutputType | null
-    _sum: SnapshotSumAggregateOutputType | null
-    _min: SnapshotMinAggregateOutputType | null
-    _max: SnapshotMaxAggregateOutputType | null
+    updatedAt: Date
+    _count: InterviewTopicCountAggregateOutputType | null
+    _avg: InterviewTopicAvgAggregateOutputType | null
+    _sum: InterviewTopicSumAggregateOutputType | null
+    _min: InterviewTopicMinAggregateOutputType | null
+    _max: InterviewTopicMaxAggregateOutputType | null
   }
 
-  type GetSnapshotGroupByPayload<T extends SnapshotGroupByArgs> = Prisma.PrismaPromise<
+  type GetInterviewTopicGroupByPayload<T extends InterviewTopicGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SnapshotGroupByOutputType, T['by']> &
+      PickEnumerable<InterviewTopicGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof SnapshotGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof InterviewTopicGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], SnapshotGroupByOutputType[P]>
-            : GetScalarType<T[P], SnapshotGroupByOutputType[P]>
+              : GetScalarType<T[P], InterviewTopicGroupByOutputType[P]>
+            : GetScalarType<T[P], InterviewTopicGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type SnapshotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type InterviewTopicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    replicantId?: boolean
-    data?: boolean
+    interviewId?: boolean
+    name?: boolean
+    summary?: boolean
     createdAt?: boolean
-    replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["snapshot"]>
+    updatedAt?: boolean
+    questions?: boolean | InterviewTopic$questionsArgs<ExtArgs>
+    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    _count?: boolean | InterviewTopicCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["interviewTopic"]>
 
-  export type SnapshotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type InterviewTopicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    replicantId?: boolean
-    data?: boolean
+    interviewId?: boolean
+    name?: boolean
+    summary?: boolean
     createdAt?: boolean
-    replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["snapshot"]>
+    updatedAt?: boolean
+    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["interviewTopic"]>
 
-  export type SnapshotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type InterviewTopicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    replicantId?: boolean
-    data?: boolean
+    interviewId?: boolean
+    name?: boolean
+    summary?: boolean
     createdAt?: boolean
-    replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["snapshot"]>
+    updatedAt?: boolean
+    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["interviewTopic"]>
 
-  export type SnapshotSelectScalar = {
+  export type InterviewTopicSelectScalar = {
     id?: boolean
-    replicantId?: boolean
-    data?: boolean
+    interviewId?: boolean
+    name?: boolean
+    summary?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SnapshotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "replicantId" | "data" | "createdAt", ExtArgs["result"]["snapshot"]>
-  export type SnapshotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
+  export type InterviewTopicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "interviewId" | "name" | "summary" | "createdAt" | "updatedAt", ExtArgs["result"]["interviewTopic"]>
+  export type InterviewTopicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    questions?: boolean | InterviewTopic$questionsArgs<ExtArgs>
+    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    _count?: boolean | InterviewTopicCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type SnapshotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
+  export type InterviewTopicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    interview?: boolean | InterviewDefaultArgs<ExtArgs>
   }
-  export type SnapshotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
+  export type InterviewTopicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    interview?: boolean | InterviewDefaultArgs<ExtArgs>
   }
 
-  export type $SnapshotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Snapshot"
+  export type $InterviewTopicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "InterviewTopic"
     objects: {
-      replicant: Prisma.$ReplicantPayload<ExtArgs>
+      questions: Prisma.$QuestionPayload<ExtArgs>[]
+      interview: Prisma.$InterviewPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      replicantId: number
-      data: Uint8Array
+      interviewId: number
+      name: string
+      summary: string
       createdAt: Date
-    }, ExtArgs["result"]["snapshot"]>
+      updatedAt: Date
+    }, ExtArgs["result"]["interviewTopic"]>
     composites: {}
   }
 
-  type SnapshotGetPayload<S extends boolean | null | undefined | SnapshotDefaultArgs> = $Result.GetResult<Prisma.$SnapshotPayload, S>
+  type InterviewTopicGetPayload<S extends boolean | null | undefined | InterviewTopicDefaultArgs> = $Result.GetResult<Prisma.$InterviewTopicPayload, S>
 
-  type SnapshotCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SnapshotFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SnapshotCountAggregateInputType | true
+  type InterviewTopicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InterviewTopicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InterviewTopicCountAggregateInputType | true
     }
 
-  export interface SnapshotDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Snapshot'], meta: { name: 'Snapshot' } }
+  export interface InterviewTopicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['InterviewTopic'], meta: { name: 'InterviewTopic' } }
     /**
-     * Find zero or one Snapshot that matches the filter.
-     * @param {SnapshotFindUniqueArgs} args - Arguments to find a Snapshot
+     * Find zero or one InterviewTopic that matches the filter.
+     * @param {InterviewTopicFindUniqueArgs} args - Arguments to find a InterviewTopic
      * @example
-     * // Get one Snapshot
-     * const snapshot = await prisma.snapshot.findUnique({
+     * // Get one InterviewTopic
+     * const interviewTopic = await prisma.interviewTopic.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends SnapshotFindUniqueArgs>(args: SelectSubset<T, SnapshotFindUniqueArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends InterviewTopicFindUniqueArgs>(args: SelectSubset<T, InterviewTopicFindUniqueArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Snapshot that matches the filter or throw an error with `error.code='P2025'`
+     * Find one InterviewTopic that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {SnapshotFindUniqueOrThrowArgs} args - Arguments to find a Snapshot
+     * @param {InterviewTopicFindUniqueOrThrowArgs} args - Arguments to find a InterviewTopic
      * @example
-     * // Get one Snapshot
-     * const snapshot = await prisma.snapshot.findUniqueOrThrow({
+     * // Get one InterviewTopic
+     * const interviewTopic = await prisma.interviewTopic.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SnapshotFindUniqueOrThrowArgs>(args: SelectSubset<T, SnapshotFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends InterviewTopicFindUniqueOrThrowArgs>(args: SelectSubset<T, InterviewTopicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Snapshot that matches the filter.
+     * Find the first InterviewTopic that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotFindFirstArgs} args - Arguments to find a Snapshot
+     * @param {InterviewTopicFindFirstArgs} args - Arguments to find a InterviewTopic
      * @example
-     * // Get one Snapshot
-     * const snapshot = await prisma.snapshot.findFirst({
+     * // Get one InterviewTopic
+     * const interviewTopic = await prisma.interviewTopic.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends SnapshotFindFirstArgs>(args?: SelectSubset<T, SnapshotFindFirstArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends InterviewTopicFindFirstArgs>(args?: SelectSubset<T, InterviewTopicFindFirstArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Snapshot that matches the filter or
+     * Find the first InterviewTopic that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotFindFirstOrThrowArgs} args - Arguments to find a Snapshot
+     * @param {InterviewTopicFindFirstOrThrowArgs} args - Arguments to find a InterviewTopic
      * @example
-     * // Get one Snapshot
-     * const snapshot = await prisma.snapshot.findFirstOrThrow({
+     * // Get one InterviewTopic
+     * const interviewTopic = await prisma.interviewTopic.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends SnapshotFindFirstOrThrowArgs>(args?: SelectSubset<T, SnapshotFindFirstOrThrowArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends InterviewTopicFindFirstOrThrowArgs>(args?: SelectSubset<T, InterviewTopicFindFirstOrThrowArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Snapshots that matches the filter.
+     * Find zero or more InterviewTopics that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {InterviewTopicFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Snapshots
-     * const snapshots = await prisma.snapshot.findMany()
+     * // Get all InterviewTopics
+     * const interviewTopics = await prisma.interviewTopic.findMany()
      * 
-     * // Get first 10 Snapshots
-     * const snapshots = await prisma.snapshot.findMany({ take: 10 })
+     * // Get first 10 InterviewTopics
+     * const interviewTopics = await prisma.interviewTopic.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const snapshotWithIdOnly = await prisma.snapshot.findMany({ select: { id: true } })
+     * const interviewTopicWithIdOnly = await prisma.interviewTopic.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends SnapshotFindManyArgs>(args?: SelectSubset<T, SnapshotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends InterviewTopicFindManyArgs>(args?: SelectSubset<T, InterviewTopicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Snapshot.
-     * @param {SnapshotCreateArgs} args - Arguments to create a Snapshot.
+     * Create a InterviewTopic.
+     * @param {InterviewTopicCreateArgs} args - Arguments to create a InterviewTopic.
      * @example
-     * // Create one Snapshot
-     * const Snapshot = await prisma.snapshot.create({
+     * // Create one InterviewTopic
+     * const InterviewTopic = await prisma.interviewTopic.create({
      *   data: {
-     *     // ... data to create a Snapshot
+     *     // ... data to create a InterviewTopic
      *   }
      * })
      * 
      */
-    create<T extends SnapshotCreateArgs>(args: SelectSubset<T, SnapshotCreateArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends InterviewTopicCreateArgs>(args: SelectSubset<T, InterviewTopicCreateArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Snapshots.
-     * @param {SnapshotCreateManyArgs} args - Arguments to create many Snapshots.
+     * Create many InterviewTopics.
+     * @param {InterviewTopicCreateManyArgs} args - Arguments to create many InterviewTopics.
      * @example
-     * // Create many Snapshots
-     * const snapshot = await prisma.snapshot.createMany({
+     * // Create many InterviewTopics
+     * const interviewTopic = await prisma.interviewTopic.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends SnapshotCreateManyArgs>(args?: SelectSubset<T, SnapshotCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends InterviewTopicCreateManyArgs>(args?: SelectSubset<T, InterviewTopicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Snapshots and returns the data saved in the database.
-     * @param {SnapshotCreateManyAndReturnArgs} args - Arguments to create many Snapshots.
+     * Create many InterviewTopics and returns the data saved in the database.
+     * @param {InterviewTopicCreateManyAndReturnArgs} args - Arguments to create many InterviewTopics.
      * @example
-     * // Create many Snapshots
-     * const snapshot = await prisma.snapshot.createManyAndReturn({
+     * // Create many InterviewTopics
+     * const interviewTopic = await prisma.interviewTopic.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Snapshots and only return the `id`
-     * const snapshotWithIdOnly = await prisma.snapshot.createManyAndReturn({
+     * // Create many InterviewTopics and only return the `id`
+     * const interviewTopicWithIdOnly = await prisma.interviewTopic.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -3793,28 +3818,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends SnapshotCreateManyAndReturnArgs>(args?: SelectSubset<T, SnapshotCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends InterviewTopicCreateManyAndReturnArgs>(args?: SelectSubset<T, InterviewTopicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Snapshot.
-     * @param {SnapshotDeleteArgs} args - Arguments to delete one Snapshot.
+     * Delete a InterviewTopic.
+     * @param {InterviewTopicDeleteArgs} args - Arguments to delete one InterviewTopic.
      * @example
-     * // Delete one Snapshot
-     * const Snapshot = await prisma.snapshot.delete({
+     * // Delete one InterviewTopic
+     * const InterviewTopic = await prisma.interviewTopic.delete({
      *   where: {
-     *     // ... filter to delete one Snapshot
+     *     // ... filter to delete one InterviewTopic
      *   }
      * })
      * 
      */
-    delete<T extends SnapshotDeleteArgs>(args: SelectSubset<T, SnapshotDeleteArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends InterviewTopicDeleteArgs>(args: SelectSubset<T, InterviewTopicDeleteArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Snapshot.
-     * @param {SnapshotUpdateArgs} args - Arguments to update one Snapshot.
+     * Update one InterviewTopic.
+     * @param {InterviewTopicUpdateArgs} args - Arguments to update one InterviewTopic.
      * @example
-     * // Update one Snapshot
-     * const snapshot = await prisma.snapshot.update({
+     * // Update one InterviewTopic
+     * const interviewTopic = await prisma.interviewTopic.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3824,30 +3849,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends SnapshotUpdateArgs>(args: SelectSubset<T, SnapshotUpdateArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends InterviewTopicUpdateArgs>(args: SelectSubset<T, InterviewTopicUpdateArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Snapshots.
-     * @param {SnapshotDeleteManyArgs} args - Arguments to filter Snapshots to delete.
+     * Delete zero or more InterviewTopics.
+     * @param {InterviewTopicDeleteManyArgs} args - Arguments to filter InterviewTopics to delete.
      * @example
-     * // Delete a few Snapshots
-     * const { count } = await prisma.snapshot.deleteMany({
+     * // Delete a few InterviewTopics
+     * const { count } = await prisma.interviewTopic.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends SnapshotDeleteManyArgs>(args?: SelectSubset<T, SnapshotDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends InterviewTopicDeleteManyArgs>(args?: SelectSubset<T, InterviewTopicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Snapshots.
+     * Update zero or more InterviewTopics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {InterviewTopicUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Snapshots
-     * const snapshot = await prisma.snapshot.updateMany({
+     * // Update many InterviewTopics
+     * const interviewTopic = await prisma.interviewTopic.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3857,14 +3882,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends SnapshotUpdateManyArgs>(args: SelectSubset<T, SnapshotUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends InterviewTopicUpdateManyArgs>(args: SelectSubset<T, InterviewTopicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Snapshots and returns the data updated in the database.
-     * @param {SnapshotUpdateManyAndReturnArgs} args - Arguments to update many Snapshots.
+     * Update zero or more InterviewTopics and returns the data updated in the database.
+     * @param {InterviewTopicUpdateManyAndReturnArgs} args - Arguments to update many InterviewTopics.
      * @example
-     * // Update many Snapshots
-     * const snapshot = await prisma.snapshot.updateManyAndReturn({
+     * // Update many InterviewTopics
+     * const interviewTopic = await prisma.interviewTopic.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -3873,8 +3898,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Snapshots and only return the `id`
-     * const snapshotWithIdOnly = await prisma.snapshot.updateManyAndReturn({
+     * // Update zero or more InterviewTopics and only return the `id`
+     * const interviewTopicWithIdOnly = await prisma.interviewTopic.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -3887,56 +3912,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends SnapshotUpdateManyAndReturnArgs>(args: SelectSubset<T, SnapshotUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends InterviewTopicUpdateManyAndReturnArgs>(args: SelectSubset<T, InterviewTopicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Snapshot.
-     * @param {SnapshotUpsertArgs} args - Arguments to update or create a Snapshot.
+     * Create or update one InterviewTopic.
+     * @param {InterviewTopicUpsertArgs} args - Arguments to update or create a InterviewTopic.
      * @example
-     * // Update or create a Snapshot
-     * const snapshot = await prisma.snapshot.upsert({
+     * // Update or create a InterviewTopic
+     * const interviewTopic = await prisma.interviewTopic.upsert({
      *   create: {
-     *     // ... data to create a Snapshot
+     *     // ... data to create a InterviewTopic
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Snapshot we want to update
+     *     // ... the filter for the InterviewTopic we want to update
      *   }
      * })
      */
-    upsert<T extends SnapshotUpsertArgs>(args: SelectSubset<T, SnapshotUpsertArgs<ExtArgs>>): Prisma__SnapshotClient<$Result.GetResult<Prisma.$SnapshotPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends InterviewTopicUpsertArgs>(args: SelectSubset<T, InterviewTopicUpsertArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Snapshots.
+     * Count the number of InterviewTopics.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotCountArgs} args - Arguments to filter Snapshots to count.
+     * @param {InterviewTopicCountArgs} args - Arguments to filter InterviewTopics to count.
      * @example
-     * // Count the number of Snapshots
-     * const count = await prisma.snapshot.count({
+     * // Count the number of InterviewTopics
+     * const count = await prisma.interviewTopic.count({
      *   where: {
-     *     // ... the filter for the Snapshots we want to count
+     *     // ... the filter for the InterviewTopics we want to count
      *   }
      * })
     **/
-    count<T extends SnapshotCountArgs>(
-      args?: Subset<T, SnapshotCountArgs>,
+    count<T extends InterviewTopicCountArgs>(
+      args?: Subset<T, InterviewTopicCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], SnapshotCountAggregateOutputType>
+          : GetScalarType<T['select'], InterviewTopicCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Snapshot.
+     * Allows you to perform aggregations operations on a InterviewTopic.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {InterviewTopicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -3956,13 +3981,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends SnapshotAggregateArgs>(args: Subset<T, SnapshotAggregateArgs>): Prisma.PrismaPromise<GetSnapshotAggregateType<T>>
+    aggregate<T extends InterviewTopicAggregateArgs>(args: Subset<T, InterviewTopicAggregateArgs>): Prisma.PrismaPromise<GetInterviewTopicAggregateType<T>>
 
     /**
-     * Group by Snapshot.
+     * Group by InterviewTopic.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {SnapshotGroupByArgs} args - Group by arguments.
+     * @param {InterviewTopicGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -3977,14 +4002,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends SnapshotGroupByArgs,
+      T extends InterviewTopicGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SnapshotGroupByArgs['orderBy'] }
-        : { orderBy?: SnapshotGroupByArgs['orderBy'] },
+        ? { orderBy: InterviewTopicGroupByArgs['orderBy'] }
+        : { orderBy?: InterviewTopicGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -4033,22 +4058,23 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, SnapshotGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSnapshotGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, InterviewTopicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInterviewTopicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Snapshot model
+   * Fields of the InterviewTopic model
    */
-  readonly fields: SnapshotFieldRefs;
+  readonly fields: InterviewTopicFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Snapshot.
+   * The delegate class that acts as a "Promise-like" for InterviewTopic.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SnapshotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__InterviewTopicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    replicant<T extends ReplicantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ReplicantDefaultArgs<ExtArgs>>): Prisma__ReplicantClient<$Result.GetResult<Prisma.$ReplicantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    questions<T extends InterviewTopic$questionsArgs<ExtArgs> = {}>(args?: Subset<T, InterviewTopic$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    interview<T extends InterviewDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InterviewDefaultArgs<ExtArgs>>): Prisma__InterviewClient<$Result.GetResult<Prisma.$InterviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4075,422 +4101,448 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Snapshot model
+   * Fields of the InterviewTopic model
    */
-  interface SnapshotFieldRefs {
-    readonly id: FieldRef<"Snapshot", 'Int'>
-    readonly replicantId: FieldRef<"Snapshot", 'Int'>
-    readonly data: FieldRef<"Snapshot", 'Bytes'>
-    readonly createdAt: FieldRef<"Snapshot", 'DateTime'>
+  interface InterviewTopicFieldRefs {
+    readonly id: FieldRef<"InterviewTopic", 'Int'>
+    readonly interviewId: FieldRef<"InterviewTopic", 'Int'>
+    readonly name: FieldRef<"InterviewTopic", 'String'>
+    readonly summary: FieldRef<"InterviewTopic", 'String'>
+    readonly createdAt: FieldRef<"InterviewTopic", 'DateTime'>
+    readonly updatedAt: FieldRef<"InterviewTopic", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Snapshot findUnique
+   * InterviewTopic findUnique
    */
-  export type SnapshotFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * Filter, which Snapshot to fetch.
+     * Filter, which InterviewTopic to fetch.
      */
-    where: SnapshotWhereUniqueInput
+    where: InterviewTopicWhereUniqueInput
   }
 
   /**
-   * Snapshot findUniqueOrThrow
+   * InterviewTopic findUniqueOrThrow
    */
-  export type SnapshotFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * Filter, which Snapshot to fetch.
+     * Filter, which InterviewTopic to fetch.
      */
-    where: SnapshotWhereUniqueInput
+    where: InterviewTopicWhereUniqueInput
   }
 
   /**
-   * Snapshot findFirst
+   * InterviewTopic findFirst
    */
-  export type SnapshotFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * Filter, which Snapshot to fetch.
+     * Filter, which InterviewTopic to fetch.
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Snapshots to fetch.
+     * Determine the order of InterviewTopics to fetch.
      */
-    orderBy?: SnapshotOrderByWithRelationInput | SnapshotOrderByWithRelationInput[]
+    orderBy?: InterviewTopicOrderByWithRelationInput | InterviewTopicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Snapshots.
+     * Sets the position for searching for InterviewTopics.
      */
-    cursor?: SnapshotWhereUniqueInput
+    cursor?: InterviewTopicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Snapshots from the position of the cursor.
+     * Take `±n` InterviewTopics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Snapshots.
+     * Skip the first `n` InterviewTopics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Snapshots.
+     * Filter by unique combinations of InterviewTopics.
      */
-    distinct?: SnapshotScalarFieldEnum | SnapshotScalarFieldEnum[]
+    distinct?: InterviewTopicScalarFieldEnum | InterviewTopicScalarFieldEnum[]
   }
 
   /**
-   * Snapshot findFirstOrThrow
+   * InterviewTopic findFirstOrThrow
    */
-  export type SnapshotFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * Filter, which Snapshot to fetch.
+     * Filter, which InterviewTopic to fetch.
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Snapshots to fetch.
+     * Determine the order of InterviewTopics to fetch.
      */
-    orderBy?: SnapshotOrderByWithRelationInput | SnapshotOrderByWithRelationInput[]
+    orderBy?: InterviewTopicOrderByWithRelationInput | InterviewTopicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Snapshots.
+     * Sets the position for searching for InterviewTopics.
      */
-    cursor?: SnapshotWhereUniqueInput
+    cursor?: InterviewTopicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Snapshots from the position of the cursor.
+     * Take `±n` InterviewTopics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Snapshots.
+     * Skip the first `n` InterviewTopics.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Snapshots.
+     * Filter by unique combinations of InterviewTopics.
      */
-    distinct?: SnapshotScalarFieldEnum | SnapshotScalarFieldEnum[]
+    distinct?: InterviewTopicScalarFieldEnum | InterviewTopicScalarFieldEnum[]
   }
 
   /**
-   * Snapshot findMany
+   * InterviewTopic findMany
    */
-  export type SnapshotFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * Filter, which Snapshots to fetch.
+     * Filter, which InterviewTopics to fetch.
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Snapshots to fetch.
+     * Determine the order of InterviewTopics to fetch.
      */
-    orderBy?: SnapshotOrderByWithRelationInput | SnapshotOrderByWithRelationInput[]
+    orderBy?: InterviewTopicOrderByWithRelationInput | InterviewTopicOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Snapshots.
+     * Sets the position for listing InterviewTopics.
      */
-    cursor?: SnapshotWhereUniqueInput
+    cursor?: InterviewTopicWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Snapshots from the position of the cursor.
+     * Take `±n` InterviewTopics from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Snapshots.
+     * Skip the first `n` InterviewTopics.
      */
     skip?: number
-    distinct?: SnapshotScalarFieldEnum | SnapshotScalarFieldEnum[]
+    distinct?: InterviewTopicScalarFieldEnum | InterviewTopicScalarFieldEnum[]
   }
 
   /**
-   * Snapshot create
+   * InterviewTopic create
    */
-  export type SnapshotCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * The data needed to create a Snapshot.
+     * The data needed to create a InterviewTopic.
      */
-    data: XOR<SnapshotCreateInput, SnapshotUncheckedCreateInput>
+    data: XOR<InterviewTopicCreateInput, InterviewTopicUncheckedCreateInput>
   }
 
   /**
-   * Snapshot createMany
+   * InterviewTopic createMany
    */
-  export type SnapshotCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Snapshots.
+     * The data used to create many InterviewTopics.
      */
-    data: SnapshotCreateManyInput | SnapshotCreateManyInput[]
+    data: InterviewTopicCreateManyInput | InterviewTopicCreateManyInput[]
   }
 
   /**
-   * Snapshot createManyAndReturn
+   * InterviewTopic createManyAndReturn
    */
-  export type SnapshotCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelectCreateManyAndReturn<ExtArgs> | null
+    select?: InterviewTopicSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
-     * The data used to create many Snapshots.
+     * The data used to create many InterviewTopics.
      */
-    data: SnapshotCreateManyInput | SnapshotCreateManyInput[]
+    data: InterviewTopicCreateManyInput | InterviewTopicCreateManyInput[]
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: InterviewTopicIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Snapshot update
+   * InterviewTopic update
    */
-  export type SnapshotUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * The data needed to update a Snapshot.
+     * The data needed to update a InterviewTopic.
      */
-    data: XOR<SnapshotUpdateInput, SnapshotUncheckedUpdateInput>
+    data: XOR<InterviewTopicUpdateInput, InterviewTopicUncheckedUpdateInput>
     /**
-     * Choose, which Snapshot to update.
+     * Choose, which InterviewTopic to update.
      */
-    where: SnapshotWhereUniqueInput
+    where: InterviewTopicWhereUniqueInput
   }
 
   /**
-   * Snapshot updateMany
+   * InterviewTopic updateMany
    */
-  export type SnapshotUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Snapshots.
+     * The data used to update InterviewTopics.
      */
-    data: XOR<SnapshotUpdateManyMutationInput, SnapshotUncheckedUpdateManyInput>
+    data: XOR<InterviewTopicUpdateManyMutationInput, InterviewTopicUncheckedUpdateManyInput>
     /**
-     * Filter which Snapshots to update
+     * Filter which InterviewTopics to update
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
-     * Limit how many Snapshots to update.
+     * Limit how many InterviewTopics to update.
      */
     limit?: number
   }
 
   /**
-   * Snapshot updateManyAndReturn
+   * InterviewTopic updateManyAndReturn
    */
-  export type SnapshotUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: InterviewTopicSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
-     * The data used to update Snapshots.
+     * The data used to update InterviewTopics.
      */
-    data: XOR<SnapshotUpdateManyMutationInput, SnapshotUncheckedUpdateManyInput>
+    data: XOR<InterviewTopicUpdateManyMutationInput, InterviewTopicUncheckedUpdateManyInput>
     /**
-     * Filter which Snapshots to update
+     * Filter which InterviewTopics to update
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
-     * Limit how many Snapshots to update.
+     * Limit how many InterviewTopics to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: InterviewTopicIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Snapshot upsert
+   * InterviewTopic upsert
    */
-  export type SnapshotUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * The filter to search for the Snapshot to update in case it exists.
+     * The filter to search for the InterviewTopic to update in case it exists.
      */
-    where: SnapshotWhereUniqueInput
+    where: InterviewTopicWhereUniqueInput
     /**
-     * In case the Snapshot found by the `where` argument doesn't exist, create a new Snapshot with this data.
+     * In case the InterviewTopic found by the `where` argument doesn't exist, create a new InterviewTopic with this data.
      */
-    create: XOR<SnapshotCreateInput, SnapshotUncheckedCreateInput>
+    create: XOR<InterviewTopicCreateInput, InterviewTopicUncheckedCreateInput>
     /**
-     * In case the Snapshot was found with the provided `where` argument, update it with this data.
+     * In case the InterviewTopic was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SnapshotUpdateInput, SnapshotUncheckedUpdateInput>
+    update: XOR<InterviewTopicUpdateInput, InterviewTopicUncheckedUpdateInput>
   }
 
   /**
-   * Snapshot delete
+   * InterviewTopic delete
    */
-  export type SnapshotDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the InterviewTopic
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: InterviewTopicSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the InterviewTopic
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: InterviewTopicOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: InterviewTopicInclude<ExtArgs> | null
     /**
-     * Filter which Snapshot to delete.
+     * Filter which InterviewTopic to delete.
      */
-    where: SnapshotWhereUniqueInput
+    where: InterviewTopicWhereUniqueInput
   }
 
   /**
-   * Snapshot deleteMany
+   * InterviewTopic deleteMany
    */
-  export type SnapshotDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Snapshots to delete
+     * Filter which InterviewTopics to delete
      */
-    where?: SnapshotWhereInput
+    where?: InterviewTopicWhereInput
     /**
-     * Limit how many Snapshots to delete.
+     * Limit how many InterviewTopics to delete.
      */
     limit?: number
   }
 
   /**
-   * Snapshot without action
+   * InterviewTopic.questions
    */
-  export type SnapshotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type InterviewTopic$questionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Snapshot
+     * Select specific fields to fetch from the Question
      */
-    select?: SnapshotSelect<ExtArgs> | null
+    select?: QuestionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Snapshot
+     * Omit specific fields from the Question
      */
-    omit?: SnapshotOmit<ExtArgs> | null
+    omit?: QuestionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SnapshotInclude<ExtArgs> | null
+    include?: QuestionInclude<ExtArgs> | null
+    where?: QuestionWhereInput
+    orderBy?: QuestionOrderByWithRelationInput | QuestionOrderByWithRelationInput[]
+    cursor?: QuestionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuestionScalarFieldEnum | QuestionScalarFieldEnum[]
+  }
+
+  /**
+   * InterviewTopic without action
+   */
+  export type InterviewTopicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterviewTopic
+     */
+    select?: InterviewTopicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the InterviewTopic
+     */
+    omit?: InterviewTopicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterviewTopicInclude<ExtArgs> | null
   }
 
 
@@ -4508,41 +4560,38 @@ export namespace Prisma {
 
   export type QuestionAvgAggregateOutputType = {
     id: number | null
-    interviewId: number | null
+    topicId: number | null
   }
 
   export type QuestionSumAggregateOutputType = {
     id: number | null
-    interviewId: number | null
+    topicId: number | null
   }
 
   export type QuestionMinAggregateOutputType = {
     id: number | null
-    interviewId: number | null
+    topicId: number | null
     questionText: string | null
     answerText: string | null
     emotion: string | null
-    topic: string | null
     createdAt: Date | null
   }
 
   export type QuestionMaxAggregateOutputType = {
     id: number | null
-    interviewId: number | null
+    topicId: number | null
     questionText: string | null
     answerText: string | null
     emotion: string | null
-    topic: string | null
     createdAt: Date | null
   }
 
   export type QuestionCountAggregateOutputType = {
     id: number
-    interviewId: number
+    topicId: number
     questionText: number
     answerText: number
     emotion: number
-    topic: number
     createdAt: number
     _all: number
   }
@@ -4550,41 +4599,38 @@ export namespace Prisma {
 
   export type QuestionAvgAggregateInputType = {
     id?: true
-    interviewId?: true
+    topicId?: true
   }
 
   export type QuestionSumAggregateInputType = {
     id?: true
-    interviewId?: true
+    topicId?: true
   }
 
   export type QuestionMinAggregateInputType = {
     id?: true
-    interviewId?: true
+    topicId?: true
     questionText?: true
     answerText?: true
     emotion?: true
-    topic?: true
     createdAt?: true
   }
 
   export type QuestionMaxAggregateInputType = {
     id?: true
-    interviewId?: true
+    topicId?: true
     questionText?: true
     answerText?: true
     emotion?: true
-    topic?: true
     createdAt?: true
   }
 
   export type QuestionCountAggregateInputType = {
     id?: true
-    interviewId?: true
+    topicId?: true
     questionText?: true
     answerText?: true
     emotion?: true
-    topic?: true
     createdAt?: true
     _all?: true
   }
@@ -4677,11 +4723,10 @@ export namespace Prisma {
 
   export type QuestionGroupByOutputType = {
     id: number
-    interviewId: number
+    topicId: number
     questionText: string
     answerText: string | null
     emotion: string
-    topic: string
     createdAt: Date
     _count: QuestionCountAggregateOutputType | null
     _avg: QuestionAvgAggregateOutputType | null
@@ -4706,70 +4751,65 @@ export namespace Prisma {
 
   export type QuestionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    interviewId?: boolean
+    topicId?: boolean
     questionText?: boolean
     answerText?: boolean
     emotion?: boolean
-    topic?: boolean
     createdAt?: boolean
-    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    topic?: boolean | InterviewTopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["question"]>
 
   export type QuestionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    interviewId?: boolean
+    topicId?: boolean
     questionText?: boolean
     answerText?: boolean
     emotion?: boolean
-    topic?: boolean
     createdAt?: boolean
-    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    topic?: boolean | InterviewTopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["question"]>
 
   export type QuestionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    interviewId?: boolean
+    topicId?: boolean
     questionText?: boolean
     answerText?: boolean
     emotion?: boolean
-    topic?: boolean
     createdAt?: boolean
-    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    topic?: boolean | InterviewTopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["question"]>
 
   export type QuestionSelectScalar = {
     id?: boolean
-    interviewId?: boolean
+    topicId?: boolean
     questionText?: boolean
     answerText?: boolean
     emotion?: boolean
-    topic?: boolean
     createdAt?: boolean
   }
 
-  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "interviewId" | "questionText" | "answerText" | "emotion" | "topic" | "createdAt", ExtArgs["result"]["question"]>
+  export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "topicId" | "questionText" | "answerText" | "emotion" | "createdAt", ExtArgs["result"]["question"]>
   export type QuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    topic?: boolean | InterviewTopicDefaultArgs<ExtArgs>
   }
   export type QuestionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    topic?: boolean | InterviewTopicDefaultArgs<ExtArgs>
   }
   export type QuestionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    interview?: boolean | InterviewDefaultArgs<ExtArgs>
+    topic?: boolean | InterviewTopicDefaultArgs<ExtArgs>
   }
 
   export type $QuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Question"
     objects: {
-      interview: Prisma.$InterviewPayload<ExtArgs>
+      topic: Prisma.$InterviewTopicPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      interviewId: number
+      topicId: number
       questionText: string
       answerText: string | null
       emotion: string
-      topic: string
       createdAt: Date
     }, ExtArgs["result"]["question"]>
     composites: {}
@@ -5165,7 +5205,7 @@ export namespace Prisma {
    */
   export interface Prisma__QuestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    interview<T extends InterviewDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InterviewDefaultArgs<ExtArgs>>): Prisma__InterviewClient<$Result.GetResult<Prisma.$InterviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    topic<T extends InterviewTopicDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InterviewTopicDefaultArgs<ExtArgs>>): Prisma__InterviewTopicClient<$Result.GetResult<Prisma.$InterviewTopicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5196,11 +5236,10 @@ export namespace Prisma {
    */
   interface QuestionFieldRefs {
     readonly id: FieldRef<"Question", 'Int'>
-    readonly interviewId: FieldRef<"Question", 'Int'>
+    readonly topicId: FieldRef<"Question", 'Int'>
     readonly questionText: FieldRef<"Question", 'String'>
     readonly answerText: FieldRef<"Question", 'String'>
     readonly emotion: FieldRef<"Question", 'String'>
-    readonly topic: FieldRef<"Question", 'String'>
     readonly createdAt: FieldRef<"Question", 'DateTime'>
   }
     
@@ -5629,7 +5668,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    snapshot: 'snapshot'
   };
 
   export type ReplicantScalarFieldEnum = (typeof ReplicantScalarFieldEnum)[keyof typeof ReplicantScalarFieldEnum]
@@ -5638,29 +5678,31 @@ export namespace Prisma {
   export const InterviewScalarFieldEnum: {
     id: 'id',
     replicantId: 'replicantId',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    summary: 'summary'
   };
 
   export type InterviewScalarFieldEnum = (typeof InterviewScalarFieldEnum)[keyof typeof InterviewScalarFieldEnum]
 
 
-  export const SnapshotScalarFieldEnum: {
+  export const InterviewTopicScalarFieldEnum: {
     id: 'id',
-    replicantId: 'replicantId',
-    data: 'data',
-    createdAt: 'createdAt'
+    interviewId: 'interviewId',
+    name: 'name',
+    summary: 'summary',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type SnapshotScalarFieldEnum = (typeof SnapshotScalarFieldEnum)[keyof typeof SnapshotScalarFieldEnum]
+  export type InterviewTopicScalarFieldEnum = (typeof InterviewTopicScalarFieldEnum)[keyof typeof InterviewTopicScalarFieldEnum]
 
 
   export const QuestionScalarFieldEnum: {
     id: 'id',
-    interviewId: 'interviewId',
+    topicId: 'topicId',
     questionText: 'questionText',
     answerText: 'answerText',
     emotion: 'emotion',
-    topic: 'topic',
     createdAt: 'createdAt'
   };
 
@@ -5710,13 +5752,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Bytes'
-   */
-  export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5734,7 +5769,7 @@ export namespace Prisma {
     name?: StringFilter<"Replicant"> | string
     description?: StringNullableFilter<"Replicant"> | string | null
     createdAt?: DateTimeFilter<"Replicant"> | Date | string
-    snapshots?: SnapshotListRelationFilter
+    snapshot?: StringFilter<"Replicant"> | string
     interview?: XOR<InterviewNullableScalarRelationFilter, InterviewWhereInput> | null
   }
 
@@ -5743,7 +5778,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    snapshots?: SnapshotOrderByRelationAggregateInput
+    snapshot?: SortOrder
     interview?: InterviewOrderByWithRelationInput
   }
 
@@ -5755,7 +5790,7 @@ export namespace Prisma {
     name?: StringFilter<"Replicant"> | string
     description?: StringNullableFilter<"Replicant"> | string | null
     createdAt?: DateTimeFilter<"Replicant"> | Date | string
-    snapshots?: SnapshotListRelationFilter
+    snapshot?: StringFilter<"Replicant"> | string
     interview?: XOR<InterviewNullableScalarRelationFilter, InterviewWhereInput> | null
   }, "id">
 
@@ -5764,6 +5799,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    snapshot?: SortOrder
     _count?: ReplicantCountOrderByAggregateInput
     _avg?: ReplicantAvgOrderByAggregateInput
     _max?: ReplicantMaxOrderByAggregateInput
@@ -5779,6 +5815,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Replicant"> | string
     description?: StringNullableWithAggregatesFilter<"Replicant"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Replicant"> | Date | string
+    snapshot?: StringWithAggregatesFilter<"Replicant"> | string
   }
 
   export type InterviewWhereInput = {
@@ -5788,16 +5825,18 @@ export namespace Prisma {
     id?: IntFilter<"Interview"> | number
     replicantId?: IntFilter<"Interview"> | number
     createdAt?: DateTimeFilter<"Interview"> | Date | string
+    summary?: StringFilter<"Interview"> | string
     replicant?: XOR<ReplicantScalarRelationFilter, ReplicantWhereInput>
-    questions?: QuestionListRelationFilter
+    topics?: InterviewTopicListRelationFilter
   }
 
   export type InterviewOrderByWithRelationInput = {
     id?: SortOrder
     replicantId?: SortOrder
     createdAt?: SortOrder
+    summary?: SortOrder
     replicant?: ReplicantOrderByWithRelationInput
-    questions?: QuestionOrderByRelationAggregateInput
+    topics?: InterviewTopicOrderByRelationAggregateInput
   }
 
   export type InterviewWhereUniqueInput = Prisma.AtLeast<{
@@ -5807,14 +5846,16 @@ export namespace Prisma {
     OR?: InterviewWhereInput[]
     NOT?: InterviewWhereInput | InterviewWhereInput[]
     createdAt?: DateTimeFilter<"Interview"> | Date | string
+    summary?: StringFilter<"Interview"> | string
     replicant?: XOR<ReplicantScalarRelationFilter, ReplicantWhereInput>
-    questions?: QuestionListRelationFilter
+    topics?: InterviewTopicListRelationFilter
   }, "id" | "replicantId">
 
   export type InterviewOrderByWithAggregationInput = {
     id?: SortOrder
     replicantId?: SortOrder
     createdAt?: SortOrder
+    summary?: SortOrder
     _count?: InterviewCountOrderByAggregateInput
     _avg?: InterviewAvgOrderByAggregateInput
     _max?: InterviewMaxOrderByAggregateInput
@@ -5829,58 +5870,72 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Interview"> | number
     replicantId?: IntWithAggregatesFilter<"Interview"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Interview"> | Date | string
+    summary?: StringWithAggregatesFilter<"Interview"> | string
   }
 
-  export type SnapshotWhereInput = {
-    AND?: SnapshotWhereInput | SnapshotWhereInput[]
-    OR?: SnapshotWhereInput[]
-    NOT?: SnapshotWhereInput | SnapshotWhereInput[]
-    id?: IntFilter<"Snapshot"> | number
-    replicantId?: IntFilter<"Snapshot"> | number
-    data?: BytesFilter<"Snapshot"> | Uint8Array
-    createdAt?: DateTimeFilter<"Snapshot"> | Date | string
-    replicant?: XOR<ReplicantScalarRelationFilter, ReplicantWhereInput>
+  export type InterviewTopicWhereInput = {
+    AND?: InterviewTopicWhereInput | InterviewTopicWhereInput[]
+    OR?: InterviewTopicWhereInput[]
+    NOT?: InterviewTopicWhereInput | InterviewTopicWhereInput[]
+    id?: IntFilter<"InterviewTopic"> | number
+    interviewId?: IntFilter<"InterviewTopic"> | number
+    name?: StringFilter<"InterviewTopic"> | string
+    summary?: StringFilter<"InterviewTopic"> | string
+    createdAt?: DateTimeFilter<"InterviewTopic"> | Date | string
+    updatedAt?: DateTimeFilter<"InterviewTopic"> | Date | string
+    questions?: QuestionListRelationFilter
+    interview?: XOR<InterviewScalarRelationFilter, InterviewWhereInput>
   }
 
-  export type SnapshotOrderByWithRelationInput = {
+  export type InterviewTopicOrderByWithRelationInput = {
     id?: SortOrder
-    replicantId?: SortOrder
-    data?: SortOrder
+    interviewId?: SortOrder
+    name?: SortOrder
+    summary?: SortOrder
     createdAt?: SortOrder
-    replicant?: ReplicantOrderByWithRelationInput
+    updatedAt?: SortOrder
+    questions?: QuestionOrderByRelationAggregateInput
+    interview?: InterviewOrderByWithRelationInput
   }
 
-  export type SnapshotWhereUniqueInput = Prisma.AtLeast<{
+  export type InterviewTopicWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: SnapshotWhereInput | SnapshotWhereInput[]
-    OR?: SnapshotWhereInput[]
-    NOT?: SnapshotWhereInput | SnapshotWhereInput[]
-    replicantId?: IntFilter<"Snapshot"> | number
-    data?: BytesFilter<"Snapshot"> | Uint8Array
-    createdAt?: DateTimeFilter<"Snapshot"> | Date | string
-    replicant?: XOR<ReplicantScalarRelationFilter, ReplicantWhereInput>
+    AND?: InterviewTopicWhereInput | InterviewTopicWhereInput[]
+    OR?: InterviewTopicWhereInput[]
+    NOT?: InterviewTopicWhereInput | InterviewTopicWhereInput[]
+    interviewId?: IntFilter<"InterviewTopic"> | number
+    name?: StringFilter<"InterviewTopic"> | string
+    summary?: StringFilter<"InterviewTopic"> | string
+    createdAt?: DateTimeFilter<"InterviewTopic"> | Date | string
+    updatedAt?: DateTimeFilter<"InterviewTopic"> | Date | string
+    questions?: QuestionListRelationFilter
+    interview?: XOR<InterviewScalarRelationFilter, InterviewWhereInput>
   }, "id">
 
-  export type SnapshotOrderByWithAggregationInput = {
+  export type InterviewTopicOrderByWithAggregationInput = {
     id?: SortOrder
-    replicantId?: SortOrder
-    data?: SortOrder
+    interviewId?: SortOrder
+    name?: SortOrder
+    summary?: SortOrder
     createdAt?: SortOrder
-    _count?: SnapshotCountOrderByAggregateInput
-    _avg?: SnapshotAvgOrderByAggregateInput
-    _max?: SnapshotMaxOrderByAggregateInput
-    _min?: SnapshotMinOrderByAggregateInput
-    _sum?: SnapshotSumOrderByAggregateInput
+    updatedAt?: SortOrder
+    _count?: InterviewTopicCountOrderByAggregateInput
+    _avg?: InterviewTopicAvgOrderByAggregateInput
+    _max?: InterviewTopicMaxOrderByAggregateInput
+    _min?: InterviewTopicMinOrderByAggregateInput
+    _sum?: InterviewTopicSumOrderByAggregateInput
   }
 
-  export type SnapshotScalarWhereWithAggregatesInput = {
-    AND?: SnapshotScalarWhereWithAggregatesInput | SnapshotScalarWhereWithAggregatesInput[]
-    OR?: SnapshotScalarWhereWithAggregatesInput[]
-    NOT?: SnapshotScalarWhereWithAggregatesInput | SnapshotScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Snapshot"> | number
-    replicantId?: IntWithAggregatesFilter<"Snapshot"> | number
-    data?: BytesWithAggregatesFilter<"Snapshot"> | Uint8Array
-    createdAt?: DateTimeWithAggregatesFilter<"Snapshot"> | Date | string
+  export type InterviewTopicScalarWhereWithAggregatesInput = {
+    AND?: InterviewTopicScalarWhereWithAggregatesInput | InterviewTopicScalarWhereWithAggregatesInput[]
+    OR?: InterviewTopicScalarWhereWithAggregatesInput[]
+    NOT?: InterviewTopicScalarWhereWithAggregatesInput | InterviewTopicScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"InterviewTopic"> | number
+    interviewId?: IntWithAggregatesFilter<"InterviewTopic"> | number
+    name?: StringWithAggregatesFilter<"InterviewTopic"> | string
+    summary?: StringWithAggregatesFilter<"InterviewTopic"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"InterviewTopic"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"InterviewTopic"> | Date | string
   }
 
   export type QuestionWhereInput = {
@@ -5888,24 +5943,22 @@ export namespace Prisma {
     OR?: QuestionWhereInput[]
     NOT?: QuestionWhereInput | QuestionWhereInput[]
     id?: IntFilter<"Question"> | number
-    interviewId?: IntFilter<"Question"> | number
+    topicId?: IntFilter<"Question"> | number
     questionText?: StringFilter<"Question"> | string
     answerText?: StringNullableFilter<"Question"> | string | null
     emotion?: StringFilter<"Question"> | string
-    topic?: StringFilter<"Question"> | string
     createdAt?: DateTimeFilter<"Question"> | Date | string
-    interview?: XOR<InterviewScalarRelationFilter, InterviewWhereInput>
+    topic?: XOR<InterviewTopicScalarRelationFilter, InterviewTopicWhereInput>
   }
 
   export type QuestionOrderByWithRelationInput = {
     id?: SortOrder
-    interviewId?: SortOrder
+    topicId?: SortOrder
     questionText?: SortOrder
     answerText?: SortOrderInput | SortOrder
     emotion?: SortOrder
-    topic?: SortOrder
     createdAt?: SortOrder
-    interview?: InterviewOrderByWithRelationInput
+    topic?: InterviewTopicOrderByWithRelationInput
   }
 
   export type QuestionWhereUniqueInput = Prisma.AtLeast<{
@@ -5913,22 +5966,20 @@ export namespace Prisma {
     AND?: QuestionWhereInput | QuestionWhereInput[]
     OR?: QuestionWhereInput[]
     NOT?: QuestionWhereInput | QuestionWhereInput[]
-    interviewId?: IntFilter<"Question"> | number
+    topicId?: IntFilter<"Question"> | number
     questionText?: StringFilter<"Question"> | string
     answerText?: StringNullableFilter<"Question"> | string | null
     emotion?: StringFilter<"Question"> | string
-    topic?: StringFilter<"Question"> | string
     createdAt?: DateTimeFilter<"Question"> | Date | string
-    interview?: XOR<InterviewScalarRelationFilter, InterviewWhereInput>
+    topic?: XOR<InterviewTopicScalarRelationFilter, InterviewTopicWhereInput>
   }, "id">
 
   export type QuestionOrderByWithAggregationInput = {
     id?: SortOrder
-    interviewId?: SortOrder
+    topicId?: SortOrder
     questionText?: SortOrder
     answerText?: SortOrderInput | SortOrder
     emotion?: SortOrder
-    topic?: SortOrder
     createdAt?: SortOrder
     _count?: QuestionCountOrderByAggregateInput
     _avg?: QuestionAvgOrderByAggregateInput
@@ -5942,11 +5993,10 @@ export namespace Prisma {
     OR?: QuestionScalarWhereWithAggregatesInput[]
     NOT?: QuestionScalarWhereWithAggregatesInput | QuestionScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Question"> | number
-    interviewId?: IntWithAggregatesFilter<"Question"> | number
+    topicId?: IntWithAggregatesFilter<"Question"> | number
     questionText?: StringWithAggregatesFilter<"Question"> | string
     answerText?: StringNullableWithAggregatesFilter<"Question"> | string | null
     emotion?: StringWithAggregatesFilter<"Question"> | string
-    topic?: StringWithAggregatesFilter<"Question"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Question"> | Date | string
   }
 
@@ -5954,7 +6004,7 @@ export namespace Prisma {
     name: string
     description?: string | null
     createdAt?: Date | string
-    snapshots?: SnapshotCreateNestedManyWithoutReplicantInput
+    snapshot: string
     interview?: InterviewCreateNestedOneWithoutReplicantInput
   }
 
@@ -5963,7 +6013,7 @@ export namespace Prisma {
     name: string
     description?: string | null
     createdAt?: Date | string
-    snapshots?: SnapshotUncheckedCreateNestedManyWithoutReplicantInput
+    snapshot: string
     interview?: InterviewUncheckedCreateNestedOneWithoutReplicantInput
   }
 
@@ -5971,7 +6021,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    snapshots?: SnapshotUpdateManyWithoutReplicantNestedInput
+    snapshot?: StringFieldUpdateOperationsInput | string
     interview?: InterviewUpdateOneWithoutReplicantNestedInput
   }
 
@@ -5980,7 +6030,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    snapshots?: SnapshotUncheckedUpdateManyWithoutReplicantNestedInput
+    snapshot?: StringFieldUpdateOperationsInput | string
     interview?: InterviewUncheckedUpdateOneWithoutReplicantNestedInput
   }
 
@@ -5989,12 +6039,14 @@ export namespace Prisma {
     name: string
     description?: string | null
     createdAt?: Date | string
+    snapshot: string
   }
 
   export type ReplicantUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    snapshot?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReplicantUncheckedUpdateManyInput = {
@@ -6002,111 +6054,135 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    snapshot?: StringFieldUpdateOperationsInput | string
   }
 
   export type InterviewCreateInput = {
     createdAt?: Date | string
+    summary: string
     replicant: ReplicantCreateNestedOneWithoutInterviewInput
-    questions?: QuestionCreateNestedManyWithoutInterviewInput
+    topics?: InterviewTopicCreateNestedManyWithoutInterviewInput
   }
 
   export type InterviewUncheckedCreateInput = {
     id?: number
     replicantId: number
     createdAt?: Date | string
-    questions?: QuestionUncheckedCreateNestedManyWithoutInterviewInput
+    summary: string
+    topics?: InterviewTopicUncheckedCreateNestedManyWithoutInterviewInput
   }
 
   export type InterviewUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: StringFieldUpdateOperationsInput | string
     replicant?: ReplicantUpdateOneRequiredWithoutInterviewNestedInput
-    questions?: QuestionUpdateManyWithoutInterviewNestedInput
+    topics?: InterviewTopicUpdateManyWithoutInterviewNestedInput
   }
 
   export type InterviewUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    questions?: QuestionUncheckedUpdateManyWithoutInterviewNestedInput
+    summary?: StringFieldUpdateOperationsInput | string
+    topics?: InterviewTopicUncheckedUpdateManyWithoutInterviewNestedInput
   }
 
   export type InterviewCreateManyInput = {
     id?: number
     replicantId: number
     createdAt?: Date | string
+    summary: string
   }
 
   export type InterviewUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
   export type InterviewUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
-  export type SnapshotCreateInput = {
-    data: Uint8Array
+  export type InterviewTopicCreateInput = {
+    name: string
+    summary: string
     createdAt?: Date | string
-    replicant: ReplicantCreateNestedOneWithoutSnapshotsInput
+    updatedAt?: Date | string
+    questions?: QuestionCreateNestedManyWithoutTopicInput
+    interview: InterviewCreateNestedOneWithoutTopicsInput
   }
 
-  export type SnapshotUncheckedCreateInput = {
+  export type InterviewTopicUncheckedCreateInput = {
     id?: number
-    replicantId: number
-    data: Uint8Array
+    interviewId: number
+    name: string
+    summary: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: QuestionUncheckedCreateNestedManyWithoutTopicInput
   }
 
-  export type SnapshotUpdateInput = {
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+  export type InterviewTopicUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    replicant?: ReplicantUpdateOneRequiredWithoutSnapshotsNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUpdateManyWithoutTopicNestedInput
+    interview?: InterviewUpdateOneRequiredWithoutTopicsNestedInput
   }
 
-  export type SnapshotUncheckedUpdateInput = {
+  export type InterviewTopicUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    replicantId?: IntFieldUpdateOperationsInput | number
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+    interviewId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUncheckedUpdateManyWithoutTopicNestedInput
   }
 
-  export type SnapshotCreateManyInput = {
+  export type InterviewTopicCreateManyInput = {
     id?: number
-    replicantId: number
-    data: Uint8Array
+    interviewId: number
+    name: string
+    summary: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type SnapshotUpdateManyMutationInput = {
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+  export type InterviewTopicUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SnapshotUncheckedUpdateManyInput = {
+  export type InterviewTopicUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    replicantId?: IntFieldUpdateOperationsInput | number
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+    interviewId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuestionCreateInput = {
     questionText: string
     answerText?: string | null
     emotion: string
-    topic: string
     createdAt?: Date | string
-    interview: InterviewCreateNestedOneWithoutQuestionsInput
+    topic: InterviewTopicCreateNestedOneWithoutQuestionsInput
   }
 
   export type QuestionUncheckedCreateInput = {
     id?: number
-    interviewId: number
+    topicId: number
     questionText: string
     answerText?: string | null
     emotion: string
-    topic: string
     createdAt?: Date | string
   }
 
@@ -6114,28 +6190,25 @@ export namespace Prisma {
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    interview?: InterviewUpdateOneRequiredWithoutQuestionsNestedInput
+    topic?: InterviewTopicUpdateOneRequiredWithoutQuestionsNestedInput
   }
 
   export type QuestionUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    interviewId?: IntFieldUpdateOperationsInput | number
+    topicId?: IntFieldUpdateOperationsInput | number
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuestionCreateManyInput = {
     id?: number
-    interviewId: number
+    topicId: number
     questionText: string
     answerText?: string | null
     emotion: string
-    topic: string
     createdAt?: Date | string
   }
 
@@ -6143,17 +6216,15 @@ export namespace Prisma {
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type QuestionUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    interviewId?: IntFieldUpdateOperationsInput | number
+    topicId?: IntFieldUpdateOperationsInput | number
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6207,12 +6278,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type SnapshotListRelationFilter = {
-    every?: SnapshotWhereInput
-    some?: SnapshotWhereInput
-    none?: SnapshotWhereInput
-  }
-
   export type InterviewNullableScalarRelationFilter = {
     is?: InterviewWhereInput | null
     isNot?: InterviewWhereInput | null
@@ -6223,15 +6288,12 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SnapshotOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ReplicantCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    snapshot?: SortOrder
   }
 
   export type ReplicantAvgOrderByAggregateInput = {
@@ -6243,6 +6305,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    snapshot?: SortOrder
   }
 
   export type ReplicantMinOrderByAggregateInput = {
@@ -6250,6 +6313,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    snapshot?: SortOrder
   }
 
   export type ReplicantSumOrderByAggregateInput = {
@@ -6325,13 +6389,13 @@ export namespace Prisma {
     isNot?: ReplicantWhereInput
   }
 
-  export type QuestionListRelationFilter = {
-    every?: QuestionWhereInput
-    some?: QuestionWhereInput
-    none?: QuestionWhereInput
+  export type InterviewTopicListRelationFilter = {
+    every?: InterviewTopicWhereInput
+    some?: InterviewTopicWhereInput
+    none?: InterviewTopicWhereInput
   }
 
-  export type QuestionOrderByRelationAggregateInput = {
+  export type InterviewTopicOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6339,6 +6403,7 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     createdAt?: SortOrder
+    summary?: SortOrder
   }
 
   export type InterviewAvgOrderByAggregateInput = {
@@ -6350,12 +6415,14 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     createdAt?: SortOrder
+    summary?: SortOrder
   }
 
   export type InterviewMinOrderByAggregateInput = {
     id?: SortOrder
     replicantId?: SortOrder
     createdAt?: SortOrder
+    summary?: SortOrder
   }
 
   export type InterviewSumOrderByAggregateInput = {
@@ -6363,52 +6430,10 @@ export namespace Prisma {
     replicantId?: SortOrder
   }
 
-  export type BytesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
-    in?: Uint8Array[]
-    notIn?: Uint8Array[]
-    not?: NestedBytesFilter<$PrismaModel> | Uint8Array
-  }
-
-  export type SnapshotCountOrderByAggregateInput = {
-    id?: SortOrder
-    replicantId?: SortOrder
-    data?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type SnapshotAvgOrderByAggregateInput = {
-    id?: SortOrder
-    replicantId?: SortOrder
-  }
-
-  export type SnapshotMaxOrderByAggregateInput = {
-    id?: SortOrder
-    replicantId?: SortOrder
-    data?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type SnapshotMinOrderByAggregateInput = {
-    id?: SortOrder
-    replicantId?: SortOrder
-    data?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type SnapshotSumOrderByAggregateInput = {
-    id?: SortOrder
-    replicantId?: SortOrder
-  }
-
-  export type BytesWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
-    in?: Uint8Array[]
-    notIn?: Uint8Array[]
-    not?: NestedBytesWithAggregatesFilter<$PrismaModel> | Uint8Array
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBytesFilter<$PrismaModel>
-    _max?: NestedBytesFilter<$PrismaModel>
+  export type QuestionListRelationFilter = {
+    every?: QuestionWhereInput
+    some?: QuestionWhereInput
+    none?: QuestionWhereInput
   }
 
   export type InterviewScalarRelationFilter = {
@@ -6416,64 +6441,93 @@ export namespace Prisma {
     isNot?: InterviewWhereInput
   }
 
-  export type QuestionCountOrderByAggregateInput = {
+  export type QuestionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type InterviewTopicCountOrderByAggregateInput = {
     id?: SortOrder
     interviewId?: SortOrder
+    name?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewTopicAvgOrderByAggregateInput = {
+    id?: SortOrder
+    interviewId?: SortOrder
+  }
+
+  export type InterviewTopicMaxOrderByAggregateInput = {
+    id?: SortOrder
+    interviewId?: SortOrder
+    name?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewTopicMinOrderByAggregateInput = {
+    id?: SortOrder
+    interviewId?: SortOrder
+    name?: SortOrder
+    summary?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type InterviewTopicSumOrderByAggregateInput = {
+    id?: SortOrder
+    interviewId?: SortOrder
+  }
+
+  export type InterviewTopicScalarRelationFilter = {
+    is?: InterviewTopicWhereInput
+    isNot?: InterviewTopicWhereInput
+  }
+
+  export type QuestionCountOrderByAggregateInput = {
+    id?: SortOrder
+    topicId?: SortOrder
     questionText?: SortOrder
     answerText?: SortOrder
     emotion?: SortOrder
-    topic?: SortOrder
     createdAt?: SortOrder
   }
 
   export type QuestionAvgOrderByAggregateInput = {
     id?: SortOrder
-    interviewId?: SortOrder
+    topicId?: SortOrder
   }
 
   export type QuestionMaxOrderByAggregateInput = {
     id?: SortOrder
-    interviewId?: SortOrder
+    topicId?: SortOrder
     questionText?: SortOrder
     answerText?: SortOrder
     emotion?: SortOrder
-    topic?: SortOrder
     createdAt?: SortOrder
   }
 
   export type QuestionMinOrderByAggregateInput = {
     id?: SortOrder
-    interviewId?: SortOrder
+    topicId?: SortOrder
     questionText?: SortOrder
     answerText?: SortOrder
     emotion?: SortOrder
-    topic?: SortOrder
     createdAt?: SortOrder
   }
 
   export type QuestionSumOrderByAggregateInput = {
     id?: SortOrder
-    interviewId?: SortOrder
-  }
-
-  export type SnapshotCreateNestedManyWithoutReplicantInput = {
-    create?: XOR<SnapshotCreateWithoutReplicantInput, SnapshotUncheckedCreateWithoutReplicantInput> | SnapshotCreateWithoutReplicantInput[] | SnapshotUncheckedCreateWithoutReplicantInput[]
-    connectOrCreate?: SnapshotCreateOrConnectWithoutReplicantInput | SnapshotCreateOrConnectWithoutReplicantInput[]
-    createMany?: SnapshotCreateManyReplicantInputEnvelope
-    connect?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
+    topicId?: SortOrder
   }
 
   export type InterviewCreateNestedOneWithoutReplicantInput = {
     create?: XOR<InterviewCreateWithoutReplicantInput, InterviewUncheckedCreateWithoutReplicantInput>
     connectOrCreate?: InterviewCreateOrConnectWithoutReplicantInput
     connect?: InterviewWhereUniqueInput
-  }
-
-  export type SnapshotUncheckedCreateNestedManyWithoutReplicantInput = {
-    create?: XOR<SnapshotCreateWithoutReplicantInput, SnapshotUncheckedCreateWithoutReplicantInput> | SnapshotCreateWithoutReplicantInput[] | SnapshotUncheckedCreateWithoutReplicantInput[]
-    connectOrCreate?: SnapshotCreateOrConnectWithoutReplicantInput | SnapshotCreateOrConnectWithoutReplicantInput[]
-    createMany?: SnapshotCreateManyReplicantInputEnvelope
-    connect?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
   }
 
   export type InterviewUncheckedCreateNestedOneWithoutReplicantInput = {
@@ -6494,20 +6548,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type SnapshotUpdateManyWithoutReplicantNestedInput = {
-    create?: XOR<SnapshotCreateWithoutReplicantInput, SnapshotUncheckedCreateWithoutReplicantInput> | SnapshotCreateWithoutReplicantInput[] | SnapshotUncheckedCreateWithoutReplicantInput[]
-    connectOrCreate?: SnapshotCreateOrConnectWithoutReplicantInput | SnapshotCreateOrConnectWithoutReplicantInput[]
-    upsert?: SnapshotUpsertWithWhereUniqueWithoutReplicantInput | SnapshotUpsertWithWhereUniqueWithoutReplicantInput[]
-    createMany?: SnapshotCreateManyReplicantInputEnvelope
-    set?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    disconnect?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    delete?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    connect?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    update?: SnapshotUpdateWithWhereUniqueWithoutReplicantInput | SnapshotUpdateWithWhereUniqueWithoutReplicantInput[]
-    updateMany?: SnapshotUpdateManyWithWhereWithoutReplicantInput | SnapshotUpdateManyWithWhereWithoutReplicantInput[]
-    deleteMany?: SnapshotScalarWhereInput | SnapshotScalarWhereInput[]
-  }
-
   export type InterviewUpdateOneWithoutReplicantNestedInput = {
     create?: XOR<InterviewCreateWithoutReplicantInput, InterviewUncheckedCreateWithoutReplicantInput>
     connectOrCreate?: InterviewCreateOrConnectWithoutReplicantInput
@@ -6526,20 +6566,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type SnapshotUncheckedUpdateManyWithoutReplicantNestedInput = {
-    create?: XOR<SnapshotCreateWithoutReplicantInput, SnapshotUncheckedCreateWithoutReplicantInput> | SnapshotCreateWithoutReplicantInput[] | SnapshotUncheckedCreateWithoutReplicantInput[]
-    connectOrCreate?: SnapshotCreateOrConnectWithoutReplicantInput | SnapshotCreateOrConnectWithoutReplicantInput[]
-    upsert?: SnapshotUpsertWithWhereUniqueWithoutReplicantInput | SnapshotUpsertWithWhereUniqueWithoutReplicantInput[]
-    createMany?: SnapshotCreateManyReplicantInputEnvelope
-    set?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    disconnect?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    delete?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    connect?: SnapshotWhereUniqueInput | SnapshotWhereUniqueInput[]
-    update?: SnapshotUpdateWithWhereUniqueWithoutReplicantInput | SnapshotUpdateWithWhereUniqueWithoutReplicantInput[]
-    updateMany?: SnapshotUpdateManyWithWhereWithoutReplicantInput | SnapshotUpdateManyWithWhereWithoutReplicantInput[]
-    deleteMany?: SnapshotScalarWhereInput | SnapshotScalarWhereInput[]
-  }
-
   export type InterviewUncheckedUpdateOneWithoutReplicantNestedInput = {
     create?: XOR<InterviewCreateWithoutReplicantInput, InterviewUncheckedCreateWithoutReplicantInput>
     connectOrCreate?: InterviewCreateOrConnectWithoutReplicantInput
@@ -6556,18 +6582,18 @@ export namespace Prisma {
     connect?: ReplicantWhereUniqueInput
   }
 
-  export type QuestionCreateNestedManyWithoutInterviewInput = {
-    create?: XOR<QuestionCreateWithoutInterviewInput, QuestionUncheckedCreateWithoutInterviewInput> | QuestionCreateWithoutInterviewInput[] | QuestionUncheckedCreateWithoutInterviewInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutInterviewInput | QuestionCreateOrConnectWithoutInterviewInput[]
-    createMany?: QuestionCreateManyInterviewInputEnvelope
-    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  export type InterviewTopicCreateNestedManyWithoutInterviewInput = {
+    create?: XOR<InterviewTopicCreateWithoutInterviewInput, InterviewTopicUncheckedCreateWithoutInterviewInput> | InterviewTopicCreateWithoutInterviewInput[] | InterviewTopicUncheckedCreateWithoutInterviewInput[]
+    connectOrCreate?: InterviewTopicCreateOrConnectWithoutInterviewInput | InterviewTopicCreateOrConnectWithoutInterviewInput[]
+    createMany?: InterviewTopicCreateManyInterviewInputEnvelope
+    connect?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
   }
 
-  export type QuestionUncheckedCreateNestedManyWithoutInterviewInput = {
-    create?: XOR<QuestionCreateWithoutInterviewInput, QuestionUncheckedCreateWithoutInterviewInput> | QuestionCreateWithoutInterviewInput[] | QuestionUncheckedCreateWithoutInterviewInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutInterviewInput | QuestionCreateOrConnectWithoutInterviewInput[]
-    createMany?: QuestionCreateManyInterviewInputEnvelope
-    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  export type InterviewTopicUncheckedCreateNestedManyWithoutInterviewInput = {
+    create?: XOR<InterviewTopicCreateWithoutInterviewInput, InterviewTopicUncheckedCreateWithoutInterviewInput> | InterviewTopicCreateWithoutInterviewInput[] | InterviewTopicUncheckedCreateWithoutInterviewInput[]
+    connectOrCreate?: InterviewTopicCreateOrConnectWithoutInterviewInput | InterviewTopicCreateOrConnectWithoutInterviewInput[]
+    createMany?: InterviewTopicCreateManyInterviewInputEnvelope
+    connect?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
   }
 
   export type ReplicantUpdateOneRequiredWithoutInterviewNestedInput = {
@@ -6578,64 +6604,102 @@ export namespace Prisma {
     update?: XOR<XOR<ReplicantUpdateToOneWithWhereWithoutInterviewInput, ReplicantUpdateWithoutInterviewInput>, ReplicantUncheckedUpdateWithoutInterviewInput>
   }
 
-  export type QuestionUpdateManyWithoutInterviewNestedInput = {
-    create?: XOR<QuestionCreateWithoutInterviewInput, QuestionUncheckedCreateWithoutInterviewInput> | QuestionCreateWithoutInterviewInput[] | QuestionUncheckedCreateWithoutInterviewInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutInterviewInput | QuestionCreateOrConnectWithoutInterviewInput[]
-    upsert?: QuestionUpsertWithWhereUniqueWithoutInterviewInput | QuestionUpsertWithWhereUniqueWithoutInterviewInput[]
-    createMany?: QuestionCreateManyInterviewInputEnvelope
+  export type InterviewTopicUpdateManyWithoutInterviewNestedInput = {
+    create?: XOR<InterviewTopicCreateWithoutInterviewInput, InterviewTopicUncheckedCreateWithoutInterviewInput> | InterviewTopicCreateWithoutInterviewInput[] | InterviewTopicUncheckedCreateWithoutInterviewInput[]
+    connectOrCreate?: InterviewTopicCreateOrConnectWithoutInterviewInput | InterviewTopicCreateOrConnectWithoutInterviewInput[]
+    upsert?: InterviewTopicUpsertWithWhereUniqueWithoutInterviewInput | InterviewTopicUpsertWithWhereUniqueWithoutInterviewInput[]
+    createMany?: InterviewTopicCreateManyInterviewInputEnvelope
+    set?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    disconnect?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    delete?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    connect?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    update?: InterviewTopicUpdateWithWhereUniqueWithoutInterviewInput | InterviewTopicUpdateWithWhereUniqueWithoutInterviewInput[]
+    updateMany?: InterviewTopicUpdateManyWithWhereWithoutInterviewInput | InterviewTopicUpdateManyWithWhereWithoutInterviewInput[]
+    deleteMany?: InterviewTopicScalarWhereInput | InterviewTopicScalarWhereInput[]
+  }
+
+  export type InterviewTopicUncheckedUpdateManyWithoutInterviewNestedInput = {
+    create?: XOR<InterviewTopicCreateWithoutInterviewInput, InterviewTopicUncheckedCreateWithoutInterviewInput> | InterviewTopicCreateWithoutInterviewInput[] | InterviewTopicUncheckedCreateWithoutInterviewInput[]
+    connectOrCreate?: InterviewTopicCreateOrConnectWithoutInterviewInput | InterviewTopicCreateOrConnectWithoutInterviewInput[]
+    upsert?: InterviewTopicUpsertWithWhereUniqueWithoutInterviewInput | InterviewTopicUpsertWithWhereUniqueWithoutInterviewInput[]
+    createMany?: InterviewTopicCreateManyInterviewInputEnvelope
+    set?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    disconnect?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    delete?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    connect?: InterviewTopicWhereUniqueInput | InterviewTopicWhereUniqueInput[]
+    update?: InterviewTopicUpdateWithWhereUniqueWithoutInterviewInput | InterviewTopicUpdateWithWhereUniqueWithoutInterviewInput[]
+    updateMany?: InterviewTopicUpdateManyWithWhereWithoutInterviewInput | InterviewTopicUpdateManyWithWhereWithoutInterviewInput[]
+    deleteMany?: InterviewTopicScalarWhereInput | InterviewTopicScalarWhereInput[]
+  }
+
+  export type QuestionCreateNestedManyWithoutTopicInput = {
+    create?: XOR<QuestionCreateWithoutTopicInput, QuestionUncheckedCreateWithoutTopicInput> | QuestionCreateWithoutTopicInput[] | QuestionUncheckedCreateWithoutTopicInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutTopicInput | QuestionCreateOrConnectWithoutTopicInput[]
+    createMany?: QuestionCreateManyTopicInputEnvelope
+    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  }
+
+  export type InterviewCreateNestedOneWithoutTopicsInput = {
+    create?: XOR<InterviewCreateWithoutTopicsInput, InterviewUncheckedCreateWithoutTopicsInput>
+    connectOrCreate?: InterviewCreateOrConnectWithoutTopicsInput
+    connect?: InterviewWhereUniqueInput
+  }
+
+  export type QuestionUncheckedCreateNestedManyWithoutTopicInput = {
+    create?: XOR<QuestionCreateWithoutTopicInput, QuestionUncheckedCreateWithoutTopicInput> | QuestionCreateWithoutTopicInput[] | QuestionUncheckedCreateWithoutTopicInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutTopicInput | QuestionCreateOrConnectWithoutTopicInput[]
+    createMany?: QuestionCreateManyTopicInputEnvelope
+    connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  }
+
+  export type QuestionUpdateManyWithoutTopicNestedInput = {
+    create?: XOR<QuestionCreateWithoutTopicInput, QuestionUncheckedCreateWithoutTopicInput> | QuestionCreateWithoutTopicInput[] | QuestionUncheckedCreateWithoutTopicInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutTopicInput | QuestionCreateOrConnectWithoutTopicInput[]
+    upsert?: QuestionUpsertWithWhereUniqueWithoutTopicInput | QuestionUpsertWithWhereUniqueWithoutTopicInput[]
+    createMany?: QuestionCreateManyTopicInputEnvelope
     set?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
     disconnect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
     delete?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
     connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    update?: QuestionUpdateWithWhereUniqueWithoutInterviewInput | QuestionUpdateWithWhereUniqueWithoutInterviewInput[]
-    updateMany?: QuestionUpdateManyWithWhereWithoutInterviewInput | QuestionUpdateManyWithWhereWithoutInterviewInput[]
+    update?: QuestionUpdateWithWhereUniqueWithoutTopicInput | QuestionUpdateWithWhereUniqueWithoutTopicInput[]
+    updateMany?: QuestionUpdateManyWithWhereWithoutTopicInput | QuestionUpdateManyWithWhereWithoutTopicInput[]
     deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
   }
 
-  export type QuestionUncheckedUpdateManyWithoutInterviewNestedInput = {
-    create?: XOR<QuestionCreateWithoutInterviewInput, QuestionUncheckedCreateWithoutInterviewInput> | QuestionCreateWithoutInterviewInput[] | QuestionUncheckedCreateWithoutInterviewInput[]
-    connectOrCreate?: QuestionCreateOrConnectWithoutInterviewInput | QuestionCreateOrConnectWithoutInterviewInput[]
-    upsert?: QuestionUpsertWithWhereUniqueWithoutInterviewInput | QuestionUpsertWithWhereUniqueWithoutInterviewInput[]
-    createMany?: QuestionCreateManyInterviewInputEnvelope
+  export type InterviewUpdateOneRequiredWithoutTopicsNestedInput = {
+    create?: XOR<InterviewCreateWithoutTopicsInput, InterviewUncheckedCreateWithoutTopicsInput>
+    connectOrCreate?: InterviewCreateOrConnectWithoutTopicsInput
+    upsert?: InterviewUpsertWithoutTopicsInput
+    connect?: InterviewWhereUniqueInput
+    update?: XOR<XOR<InterviewUpdateToOneWithWhereWithoutTopicsInput, InterviewUpdateWithoutTopicsInput>, InterviewUncheckedUpdateWithoutTopicsInput>
+  }
+
+  export type QuestionUncheckedUpdateManyWithoutTopicNestedInput = {
+    create?: XOR<QuestionCreateWithoutTopicInput, QuestionUncheckedCreateWithoutTopicInput> | QuestionCreateWithoutTopicInput[] | QuestionUncheckedCreateWithoutTopicInput[]
+    connectOrCreate?: QuestionCreateOrConnectWithoutTopicInput | QuestionCreateOrConnectWithoutTopicInput[]
+    upsert?: QuestionUpsertWithWhereUniqueWithoutTopicInput | QuestionUpsertWithWhereUniqueWithoutTopicInput[]
+    createMany?: QuestionCreateManyTopicInputEnvelope
     set?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
     disconnect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
     delete?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
     connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
-    update?: QuestionUpdateWithWhereUniqueWithoutInterviewInput | QuestionUpdateWithWhereUniqueWithoutInterviewInput[]
-    updateMany?: QuestionUpdateManyWithWhereWithoutInterviewInput | QuestionUpdateManyWithWhereWithoutInterviewInput[]
+    update?: QuestionUpdateWithWhereUniqueWithoutTopicInput | QuestionUpdateWithWhereUniqueWithoutTopicInput[]
+    updateMany?: QuestionUpdateManyWithWhereWithoutTopicInput | QuestionUpdateManyWithWhereWithoutTopicInput[]
     deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
   }
 
-  export type ReplicantCreateNestedOneWithoutSnapshotsInput = {
-    create?: XOR<ReplicantCreateWithoutSnapshotsInput, ReplicantUncheckedCreateWithoutSnapshotsInput>
-    connectOrCreate?: ReplicantCreateOrConnectWithoutSnapshotsInput
-    connect?: ReplicantWhereUniqueInput
+  export type InterviewTopicCreateNestedOneWithoutQuestionsInput = {
+    create?: XOR<InterviewTopicCreateWithoutQuestionsInput, InterviewTopicUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: InterviewTopicCreateOrConnectWithoutQuestionsInput
+    connect?: InterviewTopicWhereUniqueInput
   }
 
-  export type BytesFieldUpdateOperationsInput = {
-    set?: Uint8Array
-  }
-
-  export type ReplicantUpdateOneRequiredWithoutSnapshotsNestedInput = {
-    create?: XOR<ReplicantCreateWithoutSnapshotsInput, ReplicantUncheckedCreateWithoutSnapshotsInput>
-    connectOrCreate?: ReplicantCreateOrConnectWithoutSnapshotsInput
-    upsert?: ReplicantUpsertWithoutSnapshotsInput
-    connect?: ReplicantWhereUniqueInput
-    update?: XOR<XOR<ReplicantUpdateToOneWithWhereWithoutSnapshotsInput, ReplicantUpdateWithoutSnapshotsInput>, ReplicantUncheckedUpdateWithoutSnapshotsInput>
-  }
-
-  export type InterviewCreateNestedOneWithoutQuestionsInput = {
-    create?: XOR<InterviewCreateWithoutQuestionsInput, InterviewUncheckedCreateWithoutQuestionsInput>
-    connectOrCreate?: InterviewCreateOrConnectWithoutQuestionsInput
-    connect?: InterviewWhereUniqueInput
-  }
-
-  export type InterviewUpdateOneRequiredWithoutQuestionsNestedInput = {
-    create?: XOR<InterviewCreateWithoutQuestionsInput, InterviewUncheckedCreateWithoutQuestionsInput>
-    connectOrCreate?: InterviewCreateOrConnectWithoutQuestionsInput
-    upsert?: InterviewUpsertWithoutQuestionsInput
-    connect?: InterviewWhereUniqueInput
-    update?: XOR<XOR<InterviewUpdateToOneWithWhereWithoutQuestionsInput, InterviewUpdateWithoutQuestionsInput>, InterviewUncheckedUpdateWithoutQuestionsInput>
+  export type InterviewTopicUpdateOneRequiredWithoutQuestionsNestedInput = {
+    create?: XOR<InterviewTopicCreateWithoutQuestionsInput, InterviewTopicUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: InterviewTopicCreateOrConnectWithoutQuestionsInput
+    upsert?: InterviewTopicUpsertWithoutQuestionsInput
+    connect?: InterviewTopicWhereUniqueInput
+    update?: XOR<XOR<InterviewTopicUpdateToOneWithWhereWithoutQuestionsInput, InterviewTopicUpdateWithoutQuestionsInput>, InterviewTopicUncheckedUpdateWithoutQuestionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6774,83 +6838,22 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedBytesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
-    in?: Uint8Array[]
-    notIn?: Uint8Array[]
-    not?: NestedBytesFilter<$PrismaModel> | Uint8Array
-  }
-
-  export type NestedBytesWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Uint8Array | BytesFieldRefInput<$PrismaModel>
-    in?: Uint8Array[]
-    notIn?: Uint8Array[]
-    not?: NestedBytesWithAggregatesFilter<$PrismaModel> | Uint8Array
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBytesFilter<$PrismaModel>
-    _max?: NestedBytesFilter<$PrismaModel>
-  }
-
-  export type SnapshotCreateWithoutReplicantInput = {
-    data: Uint8Array
-    createdAt?: Date | string
-  }
-
-  export type SnapshotUncheckedCreateWithoutReplicantInput = {
-    id?: number
-    data: Uint8Array
-    createdAt?: Date | string
-  }
-
-  export type SnapshotCreateOrConnectWithoutReplicantInput = {
-    where: SnapshotWhereUniqueInput
-    create: XOR<SnapshotCreateWithoutReplicantInput, SnapshotUncheckedCreateWithoutReplicantInput>
-  }
-
-  export type SnapshotCreateManyReplicantInputEnvelope = {
-    data: SnapshotCreateManyReplicantInput | SnapshotCreateManyReplicantInput[]
-  }
-
   export type InterviewCreateWithoutReplicantInput = {
     createdAt?: Date | string
-    questions?: QuestionCreateNestedManyWithoutInterviewInput
+    summary: string
+    topics?: InterviewTopicCreateNestedManyWithoutInterviewInput
   }
 
   export type InterviewUncheckedCreateWithoutReplicantInput = {
     id?: number
     createdAt?: Date | string
-    questions?: QuestionUncheckedCreateNestedManyWithoutInterviewInput
+    summary: string
+    topics?: InterviewTopicUncheckedCreateNestedManyWithoutInterviewInput
   }
 
   export type InterviewCreateOrConnectWithoutReplicantInput = {
     where: InterviewWhereUniqueInput
     create: XOR<InterviewCreateWithoutReplicantInput, InterviewUncheckedCreateWithoutReplicantInput>
-  }
-
-  export type SnapshotUpsertWithWhereUniqueWithoutReplicantInput = {
-    where: SnapshotWhereUniqueInput
-    update: XOR<SnapshotUpdateWithoutReplicantInput, SnapshotUncheckedUpdateWithoutReplicantInput>
-    create: XOR<SnapshotCreateWithoutReplicantInput, SnapshotUncheckedCreateWithoutReplicantInput>
-  }
-
-  export type SnapshotUpdateWithWhereUniqueWithoutReplicantInput = {
-    where: SnapshotWhereUniqueInput
-    data: XOR<SnapshotUpdateWithoutReplicantInput, SnapshotUncheckedUpdateWithoutReplicantInput>
-  }
-
-  export type SnapshotUpdateManyWithWhereWithoutReplicantInput = {
-    where: SnapshotScalarWhereInput
-    data: XOR<SnapshotUpdateManyMutationInput, SnapshotUncheckedUpdateManyWithoutReplicantInput>
-  }
-
-  export type SnapshotScalarWhereInput = {
-    AND?: SnapshotScalarWhereInput | SnapshotScalarWhereInput[]
-    OR?: SnapshotScalarWhereInput[]
-    NOT?: SnapshotScalarWhereInput | SnapshotScalarWhereInput[]
-    id?: IntFilter<"Snapshot"> | number
-    replicantId?: IntFilter<"Snapshot"> | number
-    data?: BytesFilter<"Snapshot"> | Uint8Array
-    createdAt?: DateTimeFilter<"Snapshot"> | Date | string
   }
 
   export type InterviewUpsertWithoutReplicantInput = {
@@ -6866,20 +6869,22 @@ export namespace Prisma {
 
   export type InterviewUpdateWithoutReplicantInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    questions?: QuestionUpdateManyWithoutInterviewNestedInput
+    summary?: StringFieldUpdateOperationsInput | string
+    topics?: InterviewTopicUpdateManyWithoutInterviewNestedInput
   }
 
   export type InterviewUncheckedUpdateWithoutReplicantInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    questions?: QuestionUncheckedUpdateManyWithoutInterviewNestedInput
+    summary?: StringFieldUpdateOperationsInput | string
+    topics?: InterviewTopicUncheckedUpdateManyWithoutInterviewNestedInput
   }
 
   export type ReplicantCreateWithoutInterviewInput = {
     name: string
     description?: string | null
     createdAt?: Date | string
-    snapshots?: SnapshotCreateNestedManyWithoutReplicantInput
+    snapshot: string
   }
 
   export type ReplicantUncheckedCreateWithoutInterviewInput = {
@@ -6887,7 +6892,7 @@ export namespace Prisma {
     name: string
     description?: string | null
     createdAt?: Date | string
-    snapshots?: SnapshotUncheckedCreateNestedManyWithoutReplicantInput
+    snapshot: string
   }
 
   export type ReplicantCreateOrConnectWithoutInterviewInput = {
@@ -6895,30 +6900,30 @@ export namespace Prisma {
     create: XOR<ReplicantCreateWithoutInterviewInput, ReplicantUncheckedCreateWithoutInterviewInput>
   }
 
-  export type QuestionCreateWithoutInterviewInput = {
-    questionText: string
-    answerText?: string | null
-    emotion: string
-    topic: string
+  export type InterviewTopicCreateWithoutInterviewInput = {
+    name: string
+    summary: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: QuestionCreateNestedManyWithoutTopicInput
   }
 
-  export type QuestionUncheckedCreateWithoutInterviewInput = {
+  export type InterviewTopicUncheckedCreateWithoutInterviewInput = {
     id?: number
-    questionText: string
-    answerText?: string | null
-    emotion: string
-    topic: string
+    name: string
+    summary: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    questions?: QuestionUncheckedCreateNestedManyWithoutTopicInput
   }
 
-  export type QuestionCreateOrConnectWithoutInterviewInput = {
-    where: QuestionWhereUniqueInput
-    create: XOR<QuestionCreateWithoutInterviewInput, QuestionUncheckedCreateWithoutInterviewInput>
+  export type InterviewTopicCreateOrConnectWithoutInterviewInput = {
+    where: InterviewTopicWhereUniqueInput
+    create: XOR<InterviewTopicCreateWithoutInterviewInput, InterviewTopicUncheckedCreateWithoutInterviewInput>
   }
 
-  export type QuestionCreateManyInterviewInputEnvelope = {
-    data: QuestionCreateManyInterviewInput | QuestionCreateManyInterviewInput[]
+  export type InterviewTopicCreateManyInterviewInputEnvelope = {
+    data: InterviewTopicCreateManyInterviewInput | InterviewTopicCreateManyInterviewInput[]
   }
 
   export type ReplicantUpsertWithoutInterviewInput = {
@@ -6936,7 +6941,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    snapshots?: SnapshotUpdateManyWithoutReplicantNestedInput
+    snapshot?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReplicantUncheckedUpdateWithoutInterviewInput = {
@@ -6944,23 +6949,93 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    snapshots?: SnapshotUncheckedUpdateManyWithoutReplicantNestedInput
+    snapshot?: StringFieldUpdateOperationsInput | string
   }
 
-  export type QuestionUpsertWithWhereUniqueWithoutInterviewInput = {
+  export type InterviewTopicUpsertWithWhereUniqueWithoutInterviewInput = {
+    where: InterviewTopicWhereUniqueInput
+    update: XOR<InterviewTopicUpdateWithoutInterviewInput, InterviewTopicUncheckedUpdateWithoutInterviewInput>
+    create: XOR<InterviewTopicCreateWithoutInterviewInput, InterviewTopicUncheckedCreateWithoutInterviewInput>
+  }
+
+  export type InterviewTopicUpdateWithWhereUniqueWithoutInterviewInput = {
+    where: InterviewTopicWhereUniqueInput
+    data: XOR<InterviewTopicUpdateWithoutInterviewInput, InterviewTopicUncheckedUpdateWithoutInterviewInput>
+  }
+
+  export type InterviewTopicUpdateManyWithWhereWithoutInterviewInput = {
+    where: InterviewTopicScalarWhereInput
+    data: XOR<InterviewTopicUpdateManyMutationInput, InterviewTopicUncheckedUpdateManyWithoutInterviewInput>
+  }
+
+  export type InterviewTopicScalarWhereInput = {
+    AND?: InterviewTopicScalarWhereInput | InterviewTopicScalarWhereInput[]
+    OR?: InterviewTopicScalarWhereInput[]
+    NOT?: InterviewTopicScalarWhereInput | InterviewTopicScalarWhereInput[]
+    id?: IntFilter<"InterviewTopic"> | number
+    interviewId?: IntFilter<"InterviewTopic"> | number
+    name?: StringFilter<"InterviewTopic"> | string
+    summary?: StringFilter<"InterviewTopic"> | string
+    createdAt?: DateTimeFilter<"InterviewTopic"> | Date | string
+    updatedAt?: DateTimeFilter<"InterviewTopic"> | Date | string
+  }
+
+  export type QuestionCreateWithoutTopicInput = {
+    questionText: string
+    answerText?: string | null
+    emotion: string
+    createdAt?: Date | string
+  }
+
+  export type QuestionUncheckedCreateWithoutTopicInput = {
+    id?: number
+    questionText: string
+    answerText?: string | null
+    emotion: string
+    createdAt?: Date | string
+  }
+
+  export type QuestionCreateOrConnectWithoutTopicInput = {
     where: QuestionWhereUniqueInput
-    update: XOR<QuestionUpdateWithoutInterviewInput, QuestionUncheckedUpdateWithoutInterviewInput>
-    create: XOR<QuestionCreateWithoutInterviewInput, QuestionUncheckedCreateWithoutInterviewInput>
+    create: XOR<QuestionCreateWithoutTopicInput, QuestionUncheckedCreateWithoutTopicInput>
   }
 
-  export type QuestionUpdateWithWhereUniqueWithoutInterviewInput = {
+  export type QuestionCreateManyTopicInputEnvelope = {
+    data: QuestionCreateManyTopicInput | QuestionCreateManyTopicInput[]
+  }
+
+  export type InterviewCreateWithoutTopicsInput = {
+    createdAt?: Date | string
+    summary: string
+    replicant: ReplicantCreateNestedOneWithoutInterviewInput
+  }
+
+  export type InterviewUncheckedCreateWithoutTopicsInput = {
+    id?: number
+    replicantId: number
+    createdAt?: Date | string
+    summary: string
+  }
+
+  export type InterviewCreateOrConnectWithoutTopicsInput = {
+    where: InterviewWhereUniqueInput
+    create: XOR<InterviewCreateWithoutTopicsInput, InterviewUncheckedCreateWithoutTopicsInput>
+  }
+
+  export type QuestionUpsertWithWhereUniqueWithoutTopicInput = {
     where: QuestionWhereUniqueInput
-    data: XOR<QuestionUpdateWithoutInterviewInput, QuestionUncheckedUpdateWithoutInterviewInput>
+    update: XOR<QuestionUpdateWithoutTopicInput, QuestionUncheckedUpdateWithoutTopicInput>
+    create: XOR<QuestionCreateWithoutTopicInput, QuestionUncheckedCreateWithoutTopicInput>
   }
 
-  export type QuestionUpdateManyWithWhereWithoutInterviewInput = {
+  export type QuestionUpdateWithWhereUniqueWithoutTopicInput = {
+    where: QuestionWhereUniqueInput
+    data: XOR<QuestionUpdateWithoutTopicInput, QuestionUncheckedUpdateWithoutTopicInput>
+  }
+
+  export type QuestionUpdateManyWithWhereWithoutTopicInput = {
     where: QuestionScalarWhereInput
-    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyWithoutInterviewInput>
+    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyWithoutTopicInput>
   }
 
   export type QuestionScalarWhereInput = {
@@ -6968,153 +7043,148 @@ export namespace Prisma {
     OR?: QuestionScalarWhereInput[]
     NOT?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
     id?: IntFilter<"Question"> | number
-    interviewId?: IntFilter<"Question"> | number
+    topicId?: IntFilter<"Question"> | number
     questionText?: StringFilter<"Question"> | string
     answerText?: StringNullableFilter<"Question"> | string | null
     emotion?: StringFilter<"Question"> | string
-    topic?: StringFilter<"Question"> | string
     createdAt?: DateTimeFilter<"Question"> | Date | string
   }
 
-  export type ReplicantCreateWithoutSnapshotsInput = {
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    interview?: InterviewCreateNestedOneWithoutReplicantInput
-  }
-
-  export type ReplicantUncheckedCreateWithoutSnapshotsInput = {
-    id?: number
-    name: string
-    description?: string | null
-    createdAt?: Date | string
-    interview?: InterviewUncheckedCreateNestedOneWithoutReplicantInput
-  }
-
-  export type ReplicantCreateOrConnectWithoutSnapshotsInput = {
-    where: ReplicantWhereUniqueInput
-    create: XOR<ReplicantCreateWithoutSnapshotsInput, ReplicantUncheckedCreateWithoutSnapshotsInput>
-  }
-
-  export type ReplicantUpsertWithoutSnapshotsInput = {
-    update: XOR<ReplicantUpdateWithoutSnapshotsInput, ReplicantUncheckedUpdateWithoutSnapshotsInput>
-    create: XOR<ReplicantCreateWithoutSnapshotsInput, ReplicantUncheckedCreateWithoutSnapshotsInput>
-    where?: ReplicantWhereInput
-  }
-
-  export type ReplicantUpdateToOneWithWhereWithoutSnapshotsInput = {
-    where?: ReplicantWhereInput
-    data: XOR<ReplicantUpdateWithoutSnapshotsInput, ReplicantUncheckedUpdateWithoutSnapshotsInput>
-  }
-
-  export type ReplicantUpdateWithoutSnapshotsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    interview?: InterviewUpdateOneWithoutReplicantNestedInput
-  }
-
-  export type ReplicantUncheckedUpdateWithoutSnapshotsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    interview?: InterviewUncheckedUpdateOneWithoutReplicantNestedInput
-  }
-
-  export type InterviewCreateWithoutQuestionsInput = {
-    createdAt?: Date | string
-    replicant: ReplicantCreateNestedOneWithoutInterviewInput
-  }
-
-  export type InterviewUncheckedCreateWithoutQuestionsInput = {
-    id?: number
-    replicantId: number
-    createdAt?: Date | string
-  }
-
-  export type InterviewCreateOrConnectWithoutQuestionsInput = {
-    where: InterviewWhereUniqueInput
-    create: XOR<InterviewCreateWithoutQuestionsInput, InterviewUncheckedCreateWithoutQuestionsInput>
-  }
-
-  export type InterviewUpsertWithoutQuestionsInput = {
-    update: XOR<InterviewUpdateWithoutQuestionsInput, InterviewUncheckedUpdateWithoutQuestionsInput>
-    create: XOR<InterviewCreateWithoutQuestionsInput, InterviewUncheckedCreateWithoutQuestionsInput>
+  export type InterviewUpsertWithoutTopicsInput = {
+    update: XOR<InterviewUpdateWithoutTopicsInput, InterviewUncheckedUpdateWithoutTopicsInput>
+    create: XOR<InterviewCreateWithoutTopicsInput, InterviewUncheckedCreateWithoutTopicsInput>
     where?: InterviewWhereInput
   }
 
-  export type InterviewUpdateToOneWithWhereWithoutQuestionsInput = {
+  export type InterviewUpdateToOneWithWhereWithoutTopicsInput = {
     where?: InterviewWhereInput
-    data: XOR<InterviewUpdateWithoutQuestionsInput, InterviewUncheckedUpdateWithoutQuestionsInput>
+    data: XOR<InterviewUpdateWithoutTopicsInput, InterviewUncheckedUpdateWithoutTopicsInput>
   }
 
-  export type InterviewUpdateWithoutQuestionsInput = {
+  export type InterviewUpdateWithoutTopicsInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: StringFieldUpdateOperationsInput | string
     replicant?: ReplicantUpdateOneRequiredWithoutInterviewNestedInput
   }
 
-  export type InterviewUncheckedUpdateWithoutQuestionsInput = {
+  export type InterviewUncheckedUpdateWithoutTopicsInput = {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    summary?: StringFieldUpdateOperationsInput | string
   }
 
-  export type SnapshotCreateManyReplicantInput = {
-    id?: number
-    data: Uint8Array
+  export type InterviewTopicCreateWithoutQuestionsInput = {
+    name: string
+    summary: string
     createdAt?: Date | string
+    updatedAt?: Date | string
+    interview: InterviewCreateNestedOneWithoutTopicsInput
   }
 
-  export type SnapshotUpdateWithoutReplicantInput = {
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+  export type InterviewTopicUncheckedCreateWithoutQuestionsInput = {
+    id?: number
+    interviewId: number
+    name: string
+    summary: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InterviewTopicCreateOrConnectWithoutQuestionsInput = {
+    where: InterviewTopicWhereUniqueInput
+    create: XOR<InterviewTopicCreateWithoutQuestionsInput, InterviewTopicUncheckedCreateWithoutQuestionsInput>
+  }
+
+  export type InterviewTopicUpsertWithoutQuestionsInput = {
+    update: XOR<InterviewTopicUpdateWithoutQuestionsInput, InterviewTopicUncheckedUpdateWithoutQuestionsInput>
+    create: XOR<InterviewTopicCreateWithoutQuestionsInput, InterviewTopicUncheckedCreateWithoutQuestionsInput>
+    where?: InterviewTopicWhereInput
+  }
+
+  export type InterviewTopicUpdateToOneWithWhereWithoutQuestionsInput = {
+    where?: InterviewTopicWhereInput
+    data: XOR<InterviewTopicUpdateWithoutQuestionsInput, InterviewTopicUncheckedUpdateWithoutQuestionsInput>
+  }
+
+  export type InterviewTopicUpdateWithoutQuestionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    interview?: InterviewUpdateOneRequiredWithoutTopicsNestedInput
   }
 
-  export type SnapshotUncheckedUpdateWithoutReplicantInput = {
+  export type InterviewTopicUncheckedUpdateWithoutQuestionsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+    interviewId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SnapshotUncheckedUpdateManyWithoutReplicantInput = {
+  export type InterviewTopicCreateManyInterviewInput = {
+    id?: number
+    name: string
+    summary: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type InterviewTopicUpdateWithoutInterviewInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUpdateManyWithoutTopicNestedInput
+  }
+
+  export type InterviewTopicUncheckedUpdateWithoutInterviewInput = {
     id?: IntFieldUpdateOperationsInput | number
-    data?: BytesFieldUpdateOperationsInput | Uint8Array
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    questions?: QuestionUncheckedUpdateManyWithoutTopicNestedInput
   }
 
-  export type QuestionCreateManyInterviewInput = {
+  export type InterviewTopicUncheckedUpdateManyWithoutInterviewInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    summary?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QuestionCreateManyTopicInput = {
     id?: number
     questionText: string
     answerText?: string | null
     emotion: string
-    topic: string
     createdAt?: Date | string
   }
 
-  export type QuestionUpdateWithoutInterviewInput = {
+  export type QuestionUpdateWithoutTopicInput = {
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type QuestionUncheckedUpdateWithoutInterviewInput = {
+  export type QuestionUncheckedUpdateWithoutTopicInput = {
     id?: IntFieldUpdateOperationsInput | number
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type QuestionUncheckedUpdateManyWithoutInterviewInput = {
+  export type QuestionUncheckedUpdateManyWithoutTopicInput = {
     id?: IntFieldUpdateOperationsInput | number
     questionText?: StringFieldUpdateOperationsInput | string
     answerText?: NullableStringFieldUpdateOperationsInput | string | null
     emotion?: StringFieldUpdateOperationsInput | string
-    topic?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -13,7 +13,7 @@
       Interview page of <b>{{ replicant?.name || '...' }}</b>
     </div>
 
-    <q-card v-if="topics?.length === 0">
+    <q-card v-if="topics?.[0]?.questions?.length === 0">
       <q-card-section>
         <div class="text-weight-medium text-justify">{{ languageStore.introMessage }}</div>
         <q-separator class="q-my-md" />
@@ -105,7 +105,7 @@ const onSendAnswer = async ({ answerText, emotion }: { answerText: string, emoti
     repId: replicantId.value,
     question: questionText.value,
     emotion: emotion,
-    topic: topicName.value,
+    topicName: topicName.value,
     answerText: answerText,
     questionText: questionText.value
   }
@@ -169,8 +169,8 @@ const onSwitchTopicTo = (topic: string) => {
 watch(replicantId, () => questionText.value = '')
 
 watchEffect(() => {
-  if (topics.value?.length && questionText.value.length === 0) {
-    topicName.value = topics.value[0]?.topic || ''
+  if (topics.value?.[0]?.questions?.length && questionText.value.length === 0) {
+    topicName.value = topics.value[0]?.name || ''
     onGetNextQuestion('IN_WATCH_EFFECT').catch(console.error)
   }
 })

@@ -121,29 +121,32 @@ exports.Prisma.ReplicantScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  snapshot: 'snapshot'
 };
 
 exports.Prisma.InterviewScalarFieldEnum = {
   id: 'id',
   replicantId: 'replicantId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  summary: 'summary'
 };
 
-exports.Prisma.SnapshotScalarFieldEnum = {
+exports.Prisma.InterviewTopicScalarFieldEnum = {
   id: 'id',
-  replicantId: 'replicantId',
-  data: 'data',
-  createdAt: 'createdAt'
+  interviewId: 'interviewId',
+  name: 'name',
+  summary: 'summary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.QuestionScalarFieldEnum = {
   id: 'id',
-  interviewId: 'interviewId',
+  topicId: 'topicId',
   questionText: 'questionText',
   answerText: 'answerText',
   emotion: 'emotion',
-  topic: 'topic',
   createdAt: 'createdAt'
 };
 
@@ -161,7 +164,7 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Replicant: 'Replicant',
   Interview: 'Interview',
-  Snapshot: 'Snapshot',
+  InterviewTopic: 'InterviewTopic',
   Question: 'Question'
 };
 

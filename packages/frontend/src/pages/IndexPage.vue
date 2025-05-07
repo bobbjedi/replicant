@@ -4,7 +4,9 @@ import { Notify } from 'quasar'
 import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useCreateReplicant from 'src/api/mutations/use-create-replicant'
 import { useRouter } from 'vue-router';
+import { useLanguageStore } from 'src/stores/langStorage';
 
+const languageStore = useLanguageStore();
 const { data: repList, isLoading, isError } = useReplicantsList();
 const { mutateAsync: createReplicant } = useCreateReplicant()
 
@@ -17,6 +19,7 @@ const createReplicantHandler = async () => {
   const res = await createReplicant({
     name: newName.value,
     description: newDescription.value,
+    lang: languageStore.lang
     // password: newPassword.value
   })
   if (res.id) {
