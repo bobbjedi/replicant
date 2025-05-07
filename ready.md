@@ -1,7 +1,7 @@
-Основной код бекенда:
+
 generator client {
   provider = "prisma-client-js"
-  output   = "./client"  // Указываем путь для сгенерированного клиента
+  output   = "./client"
 }
 
 datasource db {
@@ -13,36 +13,40 @@ model Replicant {
   id          Int        @id @default(autoincrement())
   name        String
   description String?
-  createdAt   DateTime @default(now())
-  snapshots   Snapshot[] // обратная связь от Replicant к Snapshot
-  interview   Interview? @relation(name: "ReplicantInterview") // Указываем имя связи
+  createdAt   DateTime   @default(now())
+  snapshot    String     // Заменил Bytes на String
+  interview   Interview? @relation(name: "ReplicantInterview")
 }
 
 model Interview {
-  id          Int        @id @default(autoincrement())
-  replicantId Int        @unique // Устанавливаем уникальность для replicantId
-  replicant   Replicant  @relation(name: "ReplicantInterview", fields: [replicantId], references: [id], onDelete: Cascade) // Указываем имя связи
-  createdAt   DateTime @default(now())
-  questions   Question[]
+  id          Int             @id @default(autoincrement())
+  replicantId Int             @unique
+  replicant   Replicant       @relation(name: "ReplicantInterview", fields: [replicantId], references: [id], onDelete: Cascade)
+  createdAt   DateTime        @default(now())
+  summary     String          // Заменил Bytes на String
+  topics      InterviewTopic[]
 }
 
-model Snapshot {
+model InterviewTopic {
   id          Int       @id @default(autoincrement())
-  replicantId Int
-  data        Bytes
-  createdAt   DateTime @default(now())
-  replicant   Replicant @relation(fields: [replicantId], references: [id], onDelete: Cascade)
+  interviewId Int
+  name        String
+  questions   Question[]
+  summary     String    // Заменил Bytes на String
+  type        String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  interview   Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
 }
 
 model Question {
-  id            Int       @id @default(autoincrement())
-  interviewId   Int
+  id            Int            @id @default(autoincrement())
+  topicId       Int
   questionText  String
   answerText    String?
   emotion       String
-  topic         String
-  createdAt     DateTime @default(now())
-  interview     Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  createdAt     DateTime       @default(now())
+  topic         InterviewTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }
 
 import prismaDb, { InterviewModel } from '../prisma/prismaDb'

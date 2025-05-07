@@ -105,6 +105,7 @@ const generateNextQuestionText = t.procedure
     const newQuestionText = await generateNextQuestionByQuestionsListFromChat({
       greetingQuestions: greetingTopicName === topicName ? [] : greetingQuestions,
       currentTopicQuestions,
+      topicName,
       nativeLanguage: lang,
     })
 

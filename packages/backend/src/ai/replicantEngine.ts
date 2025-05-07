@@ -1,10 +1,12 @@
+import { DEFAULT_TOPICS } from '../../../shared/src/constants'
 import { QuestionModel } from '../../../shared/src/types'
 import { chat, Role } from './adapters/aiClient'
 import { getSystemPromptNewQuestion, getSystemPromptNewTopic } from './getSystemPrompt'
 
-export const generateNextQuestionByQuestionsListFromChat = ({ greetingQuestions, currentTopicQuestions, nativeLanguage }: {
+export const generateNextQuestionByQuestionsListFromChat = ({ greetingQuestions, currentTopicQuestions, nativeLanguage, topicName }: {
   greetingQuestions: QuestionModel[]
   currentTopicQuestions: QuestionModel[]
+  topicName: string
   nativeLanguage: 'RU' | 'EN'
   }) => {
 
@@ -13,7 +15,9 @@ export const generateNextQuestionByQuestionsListFromChat = ({ greetingQuestions,
     ...currentTopicQuestions.sort((q1, q2) => q1.id - q2.id),
   ]
 
-  const systemPrompt = getSystemPromptNewQuestion(nativeLanguage)
+  const topicType = DEFAULT_TOPICS.find(t => t[nativeLanguage] === topicName)?.type
+  const systemPrompt = getSystemPromptNewQuestion(nativeLanguage, topicType)
+
   return chat([
     { role: Role.SYSTEM, content: systemPrompt },
     { role: Role.USER, content: JSON.stringify(questions.map(questionToPromptFormat)) },
@@ -26,7 +30,9 @@ export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingQuestion
     nativeLanguage: 'RU' | 'EN'
 }) => {
 
-  const systemPrompt = getSystemPromptNewTopic(nativeLanguage, topicName)
+  const topicType = DEFAULT_TOPICS.find(t => t[nativeLanguage] === topicName)?.type
+
+  const systemPrompt = getSystemPromptNewTopic(nativeLanguage, topicName, topicType)
   return chat([
     { role: Role.SYSTEM, content: systemPrompt },
     { role: Role.USER, content: JSON.stringify(greetingQuestions.sort((q1, q2) => q1.id - q2.id).map(questionToPromptFormat)) },

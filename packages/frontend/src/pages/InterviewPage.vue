@@ -170,7 +170,7 @@ watch(replicantId, () => questionText.value = '')
 
 watchEffect(() => {
   if (topics.value?.[0]?.questions?.length && questionText.value.length === 0) {
-    topicName.value = topics.value[0]?.name || ''
+    topicName.value ||= topics.value[0]?.name || ''
     onGetNextQuestion('IN_WATCH_EFFECT').catch(console.error)
   }
 })
