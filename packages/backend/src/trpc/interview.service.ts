@@ -3,44 +3,9 @@ import { z } from 'zod'
 import t from './trcpInstance'
 import { generateNextQuestionByQuestionsListFromChat, generateFirstQuestionOfNewTopicFromChat } from '../ai/replicantEngine'
 
-export const getInterviewByRepId = async (repId: number): Promise<InterviewModel | null> => {
-  return prismaDb.interview.findFirst({
-    where: {
-      replicantId: repId,
-    },
-    include: {
-      topics: {
-        include: {
-          questions: {
-            orderBy: { createdAt: 'asc' },
-          },
-        },
-      },
-    },
-  })
-}
-
-export const getInterviewTopicsWithQuestions = t.procedure
+const getInterviewTopicsWithQuestions = t.procedure
   .input(z.object({ repId: z.number() }))
   .query(async ({ input }) => {
-
-    // Группируем вопросы по topic
-    // const topicsMap: Record<string, QuestionModel[]> = {}
-
-    // interview.questions.forEach((q: QuestionModel) => {
-    //   topicsMap[q.topic] ||= []
-    //   const list = topicsMap[q.topic] as QuestionModel[]
-    //   list.push({ ...q })
-    // })
-
-    // // Формируем массив тем с вопросами
-    // const result = Object.entries(topicsMap).map(([topic, questions]) => {
-    //   return {
-    //     topic,
-    //     updatedAt: questions[0]?.createdAt,
-    //     questions,
-    //   }
-    // }).sort((t1, t2) => Number(t2.updatedAt) - Number(t1.updatedAt))
 
     return await prismaDb.interviewTopic.findMany({
       where: { interview: { replicantId: input.repId } },
@@ -53,7 +18,7 @@ export const getInterviewTopicsWithQuestions = t.procedure
     })
   })
 
-export const crateInterviewQuestion = t.procedure
+const crateInterviewQuestion = t.procedure
   .input(z.object({
     repId: z.number(),
     emotion: z.string(),
@@ -107,7 +72,7 @@ export const crateInterviewQuestion = t.procedure
     })
   })
 
-export const generateNextQuestionText = t.procedure
+const generateNextQuestionText = t.procedure
   .input(z.object({
     repId: z.number(),
     topicName: z.string(),
@@ -146,7 +111,7 @@ export const generateNextQuestionText = t.procedure
     return newQuestionText
   })
 
-export const generateFirstQuestionOfTopic = t.procedure
+const generateFirstQuestionTextForTopic = t.procedure
   .input(z.object({
     repId: z.number(),
     topicName: z.string(),
@@ -180,3 +145,11 @@ export const generateFirstQuestionOfTopic = t.procedure
     console.log('newQuestionText:', newQuestionText)
     return newQuestionText
   })
+
+export const interviewService = {
+  // getInterviewByRepId,
+  getAllTopics: getInterviewTopicsWithQuestions,
+  createQuestion: crateInterviewQuestion,
+  generateQuestionText: generateNextQuestionText,
+  generateFirstQuestionTextForTopic,
+}

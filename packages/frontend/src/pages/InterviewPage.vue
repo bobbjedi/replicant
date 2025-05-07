@@ -126,7 +126,7 @@ const onGetNextQuestion = async (v: string) => {
   console.info('onGetNextQuestion', topicName.value, lang.value, v)
   isLoadingNextQuestion.value = true
   try {
-    const resp = await frontClient.generateNextQuestionText.query({
+    const resp = await frontClient.interview.generateQuestionText.query({
       repId: unref(replicantId),
       topicName: unref(topicName),
       lang: unref(lang),
@@ -142,7 +142,7 @@ const onGetFirstQuestionForNewTopic = async () => {
   console.info('onGetFirstQuestion', topicName.value, lang.value)
   isLoadingNextQuestion.value = true
   try {
-    const resp = await frontClient.generateFirstQuestionOfTopic.query({
+    const resp = await frontClient.interview.generateFirstQuestionTextForTopic.query({
       repId: unref(replicantId),
       topicName: unref(topicName),
       lang: unref(lang),

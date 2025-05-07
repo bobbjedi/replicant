@@ -12,7 +12,7 @@ export default () => {
             topicName: string
             answerText: string
             questionText: string
-        }) => frontClient.crateInterviewQuestion.mutate(data),
+        }) => frontClient.interview.createQuestion.mutate(data),
         onSuccess() {
             queryClient.invalidateQueries({ queryKey: ['interview-topics-list'] }).catch(console.error)
         },

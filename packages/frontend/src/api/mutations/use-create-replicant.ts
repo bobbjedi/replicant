@@ -9,7 +9,7 @@ export default () => {
             name: string,
             description: string
             lang: 'RU' | 'EN'
-        }) => frontClient.createReplicant.mutate(data),
+        }) => frontClient.replicant.create.mutate(data),
         onSuccess() {
             queryClient.invalidateQueries({ queryKey: ['replicants-list'] }).catch(console.error)
         },

@@ -1,17 +1,10 @@
-import { generateFirstQuestionOfTopic, crateInterviewQuestion, generateNextQuestionText, getInterviewTopicsWithQuestions } from './interview.service'
-import { createReplicant, getReplicantsList } from './replicant.service'
+import { interviewService } from './interview.service'
+import { replicantService } from './replicant.service'
 import t from './trcpInstance'
 
 export const appRouter = t.router({
-  // Replicant
-  getReplicantsList,
-  createReplicant,
-
-  // Interview
-  getInterviewTopicsWithQuestions,
-  crateInterviewQuestion,
-  generateNextQuestionText,
-  generateFirstQuestionOfTopic,
+  replicant: t.router(replicantService),
+  interview: t.router(interviewService),
 })
 
 export type AppRouter = typeof appRouter;

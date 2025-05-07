@@ -8,8 +8,6 @@ export const generateNextQuestionByQuestionsListFromChat = ({ greetingQuestions,
   nativeLanguage: 'RU' | 'EN'
   }) => {
 
-  console.log('generateNextQuestionByQuestionsListFromChat', { greetingQuestions, currentTopicQuestions }, nativeLanguage)
-
   const questions = [
     ...greetingQuestions.sort((q1, q2) => q1.id - q2.id).slice(0, 3),
     ...currentTopicQuestions.sort((q1, q2) => q1.id - q2.id),
@@ -28,7 +26,6 @@ export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingQuestion
     nativeLanguage: 'RU' | 'EN'
 }) => {
 
-  console.log('generateFirstQuestionOfNewTopicFromChat', greetingQuestions, topicName, nativeLanguage)
   const systemPrompt = getSystemPromptNewTopic(nativeLanguage, topicName)
   return chat([
     { role: Role.SYSTEM, content: systemPrompt },

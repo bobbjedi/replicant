@@ -4,7 +4,7 @@ import { DEFAULT_TOPICS } from '../../../shared/src/constants'
 import { z } from 'zod'
 import t from './trcpInstance'
 
-export const createReplicant = t.procedure
+const createReplicant = t.procedure
   .input(
     z.object({
       name: z.string(),
@@ -36,6 +36,11 @@ export const createReplicant = t.procedure
     return replicant
   })
 
-export const getReplicantsList = t.procedure.query(() => {
+const getReplicantsList = t.procedure.query(() => {
   return prismaDb.replicant.findMany() as Promise<ReplicantModel[]>
 })
+
+export const replicantService = {
+  create: createReplicant,
+  getAll: getReplicantsList,
+}
