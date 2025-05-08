@@ -103,3 +103,5 @@ export const SKIP_REASON_PREFIX = {
   RU: 'Пользователь не стал отвечать, указал причину: ',
   EN: 'User did not answer, reason: '
 }
+
+import './seedDb'

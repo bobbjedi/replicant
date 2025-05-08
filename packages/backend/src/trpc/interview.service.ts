@@ -2,7 +2,8 @@ import prismaDb from '../prisma/prismaDb'
 import { z } from 'zod'
 import t from './trcpInstance'
 import { generateNextQuestionByQuestionsListFromChat, generateFirstQuestionOfNewTopicFromChat } from '../ai/replicantEngine'
-import { EDefaultTopicType } from '../../../shared/src/types'
+import { EDefaultTopicType, TopicModel } from '../../../shared/src/types'
+import refreshInterviewSnapshotTask from '../workers/refreshSnapshot.task'
 
 const getInterviewTopicsWithQuestions = t.procedure
   .input(z.object({ repId: z.number() }))
@@ -93,18 +94,18 @@ const generateNextQuestionText = t.procedure
           orderBy: { createdAt: 'asc' },
         },
       },
-    })
+    }) as TopicModel[]
 
     const greetingTopicName = topics.find((t) => t.type === EDefaultTopicType.GREETING)?.name
 
     // always use greeting topic for generate next questions
-    const greetingQuestions = topics.find((t) => t.name === greetingTopicName)?.questions || []
+    const greetingTopic = topics.find((t) => t.name === greetingTopicName) as TopicModel
 
-    const currentTopicQuestions = topics.find((t) => t.name === topicName)?.questions || []
+    const currentTopic = topics.find((t) => t.name === topicName) as TopicModel
 
     const newQuestionText = await generateNextQuestionByQuestionsListFromChat({
-      greetingQuestions: greetingTopicName === topicName ? [] : greetingQuestions,
-      currentTopicQuestions,
+      greetingTopic: greetingTopicName === topicName ? null : greetingTopic,
+      currentTopic,
       topicName,
       nativeLanguage: lang,
     })
@@ -133,14 +134,10 @@ const generateFirstQuestionTextForTopic = t.procedure
           orderBy: { createdAt: 'asc' },
         },
       },
-      orderBy: { createdAt: 'desc' },
-    })
-
-    // always use greeting topic for generate next questions
-    const greetingQuestions = greetingTopic?.questions || []
+    }) as TopicModel
 
     const newQuestionText = await generateFirstQuestionOfNewTopicFromChat({
-      greetingQuestions,
+      greetingTopic,
       topicName,
       nativeLanguage: lang,
     })
@@ -149,10 +146,23 @@ const generateFirstQuestionTextForTopic = t.procedure
     return newQuestionText
   })
 
+const refreshInterviewSnapshot = t.procedure
+  .input(z.object({ repId: z.number() }))
+  .mutation(async ({ input }) => {
+
+    const { repId } = input
+
+    const res = await refreshInterviewSnapshotTask(repId)
+
+    console.log('generateInterviewSnapshotFromChat:', res)
+    return res
+  })
+
 export const interviewService = {
   // getInterviewByRepId,
   getAllTopics: getInterviewTopicsWithQuestions,
   createQuestion: crateInterviewQuestion,
+  refreshInterviewSnapshot,
   generateQuestionText: generateNextQuestionText,
   generateFirstQuestionTextForTopic,
 }

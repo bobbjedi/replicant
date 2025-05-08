@@ -5,15 +5,18 @@ import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useCreateReplicant from 'src/api/mutations/use-create-replicant'
 import { useRouter } from 'vue-router';
 import { useLanguageStore } from 'src/stores/langStorage';
+import { frontClient } from 'src/api/frontClient';
+import useGetInfo from 'src/api/queries/use-get-info';
 
 const languageStore = useLanguageStore();
+
+const { data: systemInfo } = useGetInfo()
 const { data: repList, isLoading, isError } = useReplicantsList();
 const { mutateAsync: createReplicant } = useCreateReplicant()
 
 const createDialog = ref(false)
 const newName = ref('')
 const newDescription = ref('')
-// const newPassword = ref('')
 
 const createReplicantHandler = async () => {
   const res = await createReplicant({
@@ -41,8 +44,20 @@ function submitCreate() {
 }
 
 const router = useRouter()
-const goToInterview = (id: number)=> {
+const goToInterview = (id: number) => {
   router.push(`/interview/${id}`).catch(console.error)
+}
+const isRefreshModel = ref(false)
+const refreshInterviewSnapshot = (id: number) => {
+  isRefreshModel.value = true
+  frontClient.interview.refreshInterviewSnapshot.mutate({ repId: id }).then((res) => {
+    isRefreshModel.value = false
+    Notify.create({ message: res.message, color: res.success ? 'positive' : 'negative' })
+  }).catch(err => {
+    console.error('Update model error:', err)
+    isRefreshModel.value = false
+    Notify.create({ message: 'Error update replicant model', color: 'negative' })
+  })
 }
 
 </script>
@@ -57,7 +72,7 @@ const goToInterview = (id: number)=> {
     <div v-else-if="isError" class="text-negative">
       Error loading replicants
     </div>
-
+    {{ systemInfo }}
     <q-list bordered class="rounded-borders q-pa-md" style="width: 100%; margin: 0 auto">
       <q-item-label header class="text-h6 q-mb-md">Replicants</q-item-label>
 
@@ -82,12 +97,13 @@ const goToInterview = (id: number)=> {
         </q-item-section>
 
         <q-item-section side>
-          <q-btn color="primary" label="Interview" dense @click.stop="goToInterview(rep.id)" />
+          <q-btn icon="mic" color="primary" label="Interview" dense @click.stop="goToInterview(rep.id)"
+            class="q-ma-sm" />
+          <q-btn color="primary" icon="refresh" label="Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id)"
+            class="q-ma-sm" :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(rep.id)" />
         </q-item-section>
       </q-item>
     </q-list>
-
-
 
     <q-btn color="primary" label="Create replicant" icon="add" class="q-mt-md" @click="createDialog = true"
       unelevated />
@@ -101,7 +117,7 @@ const goToInterview = (id: number)=> {
 
         <q-card-section class="q-gutter-md">
           <q-input v-model="newName" label="Name" filled />
-          <q-input v-model="newDescription" label="Description" filled  />
+          <q-input v-model="newDescription" label="Description" filled />
           <!-- <q-input v-model="newPassword" label="Key of encryption" filled type="password" /> -->
         </q-card-section>
 

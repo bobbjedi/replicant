@@ -1208,19 +1208,20 @@ export const interview = [
     }
 ]
 
-
-setTimeout(async () => {
-    for (const question of interview) {
-        await delay(100)
-        const resp = await frontClient.interview.createQuestion.mutate({
-            ...question,
-            repId: 0
-        }).catch(console.error)
-
-        console.log('Resp create question:', question.topicName, question.questionText, resp?.id)
-    }
-}, 1000)
-
+;(globalThis as unknown as { useSeed:(v: number)=>void }).useSeed = (v: number) => {
+    setTimeout(async () => {
+        for (const question of interview) {
+            await delay(100)
+            const resp = await frontClient.interview.createQuestion.mutate({
+                ...question,
+                repId: v
+            }).catch(console.error)
+    
+            console.log('Resp create question:', question.topicName, question.questionText, resp?.id)
+        }
+        console.log('DONE')
+    }, 1000)       
+}
 
 
 // 1. Ценности и мораль:

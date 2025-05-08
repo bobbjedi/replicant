@@ -1,31 +1,31 @@
 import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
-import { QuestionModel } from '../../../shared/src/types'
+import { TopicModel } from '../../../shared/src/types'
 import { chat, Role } from './adapters/aiClient'
 import { getSystemPromptNewQuestion, getSystemPromptNewTopic } from './getSystemPrompt'
 
-export const generateNextQuestionByQuestionsListFromChat = ({ greetingQuestions, currentTopicQuestions, nativeLanguage, topicName }: {
-  greetingQuestions: QuestionModel[]
-  currentTopicQuestions: QuestionModel[]
+export const generateNextQuestionByQuestionsListFromChat = ({ greetingTopic, currentTopic, nativeLanguage, topicName }: {
+  greetingTopic: TopicModel | null
+  currentTopic: TopicModel
   topicName: string
   nativeLanguage: 'RU' | 'EN'
   }) => {
 
-  const questions = [
-    ...greetingQuestions.sort((q1, q2) => q1.id - q2.id).slice(0, 3),
-    ...currentTopicQuestions.sort((q1, q2) => q1.id - q2.id),
-  ]
-
   const topicType = DEFAULT_TOPICS_META.find(t => t[nativeLanguage] === topicName)?.type
   const systemPrompt = getSystemPromptNewQuestion(nativeLanguage, topicType)
 
+  const topics = [currentTopic]
+  if (greetingTopic) {
+    topics.unshift(greetingTopic)
+  }
+
   return chat([
     { role: Role.SYSTEM, content: systemPrompt },
-    { role: Role.USER, content: JSON.stringify(questions.map(questionToPromptFormat)) },
+    { role: Role.USER, content: convertTopicsToTextFormat(topics) },
   ])
 }
 
-export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingQuestions, topicName, nativeLanguage }: {
-  greetingQuestions: QuestionModel[]
+export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingTopic, topicName, nativeLanguage }: {
+  greetingTopic: TopicModel
    topicName: string
     nativeLanguage: 'RU' | 'EN'
 }) => {
@@ -35,12 +35,22 @@ export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingQuestion
   const systemPrompt = getSystemPromptNewTopic(nativeLanguage, topicName, topicType)
   return chat([
     { role: Role.SYSTEM, content: systemPrompt },
-    { role: Role.USER, content: JSON.stringify(greetingQuestions.sort((q1, q2) => q1.id - q2.id).map(questionToPromptFormat)) },
+    { role: Role.USER, content: convertTopicsToTextFormat([greetingTopic]) },
   ])
 }
-const questionToPromptFormat = (q: QuestionModel) => ({
-  question: q.questionText,
-  answer: q.answerText,
-  emotion: q.emotion,
-  date: q.createdAt,
-})
+
+export const convertTopicsToTextFormat = (topics: TopicModel[]): string => {
+  let result = ''
+
+  topics.forEach((topic) => {
+    result += `Topic: ${topic.name}\n`
+
+    topic.questions.forEach((q) => {
+      result += `#${q.id} \nQ: ${q.questionText}\nA: ${q.answerText}\nE: ${q.emotion}\n`
+    })
+
+    result += '\n---\n' // Разделитель между топиками
+  })
+
+  return result.trim() // Убираем лишний пробел в конце
+}

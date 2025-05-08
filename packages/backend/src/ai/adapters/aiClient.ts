@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import * as dotenv from 'dotenv'
 import { delay } from '../../../../shared/src/utils'
+import { countMessagesTokens } from '../utils'
 
 dotenv.config()
 
@@ -49,7 +50,8 @@ async function processQueue () {
     const {
       messages,
       options: {
-        model = 'openai/gpt-4.1-mini',
+        model = 'openai/gpt-4o-mini', // дешевле
+        // model = 'openai/gpt-4.1-mini', // дороже
         temperature = 0.7,
         headers = {},
       },
@@ -95,6 +97,7 @@ export function chat (
   messages: Message[],
   options: ChatOptions = {},
 ): Promise<string> {
+  console.log('Size:', countMessagesTokens(messages))
   return new Promise((resolve, reject) => {
     queue.push({ messages, options, resolve, reject })
     processQueue()
