@@ -1,6 +1,6 @@
 import { encoding_for_model, TiktokenModel } from 'tiktoken'
 
-export function countMessagesTokens (messages: { role: string, content: string }[], model: TiktokenModel = (process.env.OPENAI_API_MODEL || 'gpt-4') as TiktokenModel) {
+export function countMessagesTokens (messages: { role: string, content: string }[], model: TiktokenModel = 'gpt-4' as TiktokenModel) {
   const encoding = encoding_for_model(model)
 
   let tokensCount = 0
@@ -15,5 +15,5 @@ export function countMessagesTokens (messages: { role: string, content: string }
   // +2 токена на assistant ответ
   tokensCount += 2
 
-  return tokensCount * 3.6
+  return tokensCount
 }

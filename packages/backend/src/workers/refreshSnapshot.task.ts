@@ -4,7 +4,6 @@ import TOPIC_SNAPSHOT_PROMPT from '../ai/TOPIC_SNAPSHOT_PROMPT'
 import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
 import { delay } from '../../../shared/src/utils'
-import * as fs from 'fs'
 
 export const inProcessingRefreshSnapshot:Array<number> = []
 export default async (repId: number) => {
