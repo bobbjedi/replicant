@@ -1,12 +1,6 @@
 import { encoding_for_model, TiktokenModel } from 'tiktoken'
 
-export const getTokenCount = (prompt: string) => {
-  const encoding = encoding_for_model('gpt-4')
-  const tokens = encoding.encode(prompt)
-  return tokens.length
-}
-
-export function countMessagesTokens (messages: { role: string, content: string }[], model: TiktokenModel = 'gpt-4') {
+export function countMessagesTokens (messages: { role: string, content: string }[], model: TiktokenModel = (process.env.OPENAI_API_MODEL || 'gpt-4') as TiktokenModel) {
   const encoding = encoding_for_model(model)
 
   let tokensCount = 0
@@ -21,5 +15,5 @@ export function countMessagesTokens (messages: { role: string, content: string }
   // +2 токена на assistant ответ
   tokensCount += 2
 
-  return tokensCount
+  return tokensCount * 3.6
 }

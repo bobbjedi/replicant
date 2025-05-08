@@ -50,8 +50,7 @@ async function processQueue () {
     const {
       messages,
       options: {
-        model = 'openai/gpt-4o-mini', // дешевле
-        // model = 'openai/gpt-4.1-mini', // дороже
+        model = 'openai/' + (process.env.OPENAI_API_MODEL || 'gpt-4o-mini'),
         temperature = 0.7,
         headers = {},
       },
