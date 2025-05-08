@@ -3,6 +3,8 @@ import { convertTopicsToTextFormat } from '../ai/replicantEngine'
 import TOPIC_SNAPSHOT_PROMPT from '../ai/TOPIC_SNAPSHOT_PROMPT'
 import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
+import { delay } from '../../../shared/src/utils'
+import * as fs from 'fs'
 
 export const inProcessingRefreshSnapshot:Array<number> = []
 export default async (repId: number) => {
@@ -29,7 +31,17 @@ export default async (repId: number) => {
           },
         },
       })
-      await generateInterviewSnapshotFromChat(topics)
+      const res = await generateInterviewSnapshotFromChat(topics)
+      console.log('Summury generateInterviewSnapshotFromChat:', res)
+
+      await prismaDb.interview.update({
+        where: {
+          replicantId: repId,
+        },
+        data: {
+          summary: res,
+        },
+      })
     } catch (error) {
       console.error('generateInterviewSnapshotFromChat.task:', error)
     }
@@ -51,40 +63,67 @@ const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
   let draft = ''
   for (const i in topics) {
     const topic = topics[i] as TopicModel
-    if (+i === 0) {
-      // Для первого топика просто инициализируем черновик
-      const req1 = [
-        { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
-        { role: Role.USER, content: formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
-      ]
-      draft = await chat(req1) // Получаем первый черновик
-      console.log('draft', draft)
-      continue
+    let success = false
+    let attempts = 0
+    while (!success && attempts < 3) { // Ограничиваем количество попыток
+      try {
+        attempts++
+
+        if (+i === 0) {
+          // Для первого топика просто инициализируем черновик
+          const req1 = [
+            { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
+            { role: Role.USER, content: formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
+          ]
+          draft = await chat(req1) // Получаем первый черновик
+          console.log('draft', draft)
+          success = true
+          continue
+        }
+
+        // Для последующих топиков интегрируем их в текущий черновик
+        const req = [
+          { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
+          { role: Role.USER, content: appendPrompt + draft + `\n\n--- TOPIC ${topic.name} ---\n` + formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
+        ]
+        console.log('req ' + '#' + i, req[1])
+
+        const topicPortrait = await chat(req)
+        console.log('topicPortrait ' + '#' + i, topicPortrait)
+
+        // Конкатенируем новый топик с разделителями
+        draft += `\n\n--- TOPIC ${topic.name} ---\n` + topicPortrait
+
+        await prismaDb.interviewTopic.update({
+          where: {
+            id: topic.id as number,
+          },
+          data: {
+            summary: topicPortrait,
+          },
+        })
+        console.log('draft ' + '#' + i, draft)
+
+        success = true // Если все прошло успешно, выходим из цикла
+      } catch (error) {
+        console.error(`Error processing topic ${topic.name} on attempt ${attempts}:`, error)
+        if (attempts >= 3) {
+          throw new Error(`Failed to process topic ${topic.name} after 3 attempts.`)
+        } else {
+          await delay(1000)
+        }
+      }
     }
-
-    // Для последующих топиков интегрируем их в текущий черновик
-    const req = [
-      { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
-      { role: Role.USER, content: appendPrompt + draft + `\n\n--- TOPIC ${topic.name} ---\n` + formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
-    ]
-    console.log('req ' + '#' + i, req[1])
-
-    const topicPortrait = await chat(req)
-    console.log('topicPortrait ' + '#' + i, topicPortrait)
-
-    // Конкатенируем новый топик с разделителями
-    draft += `\n\n--- TOPIC ${topic.name} ---\n` + topicPortrait
-
-    await prismaDb.interviewTopic.update({
-      where: {
-        id: topic.id as number,
-      },
-      data: {
-        summary: topicPortrait,
-      },
-    })
-    console.log('draft ' + '#' + i, draft)
   }
 
   return draft
 }
+
+// setImmediate(async () => {
+//   const interview = await prismaDb.interview.findMany({
+//     where: { replicantId: 7 },
+
+//   })
+//   // console.log('interview', interview)
+//   fs.writeFileSync('interview.json', JSON.stringify(interview))
+// })
