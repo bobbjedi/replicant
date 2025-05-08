@@ -1,4 +1,4 @@
-import { DEFAULT_TOPICS } from '../../shared/src/constants'
+import { DEFAULT_TOPICS_META } from '../../shared/src/constants'
 
 export const INTRO = {
   RU: `Сейчас мы начнем создание твоего цифрового портрета, который будет основываться на твоих взглядах, ценностях и жизненном опыте.\n
@@ -22,14 +22,13 @@ export const INTRO_PATH_2 = {
 }
 
 export const FIRST_QUESTION = {
-  RU: `Давай начнём с знакомства. Расскажи, пожалуйста, о себе — твой пол, как тебя зовут, когда ты родился, сколько тебе лет, есть ли у тебя семья или дети, чем ты увлекаешься.
-Эти данные помогут лучше понять твой жизненный контекст и сформировать максимально точный персональный портрет. Вся информация хранится только у тебя на устройстве, под шифрованием, и не передаётся наружу.`,
-  EN: `Let’s start by getting to know you. Please tell me about yourself — your gender, your name, date of birth, age, whether you have a family or children, and what your interests are.
-This information will help build a clearer understanding of your life context and create a more accurate personal profile.
-All your data is stored only on your device, encrypted, and never shared externally.`
+  RU: `Привет! Давай начнем с нашего знакомства. Расскажи немного о себе: как тебя зовут, сколько тебе лет, есть ли у тебя семья, чем увлекаешься. /n
+  Это поможет создать более точное представление о твоей жизни. Все данные сохраняются только на твоем устройстве и под защитой.`,
+  EN: `Hello! Let’s start with a quick introduction. Tell me a bit about yourself: your name, age, whether you have a family, and what your hobbies are.\n
+   This will help me better understand your life. All your data is stored securely on your device, encrypted.`
 }
 
-export const FIRST_TOPIC_NAME = DEFAULT_TOPICS[0] as { RU: string, EN: string }
+export const FIRST_TOPIC_NAME = DEFAULT_TOPICS_META[0] as { RU: string, EN: string }
 
 export const EMOTIONS = [
   {
@@ -104,26 +103,3 @@ export const SKIP_REASON_PREFIX = {
   RU: 'Пользователь не стал отвечать, указал причину: ',
   EN: 'User did not answer, reason: '
 }
-
-export const BASE_TOPICS = [
-  { RU: 'Религия', EN: 'Religion', emoji: '🙏' },
-  { RU: 'Философия', EN: 'Philosophy', emoji: '🤔' },
-  { RU: 'Политика', EN: 'Politics', emoji: '🏛️' },
-  { RU: 'Личное развитие', EN: 'Self-development', emoji: '📈' },
-  { RU: 'Семья и отношения', EN: 'Family & Relationships', emoji: '👨‍👩‍👧‍👦' },
-  { RU: 'Этика', EN: 'Ethics', emoji: '⚖️' },
-  { RU: 'Работа и карьера', EN: 'Work & Career', emoji: '💼' },
-  { RU: 'Дружба', EN: 'Friendship', emoji: '🤝' },
-  { RU: 'Жизненные ценности', EN: 'Life Values', emoji: '💖' },
-  { RU: 'Страхи и тревоги', EN: 'Fears & Anxieties', emoji: '😨' },
-  { RU: 'Будущее', EN: 'Future', emoji: '🔮' },
-  { RU: 'Воспоминания детства', EN: 'Childhood Memories', emoji: '🧸' },
-  { RU: 'Любимые книги и фильмы', EN: 'Books & Movies', emoji: '🎥' },
-  { RU: 'Моральные дилеммы', EN: 'Moral Dilemmas', emoji: '🧭' },
-  { RU: 'Отношение к технологиям', EN: 'Technology', emoji: '📱' },
-  { RU: 'Смысл жизни', EN: 'Meaning of Life', emoji: '✨' },
-  { RU: 'Путешествия', EN: 'Travel', emoji: '✈️' },
-  { RU: 'Эмоции и чувства', EN: 'Emotions & Feelings', emoji: '💓' },
-  { RU: 'Культура и искусство', EN: 'Culture & Art', emoji: '🎨' },
-  { RU: 'Смерть и загробная жизнь', EN: 'Death & Afterlife', emoji: '⚰️' }
-]

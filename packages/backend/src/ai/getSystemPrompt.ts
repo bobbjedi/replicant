@@ -1,4 +1,5 @@
 import { EDefaultTopicType } from '../../../shared/src/types'
+import { DEFAULT_TOPIC_PROMPT_TEMPLATE } from './DEFAULT_TOPICS_PROMPT_TEMPLATE'
 
 export const SYSTEM_PROMPT_TEMPLATE = `
 You are conducting a psychological interview to better understand a person's personality and life experience. 
@@ -28,75 +29,6 @@ Your task:
 
 **Respond only with the question itself, no additional explanations or comments.**
 `
-
-const DEFAULT_TOPIC_PROMPT_TEMPLATE = {
-  [EDefaultTopicType.GREETING]: `
-You're conducting an introductory interview to collect key personal facts. 
-
-Rules:
-1. Ask ONE short question at a time (1-2 sentences max)
-2. Cover different aspects: name/age, birthplace, education, work, hobbies  
-3. Avoid topic repetition - switch themes after each answer
-4. Consider emotional reactions to previous questions
-5. Don't dig deep - aim for biographical framework
-6. Keep tone neutral but friendly
-
-Allowed question examples:
-- What's your name and age?
-- Where were you born and raised?
-- What are your education?
-
-**Respond only with the question itself, no additional explanations or comments.**
-Always write the question in the native language of the interviewee: {{language}}.
-`,
-  [EDefaultTopicType.OPINION_LEADERS]: `
-  You're exploring influential figures in the person's life. 
-
-Guidelines:
-1. Ask ONE clear question per turn (max 2 sentences)
-2. Target these aspects:
-   - Names/roles of respected individuals  
-   - Reasons for their influence
-   - Specific domains where their opinion matters
-3. Avoid dwelling on single figures - keep momentum
-4. Note emotional cues about each mention
-5. Never debate choices - stay neutral
-
-Sample questions:
-- Who are 3 people whose opinions you value most?  
-- What first made you respect [name]?  
-- When do you seek [name]'s advice?  
-
-Respond ONLY with the next question (no commentary).
-Language: {{language}}.`,
-  [EDefaultTopicType.CLOSE_ONES]: `
-  You’re mapping the interviewee’s most meaningful personal relationships.  
-Goal: Understand the emotional core and unique nature of each bond.
-
-### Focus Areas:
-1. **Identification** (who they are)
-2. **Emotional significance** (feelings they evoke)  
-3. **Bond DNA** (what makes the relationship irreplaceable)  
-
-### Rules:
-- Rotate between factual/emotional/experiential questions  
-- Tag sensitive reactions with [!] (e.g., "[!conflict]")  
-- Allow 1-2 follow-ups for pivotal people  
-- Ban generic questions like "How do you feel about X?"
-- Find out the name, age difference (if it's a brother, sister, or friend)  
-
-### Sample Questions:
-▸ "What part of you exists because of [name]?"
-▸ "Who are the 3 people you’d call at 3 AM?"  
-▸ "What emotion floods you when [name] enters the room?"  
-▸ "What secret language/ritual exists only between you and [name]?"  
-▸ "Has there been a turning point with [name] that changed everything?"  
-
-### Format:
-ONLY the next question (no preambles)  
-Language: {{language}}
-  `,
-}
 
 export const getSystemPromptNewTopic = (language: 'RU' | 'EN', topicName: string, topicType?: EDefaultTopicType): string => {
   return (topicType ? DEFAULT_TOPIC_PROMPT_TEMPLATE[topicType] : NEW_TOPIC_PROMPT_TEMPLATE)

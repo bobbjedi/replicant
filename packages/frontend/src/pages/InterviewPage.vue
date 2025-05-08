@@ -42,7 +42,7 @@
         </q-card-section>
 
         <q-card-section>
-          <q-btn v-for="topic in actualTopicsList" color="secondary" :key="topic.EN"
+          <q-btn v-for="topic in emptyTopicsList" color="secondary" :key="topic.EN"
             :label="`${topic.emoji} ${topic[lang]}`" @click="newTopicName = topic[lang]" class="q-ma-sm" />
           <div>Other topic:</div>
           <q-input v-model="newTopicName" label="Input new topic" filled type="textarea" />
@@ -68,10 +68,11 @@ import { useRoute } from 'vue-router'
 import { useLanguageStore } from 'src/stores/langStorage';
 import InterviewChat from 'src/components/InterviewChat.vue'
 import InterviewTopicsList from 'src/components/InterviewTopicsList.vue'
-import { BASE_TOPICS, FIRST_TOPIC_NAME } from 'src/constants';
+import {  FIRST_TOPIC_NAME } from 'src/constants';
 import useCreateQuestion from 'src/api/mutations/use-create-question';
 import { Notify } from 'quasar';
 import { frontClient } from 'src/api/frontClient';
+import { DEFAULT_TOPICS_META } from '../../../shared/src/constants';
 
 const { mutateAsync: createQuestion, isPending: isCreateQuestionPending } = useCreateQuestion()
 
@@ -92,8 +93,7 @@ const questionText = ref<string>('')
 const topicName = ref<string>('')
 const newTopicName = ref<string>('')
 
-const knownTopics = computed(() => topics.value?.map(t => t[lang.value]) || [])
-const actualTopicsList = computed(() => BASE_TOPICS.filter(t => !knownTopics.value.includes(t[lang.value])))
+const emptyTopicsList = computed(() => DEFAULT_TOPICS_META.filter(t => (topics.value?.find(tt => tt.name === t[lang.value])?.questions?.length || 0) < 5))
 const onStartInterview = () => {
   isShowFirstQuestion.value = true
   questionText.value = languageStore.firstQuestionMessage
@@ -174,4 +174,5 @@ watchEffect(() => {
     onGetNextQuestion('IN_WATCH_EFFECT').catch(console.error)
   }
 })
+
 </script>

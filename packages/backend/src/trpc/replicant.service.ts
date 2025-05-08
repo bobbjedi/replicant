@@ -1,6 +1,6 @@
 import prismaDb from '../prisma/prismaDb'
 import { ReplicantModel } from '../../../shared/src/types'
-import { DEFAULT_TOPICS } from '../../../shared/src/constants'
+import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
 import { z } from 'zod'
 import t from './trcpInstance'
 
@@ -23,7 +23,7 @@ const createReplicant = t.procedure
             summary: '',
             topics: {
               createMany: {
-                data: DEFAULT_TOPICS.map(topic => ({
+                data: DEFAULT_TOPICS_META.map(topic => ({
                   name: topic[input.lang],
                   summary: '',
                   type: topic.type || null,

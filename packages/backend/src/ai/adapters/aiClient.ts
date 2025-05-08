@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import * as dotenv from 'dotenv'
+import { delay } from '../../../../shared/src/utils'
 
 dotenv.config()
 
@@ -37,10 +38,6 @@ interface RequestItem {
 const queue: RequestItem[] = []
 let isProcessing = false
 
-function delay (ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
 async function processQueue () {
   if (isProcessing) { return }
   isProcessing = true
@@ -52,7 +49,7 @@ async function processQueue () {
     const {
       messages,
       options: {
-        model = 'openai/gpt-4o-mini',
+        model = 'openai/gpt-4.1-mini',
         temperature = 0.7,
         headers = {},
       },
