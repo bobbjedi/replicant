@@ -3,7 +3,7 @@ import { z } from 'zod'
 import t from './trcpInstance'
 import { generateNextQuestionByQuestionsListFromChat, generateFirstQuestionOfNewTopicFromChat } from '../ai/interview/interviewer'
 import { EMainTopicType, TopicModel } from '../../../shared/src/types'
-import refreshInterviewSnapshotTask from '../workers/refreshSnapshot.task'
+import deepRefreshInterviewSnapshotTask, { refreshInterviewSnapshotByTopicsSummaries } from '../workers/refreshSnapshot.task'
 import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
 
 const getInterviewTopicsWithQuestions = t.procedure
@@ -152,15 +152,26 @@ const generateFirstQuestionTextForTopic = t.procedure
     return newQuestionText
   })
 
-const refreshInterviewSnapshot = t.procedure
+// Topics snapshots + interview snapshots
+const deepRefreshInterviewSnapshot = t.procedure
   .input(z.object({ repId: z.number() }))
   .mutation(async ({ input }) => {
-
+    console.log('USE deepRefreshInterviewSnapshot')
     const { repId } = input
 
-    const res = await refreshInterviewSnapshotTask(repId)
+    const res = await deepRefreshInterviewSnapshotTask(repId)
+    return res
+  })
 
-    console.log('generateInterviewSnapshotFromChat:', res)
+export const refreshInterviewSnapshot = t.procedure
+  .input(z.object({ repId: z.number() }))
+  .mutation(async ({ input }) => {
+    console.log('USE refreshInterviewSnapshot')
+    const { repId } = input
+
+    const res = await refreshInterviewSnapshotByTopicsSummaries(repId)
+
+    console.log('refreshInterviewSnapshot:', res)
     return res
   })
 
@@ -168,6 +179,7 @@ export const interviewService = {
   // getInterviewByRepId,
   getAllTopics: getInterviewTopicsWithQuestions,
   createQuestion: crateInterviewQuestion,
+  deepRefreshInterviewSnapshot,
   refreshInterviewSnapshot,
   generateQuestionText: generateNextQuestionText,
   generateFirstQuestionTextForTopic,

@@ -170,7 +170,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "..",
   "clientVersion": "6.7.0",

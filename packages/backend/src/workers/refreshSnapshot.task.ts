@@ -1,12 +1,15 @@
+import * as fs from 'fs'
 import { Role, chat } from '../ai/adapters/aiClient'
 import { convertTopicsToTextFormat } from '../ai/interview/interviewer'
-import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_PROMPT'
+import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_TEMPLATE'
 import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
 import { delay } from '../../../shared/src/utils'
+import { PORTRAIT_PROMPTS, FINAL_PORTRAIT_PROMPT } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
 
 export const inProcessingRefreshSnapshot:Array<number> = []
-export default async (repId: number) => {
+
+export default (repId: number) => {
   if (inProcessingRefreshSnapshot.includes(repId)) {
     return {
       success: false,
@@ -30,9 +33,12 @@ export default async (repId: number) => {
           },
         },
       })
-      const topicsSummaries = await generateInterviewSnapshotFromChat(topics)
+      const topicsSummaries = await generateTopicSummaries(topics)
       console.log('topicsSummaries:', topicsSummaries)
 
+      inProcessingRefreshSnapshot.splice(inProcessingRefreshSnapshot.indexOf(repId), 1)
+
+      await refreshInterviewSnapshotByTopicsSummaries(repId)
     } catch (error) {
       console.error('generateInterviewSnapshotFromChat.task:', error)
     }
@@ -47,13 +53,20 @@ export default async (repId: number) => {
   }
 }
 
-const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
+const generateTopicSummaries = async (topics: TopicModel[]) => {
   const formatDescription = 'New topic: data format Question/Answer/Emotion (Q/A/E) \n'
   const appendPrompt = 'Here’s the current version of the personality draft, updated with previous topics. Integrate the following new topic into it.\nCurrent draft:\n'
+
+  topics.sort((t1, t2) => t1.id - t2.id)
+
+  console.log('Prepare interview snapshot \n', topics.map(t => t.name).join('\n'))
 
   let draft = ''
   for (const i in topics) {
     const topic = topics[i] as TopicModel
+    if (topic.questions.length === 0) {
+      continue
+    }
     let success = false
     let attempts = 0
     while (!success && attempts < 3) { // Ограничиваем количество попыток
@@ -69,6 +82,7 @@ const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
           draft = await chat(req1) // Получаем первый черновик
           console.log('draft', draft)
           success = true
+
           continue
         }
 
@@ -85,6 +99,7 @@ const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
         // Конкатенируем новый топик с разделителями
         draft += `\n\n--- TOPIC ${topic.name} ---\n` + topicPortrait
 
+        fs.writeFileSync('topicsDraft.md', draft)
         await prismaDb.interviewTopic.update({
           where: {
             id: topic.id as number,
@@ -101,7 +116,7 @@ const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
         if (attempts >= 3) {
           throw new Error(`Failed to process topic ${topic.name} after 3 attempts.`)
         } else {
-          await delay(1000)
+          await delay(2_000)
         }
       }
     }
@@ -110,32 +125,103 @@ const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
   return draft
 }
 
-const generateInterviewSnapshotFromTopicsSummaries = async (repId: number) => {
-  const topics = await prismaDb.interviewTopic.findMany({
-    where: {
-      interview: { replicantId: repId },
-    },
-    select: {
-      summary: true,
-    },
+export const refreshInterviewSnapshotByTopicsSummaries = (repId: number) => {
+  if (inProcessingRefreshSnapshot.includes(repId)) {
+    return {
+      success: false,
+      message: 'Already in processing',
+    }
+  }
+
+  inProcessingRefreshSnapshot.push(repId)
+  setImmediate(async () => {
+    try {
+      const topics = await prismaDb.interviewTopic.findMany({
+        where: {
+          interview: { replicantId: repId },
+        },
+        select: {
+          summary: true,
+        },
+      })
+      const summaries = topics.map((topic) => topic.summary).join('\n --- \n')
+
+      fs.writeFileSync('summary.md', summaries)
+
+      const finalPortrait = await generateFinalPortrait(summaries)
+
+      fs.writeFileSync('portrait.md', finalPortrait)
+
+      await prismaDb.interview.update({
+        where: {
+          replicantId: repId,
+        },
+        data: {
+          summary: finalPortrait,
+        },
+      })
+    } catch (error) {
+      console.error('refreshInterviewSnapshotByTopicsSummaries', error)
+    }
+    inProcessingRefreshSnapshot.splice(inProcessingRefreshSnapshot.indexOf(repId), 1)
+    console.log('[refreshInterviewSnapshotByTopicsSummaries] DONE', repId)
   })
-  const allSummaries = topics.map((topic) => topic.summary).join('\n --- \n')
-
-  // await prismaDb.interview.update({
-  //   where: {
-  //     replicantId: repId,
-  //   },
-  //   data: {
-  //     summary: interviewSnapshot,
-  //   },
-  // })
-  return 'SNAPSHOT'
+  return {
+    success: true,
+    message: 'Success add to queue',
+  }
 }
-// setImmediate(async () => {
-//   const interview = await prismaDb.interview.findMany({
-//     where: { replicantId: 7 },
 
-//   })
-//   // console.log('interview', interview)
-//   fs.writeFileSync('interview.json', JSON.stringify(interview))
-// })
+const generateFinalPortrait = async (topicSummaries: string) => {
+  const appendPrompt = 'Here’s the current version of the final personality portrait draft. Integrate the following portrait part into it.\nCurrent draft:\n'
+
+  const portraitParts = Object.keys(PORTRAIT_PROMPTS)
+
+  console.log('Prepare final portrait draft \n', portraitParts.map(p => p).join('\n'))
+
+  let portraitDraft = ''
+  for (const i in portraitParts) {
+    const partName = portraitParts[i] as 'coreBeliefs'
+    let success = false
+    let attempts = 0
+
+    while (!success && attempts < 3) {
+      try {
+        attempts++
+
+        // Формируем промпт для первой части или для остальных
+        const partPrompt = [
+          { role: Role.SYSTEM, content: PORTRAIT_PROMPTS[partName] },
+          { role: Role.USER, content:
+              `Interview topic summaries:\n${topicSummaries}\n\n` +
+              (i === '0'
+                ? `Generate the "${PORTRAIT_PROMPTS}" section for the final portrait based on the topic summaries above.`
+                : appendPrompt + portraitDraft + `\n\n--- Portrait Part: ${partName} ---\nGenerate this part based on the topic summaries above.`),
+          },
+        ]
+
+        console.log('portrait req ' + '#' + i, partPrompt[1])
+
+        const partContent = await chat(partPrompt)
+        console.log('portrait part ' + '#' + i, partContent)
+
+        // Добавляем эту часть к текущему драфту
+        portraitDraft += `\n\n--- Portrait Part: ${partName} ---\n` + partContent
+
+        console.log('portraitDraft ' + '#' + i, portraitDraft)
+
+        fs.writeFileSync('portraitDraft.md', portraitDraft)
+        success = true
+      } catch (error) {
+        console.error(`Error processing portrait part ${partName} on attempt ${attempts}:`, error)
+        if (attempts >= 3) {
+          throw new Error(`Failed to process portrait part ${partName} after 3 attempts.`)
+        } else {
+          await delay(2_000)
+        }
+      }
+    }
+  }
+
+  return portraitDraft
+}

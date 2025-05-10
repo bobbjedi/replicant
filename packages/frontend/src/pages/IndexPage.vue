@@ -48,9 +48,11 @@ const goToInterview = (id: number) => {
   router.push(`/interview/${id}`).catch(console.error)
 }
 const isRefreshModel = ref(false)
-const refreshInterviewSnapshot = (id: number) => {
+
+
+const refreshInterviewSnapshot = (id: number, method: 'refreshInterviewSnapshot' | 'deepRefreshInterviewSnapshot') => {
   isRefreshModel.value = true
-  frontClient.interview.refreshInterviewSnapshot.mutate({ repId: id }).then((res) => {
+  frontClient.interview[method].mutate({ repId: id }).then((res) => {
     isRefreshModel.value = false
     Notify.create({ message: res.message, color: res.success ? 'positive' : 'negative' })
   }).catch(err => {
@@ -72,7 +74,6 @@ const refreshInterviewSnapshot = (id: number) => {
     <div v-else-if="isError" class="text-negative">
       Error loading replicants
     </div>
-    {{ systemInfo }}
     <q-list bordered class="rounded-borders q-pa-md" style="width: 100%; margin: 0 auto">
       <q-item-label header class="text-h6 q-mb-md">Replicants</q-item-label>
 
@@ -99,7 +100,10 @@ const refreshInterviewSnapshot = (id: number) => {
         <q-item-section side>
           <q-btn icon="mic" color="primary" label="Interview" dense @click.stop="goToInterview(rep.id)"
             class="q-ma-sm" />
-          <q-btn color="primary" icon="refresh" label="Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id)"
+          <q-btn color="primary" icon="refresh" label="Deep Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id, 'deepRefreshInterviewSnapshot')"
+            class="q-ma-sm" :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(rep.id)" />
+
+            <q-btn color="primary" icon="refresh" label="Light Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id, 'refreshInterviewSnapshot')"
             class="q-ma-sm" :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(rep.id)" />
         </q-item-section>
       </q-item>
