@@ -25,4 +25,5 @@ export enum EMainTopicType {
   VALUES_AND_MORALITY = 'VALUES_AND_MORALITY', // Моральные и этические убеждения
   FEARS_AND_CONCERNS = 'FEARS_AND_CONCERNS', // Страхи и беспокойства
   LIFE_PRINCIPLES = 'LIFE_PRINCIPLES', // Жизненные принципы и философия
+  PLACES_AND_TRAVEL = 'PLACES_AND_TRAVEL', // Места, города, путешествия и переезды, эмоциональное отношение к ним
 }
