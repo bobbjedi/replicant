@@ -41,7 +41,29 @@ const getReplicantsList = t.procedure.query(() => {
   return prismaDb.replicant.findMany() as Promise<ReplicantModel[]>
 })
 
+const getReplicantById = t.procedure
+  .input(z.object({ id: z.number() }))
+  .query(async ({ input }) => {
+    return prismaDb.replicant.findFirst({
+      where: {
+        id: input.id,
+      },
+    })
+  })
+
+const getInterviewByReplicantId = t.procedure
+  .input(z.object({ id: z.number() }))
+  .query(async ({ input }) => {
+    return prismaDb.interview.findFirst({
+      where: {
+        replicantId: input.id,
+      },
+    })
+  })
+
 export const replicantService = {
+  get: getReplicantById,
   create: createReplicant,
   getAll: getReplicantsList,
+  getInterview: getInterviewByReplicantId,
 }

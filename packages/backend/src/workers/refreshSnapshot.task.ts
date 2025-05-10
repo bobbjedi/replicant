@@ -5,7 +5,7 @@ import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_TEMPLA
 import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
 import { delay } from '../../../shared/src/utils'
-import { PORTRAIT_PROMPTS, FINAL_PORTRAIT_PROMPT } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
+import { COMMON_PART_OF_PORTRAIT_PROMPTS, PORTRAIT_PROMPTS } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
 
 export const inProcessingRefreshSnapshot:Array<number> = []
 
@@ -33,7 +33,7 @@ export default (repId: number) => {
           },
         },
       })
-      const topicsSummaries = await generateTopicSummaries(topics)
+      const topicsSummaries = await generateTopicSummaries(topics, repId)
       console.log('topicsSummaries:', topicsSummaries)
 
       inProcessingRefreshSnapshot.splice(inProcessingRefreshSnapshot.indexOf(repId), 1)
@@ -53,7 +53,7 @@ export default (repId: number) => {
   }
 }
 
-const generateTopicSummaries = async (topics: TopicModel[]) => {
+const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
   const formatDescription = 'New topic: data format Question/Answer/Emotion (Q/A/E) \n'
   const appendPrompt = 'Here’s the current version of the personality draft, updated with previous topics. Integrate the following new topic into it.\nCurrent draft:\n'
 
@@ -80,9 +80,8 @@ const generateTopicSummaries = async (topics: TopicModel[]) => {
             { role: Role.USER, content: formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
           ]
           draft = await chat(req1) // Получаем первый черновик
-          console.log('draft', draft)
+          // console.log('draft', draft)
           success = true
-
           continue
         }
 
@@ -91,15 +90,16 @@ const generateTopicSummaries = async (topics: TopicModel[]) => {
           { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
           { role: Role.USER, content: appendPrompt + draft + `\n\n--- TOPIC ${topic.name} ---\n` + formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
         ]
-        console.log('req ' + '#' + i, req[1])
+        // console.log('req ' + '#' + i, req[1])
 
         const topicPortrait = await chat(req)
-        console.log('topicPortrait ' + '#' + i, topicPortrait)
+        // console.log('topicPortrait ' + '#' + i, topicPortrait)
 
         // Конкатенируем новый топик с разделителями
         draft += `\n\n--- TOPIC ${topic.name} ---\n` + topicPortrait
 
         fs.writeFileSync('topicsDraft.md', draft)
+
         await prismaDb.interviewTopic.update({
           where: {
             id: topic.id as number,
@@ -108,7 +108,9 @@ const generateTopicSummaries = async (topics: TopicModel[]) => {
             summary: topicPortrait,
           },
         })
-        console.log('draft ' + '#' + i, draft)
+
+        console.log('Topic snapshot done:', '#' + i, topic.name)
+        // console.log('draft ' + '#' + i, draft)
 
         success = true // Если все прошло успешно, выходим из цикла
       } catch (error) {
@@ -120,6 +122,14 @@ const generateTopicSummaries = async (topics: TopicModel[]) => {
         }
       }
     }
+    await prismaDb.interview.update({
+      where: {
+        replicantId: repId,
+      },
+      data: {
+        summary: draft,
+      },
+    })
   }
 
   return draft
@@ -144,22 +154,37 @@ export const refreshInterviewSnapshotByTopicsSummaries = (repId: number) => {
           summary: true,
         },
       })
+
       const summaries = topics.map((topic) => topic.summary).join('\n --- \n')
 
-      fs.writeFileSync('summary.md', summaries)
+      fs.writeFileSync(`fullSummary_${repId}.md`, summaries)
 
-      const finalPortrait = await generateFinalPortrait(summaries)
+      const portraitDrafts = await generatePortrait(summaries)
 
-      fs.writeFileSync('portrait.md', finalPortrait)
-
-      await prismaDb.interview.update({
+      await prismaDb.replicant.update({
         where: {
-          replicantId: repId,
+          id: repId,
         },
         data: {
-          summary: finalPortrait,
+          snapshot: portraitDrafts,
         },
       })
+
+      fs.writeFileSync(`fullPortrait_${repId}.md`, portraitDrafts)
+
+      // const finalPortrait = await generateFinalPortrait(portraitDrafts)
+
+      // await prismaDb.replicant.update({
+      //   where: {
+      //     id: repId,
+      //   },
+      //   data: {
+      //     snapshot: finalPortrait,
+      //   },
+      // })
+
+      // fs.writeFileSync('portrait.md', finalPortrait)
+
     } catch (error) {
       console.error('refreshInterviewSnapshotByTopicsSummaries', error)
     }
@@ -172,7 +197,7 @@ export const refreshInterviewSnapshotByTopicsSummaries = (repId: number) => {
   }
 }
 
-const generateFinalPortrait = async (topicSummaries: string) => {
+const generatePortrait = async (topicSummaries: string) => {
   const appendPrompt = 'Here’s the current version of the final personality portrait draft. Integrate the following portrait part into it.\nCurrent draft:\n'
 
   const portraitParts = Object.keys(PORTRAIT_PROMPTS)
@@ -181,17 +206,17 @@ const generateFinalPortrait = async (topicSummaries: string) => {
 
   let portraitDraft = ''
   for (const i in portraitParts) {
-    const partName = portraitParts[i] as 'coreBeliefs'
+    const partName = portraitParts[i] as 'Core beliefs'
     let success = false
     let attempts = 0
 
     while (!success && attempts < 3) {
       try {
         attempts++
-
+        console.log('generatePortrait:', partName, 'portraitDraft.len:', portraitDraft.length)
         // Формируем промпт для первой части или для остальных
         const partPrompt = [
-          { role: Role.SYSTEM, content: PORTRAIT_PROMPTS[partName] },
+          { role: Role.SYSTEM, content: PORTRAIT_PROMPTS[partName] + COMMON_PART_OF_PORTRAIT_PROMPTS },
           { role: Role.USER, content:
               `Interview topic summaries:\n${topicSummaries}\n\n` +
               (i === '0'
@@ -200,15 +225,15 @@ const generateFinalPortrait = async (topicSummaries: string) => {
           },
         ]
 
-        console.log('portrait req ' + '#' + i, partPrompt[1])
-
         const partContent = await chat(partPrompt)
-        console.log('portrait part ' + '#' + i, partContent)
+        // console.log('portrait part ' + '#' + i, partContent)
 
         // Добавляем эту часть к текущему драфту
         portraitDraft += `\n\n--- Portrait Part: ${partName} ---\n` + partContent
 
-        console.log('portraitDraft ' + '#' + i, portraitDraft)
+        // console.log('portraitDraft ' + '#' + i, portraitDraft)
+
+        console.log('Portrait part snapshot done:', '#' + i, partName)
 
         fs.writeFileSync('portraitDraft.md', portraitDraft)
         success = true
@@ -225,3 +250,12 @@ const generateFinalPortrait = async (topicSummaries: string) => {
 
   return portraitDraft
 }
+
+// const generateFinalPortrait = (portraitDrafts: string) => {
+//   console.log('Start generate final portrait')
+//   return chat([
+//     { role: Role.SYSTEM, content: portraitDrafts },
+//     { role: Role.USER, content: `Холисический портрет личности для рефакторинга: ${portraitDrafts}` },
+//   ])
+
+// }

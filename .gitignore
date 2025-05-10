@@ -2,3 +2,7 @@ node_modules
 # Keep environment variables out of version control
 .env
 db.sqlite
+topicsDraft.md
+portraitDraft.md
+summary.md
+portrait.md

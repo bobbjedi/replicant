@@ -1,5 +1,5 @@
 export const PORTRAIT_PROMPTS = {
-  coreBeliefs: `
+  'Core beliefs': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выделить и подробно зафиксировать все ключевые установки, убеждения, ценности и взгляды человека по данной теме на основе интервью.
 
 **Важно:**  
@@ -23,7 +23,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  evolutionOfViews: `
+  'Evolutions of views': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — зафиксировать все упомянутые изменения взглядов, установок и отношения человека по данной теме на разных этапах жизни.
 
 **Важно:**  
@@ -45,7 +45,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  emotionalBackground: `
+  'Emotional background': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — зафиксировать эмоциональный фон и настроение человека, которые сопровождали его высказывания по данной теме.
 
 **Важно:**  
@@ -68,7 +68,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  keyEventsAndMemories: `
+  'Key events and memories': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — перечислить все жизненные эпизоды, события и воспоминания, которые человек озвучил в интервью по данной теме.
 
 **Важно:**  
@@ -90,7 +90,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  causalLinks: `
+  'Causal links': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — построить причинно-следственные связи между событиями, переживаниями и изменениями взглядов, если эти связи явно следуют из интервью.
 
 **Важно:**  
@@ -111,7 +111,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  speechPatterns: `
+  'Speech patterns': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выделить характерные речевые паттерны, манеру общения, любимые обороты, выражения и интонации человека по данной теме.
 
 **Важно:**  
@@ -132,7 +132,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  innerContradictions: `
+  'Inner contradictions': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выявить внутренние противоречия в интервью по данной теме: несовпадения между актуальными взглядами и прошлыми установками, нестыковки в логике или эмоциональных оценках.
 
 **Важно:**  
@@ -152,7 +152,7 @@ export const PORTRAIT_PROMPTS = {
 \`\`\`
 `,
 
-  personalitySummary: `
+  'Personality summary': `
 Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — обобщить выводы о человеке по данной теме на основе интервью.
 
 **Важно:**  
@@ -174,28 +174,7 @@ export const PORTRAIT_PROMPTS = {
 `,
 }
 
-export const FINAL_PORTRAIT_PROMPT = `
-You are an expert cognitive modeler and personality analyst. Your task is to assemble a holistic, structured personality portrait of a person based on summaries of interview topics.
-
-Each part of the final portrait must be:
-- Focused strictly on the interview topic summaries provided.
-- Comprehensive: every meaningful detail matters, no nuance should be ignored.
-- Consistent in style with the previously generated parts (if any).
-- Written in clear, analytical English without artistic metaphors.
-- Without repetition of phrases or conclusions across parts.
-
-Important rules:
-- Never invent information. Use only what is present in the topic summaries.
-- If something is not explicitly present, do not assume or guess.
-- Make sure every generated part logically integrates into the holistic portrait.
-- Avoid generic reasoning. Base every claim on concrete statements or patterns found in the topic summaries.
-- Each generated part is a component of a cumulative, continuous final personality portrait.
-
-At each iteration:
-- You will receive all topic summaries.
-- You will receive either no previous portrait draft (if this is the first part) or the current portrait draft (if this is a subsequent part).
-- You must generate the next requested part for the portrait.
-
-Use the topic summaries carefully — every emotion, opinion, and decision matters. The result should reflect the unique personality logic, value system, emotional landscape, and behavioral patterns of the person.
-
-Respond only with the text of the requested part. No preambles, no headings unless instructed.`
+export const COMMON_PART_OF_PORTRAIT_PROMPTS = `
+\n
+**ПРИОРИТЕТ:** Требуется Генерировать максимально подробные данные, фиксировать все, даже мелкие и незначительные детали
+`
