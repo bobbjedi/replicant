@@ -1,88 +1,88 @@
-import { EDefaultTopicType } from './types'
+import { EMainTopicType } from './types'
 
 export const DEFAULT_TOPICS_META = [
   {
     RU: 'Знакомство',
     EN: 'Greeting',
     emoji: '👋',
-    type: EDefaultTopicType.GREETING,
+    type: EMainTopicType.GREETING,
   },
   {
     RU: 'Близкие люди',
     EN: 'Close Ones',
     emoji: '👥',
-    type: EDefaultTopicType.CLOSE_ONES,
+    type: EMainTopicType.CLOSE_ONES,
   },
   {
     RU: 'Лидеры мнений',
     EN: 'Opinion Leaders',
     emoji: '👤',
-    type: EDefaultTopicType.OPINION_LEADERS,
+    type: EMainTopicType.OPINION_LEADERS,
   },
   {
     RU: 'Воспоминания детства',
     EN: 'Childhood Memories',
     emoji: '🧒',
-    type: EDefaultTopicType.CHILDHOOD_MEMORIES,
+    type: EMainTopicType.CHILDHOOD_MEMORIES,
   },
   {
     RU: 'Образование',
     EN: 'Education',
     emoji: '🎓',
-    type: EDefaultTopicType.EDUCATION,
+    type: EMainTopicType.EDUCATION,
   },
   {
     RU: 'Работа и профессия',
     EN: 'Work & Career',
     emoji: '💼',
-    type: EDefaultTopicType.WORK_AND_CAREER,
+    type: EMainTopicType.WORK_AND_CAREER,
   },
   {
     RU: 'Отношение к религии',
     EN: 'Religion',
     emoji: '✝️☸️☪️',
-    type: EDefaultTopicType.RELIGION,
+    type: EMainTopicType.RELIGION,
   },
   {
     RU: 'Отношение к политике',
     EN: 'Politics',
     emoji: '🏛️',
-    type: EDefaultTopicType.POLITICS,
+    type: EMainTopicType.POLITICS,
   },
   {
     RU: 'Ценности и мораль',
     EN: 'Values & Morality',
     emoji: '⚖️',
-    type: EDefaultTopicType.VALUES_AND_MORALITY,
+    type: EMainTopicType.VALUES_AND_MORALITY,
   },
   {
     RU: 'Страхи и опасения',
     EN: 'Fears & Concerns',
     emoji: '😨',
-    type: EDefaultTopicType.FEARS_AND_CONCERNS,
+    type: EMainTopicType.FEARS_AND_CONCERNS,
   },
   {
     RU: 'Хобби и увлечения',
     EN: 'Hobbies & Interests',
     emoji: '🎨',
-    type: EDefaultTopicType.HOBBIES_AND_INTERESTS,
+    type: EMainTopicType.HOBBIES_AND_INTERESTS,
   },
   {
     RU: 'Отношение к технологиям',
     EN: 'Technology Attitude',
     emoji: '🤖',
-    type: EDefaultTopicType.TECHNOLOGY_ATTITUDE,
+    type: EMainTopicType.TECHNOLOGY_ATTITUDE,
   },
   {
     RU: 'Жизненные принципы',
     EN: 'Life Principles',
     emoji: '📜',
-    type: EDefaultTopicType.LIFE_PRINCIPLES,
+    type: EMainTopicType.LIFE_PRINCIPLES,
   },
   {
     RU: 'Ключевые события жизни',
     EN: 'Life Events',
     emoji: '📆',
-    type: EDefaultTopicType.LIFE_EVENTS,
+    type: EMainTopicType.LIFE_EVENTS,
   },
 ]

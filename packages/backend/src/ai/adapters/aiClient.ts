@@ -50,8 +50,8 @@ async function processQueue () {
     const {
       messages,
       options: {
-        model = 'google/gemini-2.5-flash-pre', // дешевая большой контекст
-        // model = 'openai/gpt-4o-mini', // дешевле
+        // model = 'google/gemini-2.5-flash-pre', // дешевая большой контекст
+        model = 'openai/gpt-4o-mini', // дешевле
         // model = 'openai/gpt-4.1-mini', // дороже
         temperature = 0.7,
         headers = {},
@@ -99,6 +99,8 @@ export function chat (
   options: ChatOptions = {},
 ): Promise<string> {
   console.log('Size:', countMessagesTokens(messages))
+  console.log('System:', messages[0])
+  console.log('User:', messages[1])
   return new Promise((resolve, reject) => {
     queue.push({ messages, options, resolve, reject })
     processQueue()

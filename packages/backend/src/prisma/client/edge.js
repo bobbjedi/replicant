@@ -151,7 +151,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/roman/develop/Self/replicant/packages/backend/src/prisma/client",
+      "value": "/home/devi/Develop/replicant/packages/backend/src/prisma/client",
       "fromEnvVar": null
     },
     "config": {
@@ -160,12 +160,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/roman/develop/Self/replicant/packages/backend/src/prisma/schema.prisma",
+    "sourceFilePath": "/home/devi/Develop/replicant/packages/backend/src/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

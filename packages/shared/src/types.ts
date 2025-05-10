@@ -10,7 +10,7 @@ export type InterviewModel = Interview
 export type QuestionModel = Question
 export type TopicModel = InterviewTopic & { questions: QuestionModel[] }
 
-export enum EDefaultTopicType {
+export enum EMainTopicType {
   GREETING = 'GREETING', // Начало общения, установка контакта
   CLOSE_ONES = 'CLOSE_ONES', // Люди из ближайшего окружения, близкие отношения
   CHILDHOOD_MEMORIES = 'CHILDHOOD_MEMORIES', // Воспоминания из детства, формирование личности

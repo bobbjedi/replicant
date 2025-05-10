@@ -1,6 +1,6 @@
 import { Role, chat } from '../ai/adapters/aiClient'
-import { convertTopicsToTextFormat } from '../ai/replicantEngine'
-import TOPIC_SNAPSHOT_PROMPT from '../ai/TOPIC_SNAPSHOT_PROMPT'
+import { convertTopicsToTextFormat } from '../ai/interview/interviewer'
+import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_PROMPT'
 import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
 import { delay } from '../../../shared/src/utils'
@@ -30,17 +30,9 @@ export default async (repId: number) => {
           },
         },
       })
-      const res = await generateInterviewSnapshotFromChat(topics)
-      console.log('Summury generateInterviewSnapshotFromChat:', res)
+      const topicsSummaries = await generateInterviewSnapshotFromChat(topics)
+      console.log('topicsSummaries:', topicsSummaries)
 
-      await prismaDb.interview.update({
-        where: {
-          replicantId: repId,
-        },
-        data: {
-          summary: res,
-        },
-      })
     } catch (error) {
       console.error('generateInterviewSnapshotFromChat.task:', error)
     }
@@ -118,6 +110,27 @@ const generateInterviewSnapshotFromChat = async (topics: TopicModel[]) => {
   return draft
 }
 
+const generateInterviewSnapshotFromTopicsSummaries = async (repId: number) => {
+  const topics = await prismaDb.interviewTopic.findMany({
+    where: {
+      interview: { replicantId: repId },
+    },
+    select: {
+      summary: true,
+    },
+  })
+  const allSummaries = topics.map((topic) => topic.summary).join('\n --- \n')
+
+  // await prismaDb.interview.update({
+  //   where: {
+  //     replicantId: repId,
+  //   },
+  //   data: {
+  //     summary: interviewSnapshot,
+  //   },
+  // })
+  return 'SNAPSHOT'
+}
 // setImmediate(async () => {
 //   const interview = await prismaDb.interview.findMany({
 //     where: { replicantId: 7 },
