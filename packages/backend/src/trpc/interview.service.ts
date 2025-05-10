@@ -176,7 +176,6 @@ export const refreshInterviewSnapshot = t.procedure
   })
 
 export const interviewService = {
-  // getInterviewByRepId,
   getAllTopics: getInterviewTopicsWithQuestions,
   createQuestion: crateInterviewQuestion,
   deepRefreshInterviewSnapshot,
