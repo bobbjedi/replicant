@@ -19,7 +19,9 @@
       <div class="q-mt-md">
         <q-card>
           <q-card-section>
-            <div class="text-h6">Complete Summary of All Topics</div>
+            <div class="text-h6">
+              <q-icon size="lg" color="positive" name="insights" /> Complete Summary of All Topics
+            </div>
             <div class=" text-justify">
               This is a detailed summary that includes information from each topic gathered during the interview.
               Each topic is analyzed and processed individually, and then their data is aggregated into a unified,
@@ -55,11 +57,11 @@
         </q-card>
 
         <q-list bordered class="rounded-borders" style="width: 100%; margin: 0 auto">
-          <q-expansion-item expand-separator icon="question_answer">
+          <q-expansion-item expand-separator icon="insights">
             <template v-slot:header>
               <div class="row items-center justify-between q-gutter-sm" style="width: 100%">
                 <div class="row items-center q-gutter-sm">
-                  <q-icon name="question_answer" size="md" />
+                  <q-icon name="insights" size="lg" />
                   <div>
                     <div class="text-subtitle1"></div>
                     <div class="text-caption">
@@ -83,7 +85,9 @@
       <div class="q-mt-md">
         <q-card>
           <q-card-section>
-            <div class="text-h6">Holistic Personality Portrait</div>
+            <div class="text-h6">
+              <q-icon size="md" color="info" name="psychology" /> Holistic Personality Portrait
+            </div>
             <div class=" text-justify">
               The Holistic Personality Portrait is built from the complete summary of all topics,
               providing an integrated view of personal beliefs, values, and emotions.
@@ -117,17 +121,17 @@
 
           </q-card-section>
           <q-btn color="primary"
-            :label="interview?.summary?.length ? 'Refresh topics snapshot' : 'Create topics snapshot'" icon="refresh"
+            :label="interview?.summary?.length ? 'Refresh portrait' : 'Create portrait'" icon="refresh"
             class="q-ma-md" dense @click.stop="refreshInterviewSnapshot(replicantId, 'refreshPortrait')"
             :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(replicantId)" />
         </q-card>
 
         <q-list bordered class="rounded-borders" style="width: 100%; margin: 0 auto">
-          <q-expansion-item expand-separator icon="question_answer">
+          <q-expansion-item expand-separator icon="summarize">
             <template v-slot:header>
               <div class="row items-center justify-between q-gutter-sm" style="width: 100%">
                 <div class="row items-center q-gutter-sm">
-                  <q-icon name="question_answer" size="md" />
+                  <q-icon name="psychology" size="md" />
                   <div>
                     <div class="text-subtitle1"></div>
                     <div class="text-caption">
