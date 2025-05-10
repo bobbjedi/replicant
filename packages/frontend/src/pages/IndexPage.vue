@@ -45,7 +45,7 @@ function submitCreate() {
 
 const router = useRouter()
 const goToInterview = (id: number) => {
-  router.push(`/interview/${id}`).catch(console.error)
+  router.push(`${id}/interview/`).catch(console.error)
 }
 const isRefreshModel = ref(false)
 

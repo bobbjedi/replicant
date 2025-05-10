@@ -110,5 +110,5 @@ export const COMMON_PROMPT_PART = `
 `
 
 export const LANG_PART = (language: string) => `
-Отвечай только на языке ${language}. Только ответ, без пояснений или системных пометок.
+Отвечай на языке ${language}. **Только один вопрос, без пояснений или системных пометок**
 `

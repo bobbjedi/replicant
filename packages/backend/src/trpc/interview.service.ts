@@ -89,7 +89,7 @@ const generateNextQuestionText = t.procedure
   .query(async ({ input }) => {
     const { repId, topicName, lang } = input
 
-    console.log('generateNextQuestionText', input)
+    console.log('generateNextQuestionText input:', input)
 
     const topics = await prismaDb.interviewTopic.findMany({
       where: {

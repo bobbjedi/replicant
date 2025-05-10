@@ -52,11 +52,11 @@ const getReplicantById = t.procedure
   })
 
 const getInterviewByReplicantId = t.procedure
-  .input(z.object({ id: z.number() }))
+  .input(z.object({ repId: z.number() }))
   .query(async ({ input }) => {
     return prismaDb.interview.findFirst({
       where: {
-        replicantId: input.id,
+        replicantId: input.repId,
       },
     })
   })
