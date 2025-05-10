@@ -3,7 +3,7 @@ import { z } from 'zod'
 import t from './trcpInstance'
 import { generateNextQuestionByQuestionsListFromChat, generateFirstQuestionOfNewTopicFromChat } from '../ai/interview/interviewer'
 import { EMainTopicType, TopicModel } from '../../../shared/src/types'
-import deepRefreshInterviewSnapshotTask, { refreshInterviewSnapshotByTopicsSummaries } from '../workers/refreshSnapshot.task'
+import deepRefreshInterviewSnapshotTask, { refreshPortraitSnapshot } from '../workers/refreshSnapshot.task'
 import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
 
 const getInterviewTopicsWithQuestions = t.procedure
@@ -163,13 +163,13 @@ const deepRefreshInterviewSnapshot = t.procedure
     return res
   })
 
-export const refreshInterviewSnapshot = t.procedure
+export const refreshPortrait = t.procedure
   .input(z.object({ repId: z.number() }))
   .mutation(async ({ input }) => {
     console.log('USE refreshInterviewSnapshot')
     const { repId } = input
 
-    const res = await refreshInterviewSnapshotByTopicsSummaries(repId)
+    const res = await refreshPortraitSnapshot(repId)
 
     console.log('refreshInterviewSnapshot:', res)
     return res
@@ -179,7 +179,7 @@ export const interviewService = {
   getAllTopics: getInterviewTopicsWithQuestions,
   createQuestion: crateInterviewQuestion,
   deepRefreshInterviewSnapshot,
-  refreshInterviewSnapshot,
+  refreshPortrait,
   generateQuestionText: generateNextQuestionText,
   generateFirstQuestionTextForTopic,
 }

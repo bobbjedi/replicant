@@ -5,12 +5,8 @@ import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useCreateReplicant from 'src/api/mutations/use-create-replicant'
 import { useRouter } from 'vue-router';
 import { useLanguageStore } from 'src/stores/langStorage';
-import { frontClient } from 'src/api/frontClient';
-import useGetInfo from 'src/api/queries/use-get-info';
 
 const languageStore = useLanguageStore();
-
-const { data: systemInfo } = useGetInfo()
 const { data: repList, isLoading, isError } = useReplicantsList();
 const { mutateAsync: createReplicant } = useCreateReplicant()
 
@@ -47,20 +43,6 @@ const router = useRouter()
 const goToInterview = (id: number) => {
   router.push(`${id}/interview/`).catch(console.error)
 }
-const isRefreshModel = ref(false)
-
-
-const refreshInterviewSnapshot = (id: number, method: 'refreshInterviewSnapshot' | 'deepRefreshInterviewSnapshot') => {
-  isRefreshModel.value = true
-  frontClient.interview[method].mutate({ repId: id }).then((res) => {
-    isRefreshModel.value = false
-    Notify.create({ message: res.message, color: res.success ? 'positive' : 'negative' })
-  }).catch(err => {
-    console.error('Update model error:', err)
-    isRefreshModel.value = false
-    Notify.create({ message: 'Error update replicant model', color: 'negative' })
-  })
-}
 
 </script>
 
@@ -78,6 +60,7 @@ const refreshInterviewSnapshot = (id: number, method: 'refreshInterviewSnapshot'
       <q-item-label header class="text-h6 q-mb-md">Replicants</q-item-label>
 
       <q-item clickable v-ripple v-for="rep in repList" :key="rep.id" class="q-mb-sm rounded-borders"
+      @click="$router.push(String(rep.id))"
         style="border: 1px solid #ccc">
         <q-item-section avatar>
           <q-avatar size="48px">
@@ -100,11 +83,11 @@ const refreshInterviewSnapshot = (id: number, method: 'refreshInterviewSnapshot'
         <q-item-section side>
           <q-btn icon="mic" color="primary" label="Interview" dense @click.stop="goToInterview(rep.id)"
             class="q-ma-sm" />
-          <q-btn color="primary" icon="refresh" label="Deep Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id, 'deepRefreshInterviewSnapshot')"
+          <!-- <q-btn color="primary" icon="refresh" label="Deep Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id, 'deepRefreshInterviewSnapshot')"
             class="q-ma-sm" :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(rep.id)" />
 
             <q-btn color="primary" icon="refresh" label="Light Snapshot" dense @click.stop="refreshInterviewSnapshot(rep.id, 'refreshInterviewSnapshot')"
-            class="q-ma-sm" :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(rep.id)" />
+            class="q-ma-sm" :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(rep.id)" /> -->
         </q-item-section>
       </q-item>
     </q-list>

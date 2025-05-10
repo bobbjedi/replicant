@@ -38,7 +38,7 @@ export default (repId: number) => {
 
       inProcessingRefreshSnapshot.splice(inProcessingRefreshSnapshot.indexOf(repId), 1)
 
-      await refreshInterviewSnapshotByTopicsSummaries(repId)
+      await refreshPortraitSnapshot(repId)
     } catch (error) {
       console.error('generateInterviewSnapshotFromChat.task:', error)
     }
@@ -135,7 +135,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
   return draft
 }
 
-export const refreshInterviewSnapshotByTopicsSummaries = (repId: number) => {
+export const refreshPortraitSnapshot = (repId: number) => {
   if (inProcessingRefreshSnapshot.includes(repId)) {
     return {
       success: false,
@@ -186,10 +186,10 @@ export const refreshInterviewSnapshotByTopicsSummaries = (repId: number) => {
       // fs.writeFileSync('portrait.md', finalPortrait)
 
     } catch (error) {
-      console.error('refreshInterviewSnapshotByTopicsSummaries', error)
+      console.error('refreshPortraitSnapshot', error)
     }
     inProcessingRefreshSnapshot.splice(inProcessingRefreshSnapshot.indexOf(repId), 1)
-    console.log('[refreshInterviewSnapshotByTopicsSummaries] DONE', repId)
+    console.log('[refreshPortraitSnapshot] DONE', repId)
   })
   return {
     success: true,
