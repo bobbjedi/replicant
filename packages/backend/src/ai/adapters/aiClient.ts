@@ -52,8 +52,8 @@ async function processQueue () {
       options: {
         // model = 'google/gemini-2.5-flash-pre', // дешевая большой контекст
         // model = 'google/gemini-2.0-flash-lite-001', // дешевая большой контекст
-        // model = 'openai/gpt-4o-mini', // дешевле
-        model = 'openai/gpt-4.1-mini', // дороже
+        model = 'openai/gpt-4o-mini', // дешевле
+        // model = 'openai/gpt-4.1-mini', // дороже
         temperature = 0.7,
         headers = {},
       },
