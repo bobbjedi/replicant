@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
   output   = "./client"
@@ -9,42 +8,91 @@ datasource db {
   url      = "file:./db.sqlite"
 }
 
+/// Represents a digital replica entity.
+/// Stores basic metadata, snapshot data, related interview, user cards, and chats.
 model Replicant {
   id          Int        @id @default(autoincrement())
   name        String
   description String?
   createdAt   DateTime   @default(now())
-  snapshot    String     // Заменил Bytes на String
-  interview   Interview? @relation(name: "ReplicantInterview")
+  snapshot    String
+  chats       Chat[]     @relation("ReplicantChats")
+  interview   Interview? @relation("ReplicantInterview")
+  userCards   UserCard[]
 }
 
+/// Represents an interview associated with a replicant.
+/// Contains summary and a set of interview topics.
 model Interview {
-  id          Int             @id @default(autoincrement())
-  replicantId Int             @unique
-  replicant   Replicant       @relation(name: "ReplicantInterview", fields: [replicantId], references: [id], onDelete: Cascade)
-  createdAt   DateTime        @default(now())
-  summary     String          // Заменил Bytes на String
+  id          Int              @id @default(autoincrement())
+  replicantId Int              @unique
+  createdAt   DateTime         @default(now())
+  summary     String
+  replicant   Replicant        @relation("ReplicantInterview", fields: [replicantId], references: [id], onDelete: Cascade)
   topics      InterviewTopic[]
 }
 
+/// Represents a topic within an interview.
+/// Contains questions, summary, and metadata about the topic.
 model InterviewTopic {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   interviewId Int
   name        String
-  questions   Question[]
-  summary     String    // Заменил Bytes на String
+  summary     String
   type        String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now())
-  interview   Interview @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now())
+  interview   Interview  @relation(fields: [interviewId], references: [id], onDelete: Cascade)
+  questions   Question[]
 }
 
+/// Represents a question within an interview topic.
+/// Stores question text, optional answer, associated emotion, and timestamp.
 model Question {
-  id            Int            @id @default(autoincrement())
-  topicId       Int
-  questionText  String
-  answerText    String?
-  emotion       String
-  createdAt     DateTime       @default(now())
-  topic         InterviewTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  id           Int            @id @default(autoincrement())
+  topicId      Int
+  questionText String
+  answerText   String?
+  emotion      String
+  createdAt    DateTime       @default(now())
+  topic        InterviewTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}
+
+/// Represents a user card related to a replicant.
+/// Contains information about a person (e.g., role, description) and their chats.
+model UserCard {
+  id          Int       @id @default(autoincrement())
+  replicantId Int
+  name        String
+  role        String?
+  description String?
+  snapshot    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  chats       Chat[]    @relation("UserCardChats")
+  replicant   Replicant @relation(fields: [replicantId], references: [id], onDelete: Cascade)
+}
+
+/// Represents a chat/conversation.
+/// Links to a replicant and optionally to a user card, contains messages.
+model Chat {
+  id          Int       @id @default(autoincrement())
+  replicantId Int
+  userCardId  Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  userCard    UserCard? @relation("UserCardChats", fields: [userCardId], references: [id])
+  replicant   Replicant @relation("ReplicantChats", fields: [replicantId], references: [id], onDelete: Cascade)
+  messages    Message[]
+}
+
+/// Represents a single message within a chat.
+/// Indicates whether author is replicant or not, with content and timestamp.
+model Message {
+  id                Int      @id @default(autoincrement())
+  chatId            Int
+  authorIsReplicant Boolean
+  content           String
+  createdAt         DateTime @default(now())
+  chat              Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }
