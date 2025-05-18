@@ -1,11 +1,12 @@
 import * as fs from 'fs'
-import { Role, chat } from '../ai/adapters/aiClient'
+import { chat } from '../ai/adapters/aiClient'
 import { convertTopicsToTextFormat } from '../ai/interview/interviewer'
 import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_TEMPLATE'
 import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
 import { delay } from '../../../shared/src/utils'
 import { COMMON_PART_OF_PORTRAIT_PROMPTS, PORTRAIT_PROMPTS } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
+import { Role } from '../ai/adapters/gpt.types'
 
 export const inProcessingRefreshSnapshot:Array<number> = []
 

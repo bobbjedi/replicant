@@ -1,6 +1,7 @@
 import { DEFAULT_TOPICS_META } from '../../../../shared/src/constants'
 import { EMainTopicType, TopicModel } from '../../../../shared/src/types'
-import { chat, Role } from '../adapters/aiClient'
+import { chat } from '../adapters/aiClient'
+import { Role } from '../adapters/gpt.types'
 import { buildPromptForTopic } from './getSystemPromptInterview'
 
 export const generateNextQuestionByQuestionsListFromChat = ({ greetingTopic, currentTopic, nativeLanguage, topicName }: {
