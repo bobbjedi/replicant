@@ -1,15 +1,30 @@
 <template>
   <div class="q-pa-md">
-    <div v-if="isLoading || isCreateQuestionPending" class="flex items-center">
-      <q-spinner size="20px" color="info" class="q-mr-sm" />
+    <div
+      v-if="isLoading || isCreateQuestionPending"
+      class="flex items-center"
+    >
+      <q-spinner
+        size="20px"
+        color="info"
+        class="q-mr-sm"
+      />
     </div>
 
-    <div v-else-if="isError" class="text-negative">
+    <div
+      v-else-if="isError"
+      class="text-negative"
+    >
       Error loading topics
     </div>
 
     <div class="q-py-md text-h5">
-      <q-icon name="arrow_back" size="35px" class="q-mr-sm cursor-pointer" @click="$router.back()" />
+      <q-icon
+        name="arrow_back"
+        size="35px"
+        class="q-mr-sm cursor-pointer"
+        @click="$router.back()"
+      />
       Interview page of <b>{{ replicant?.name || '...' }}</b>
     </div>
 
@@ -19,39 +34,88 @@
         <q-separator class="q-my-md" />
         <div class="text-weight-medium text-justify">{{ languageStore.intro2Message }}</div>
       </q-card-section>
-      <q-btn color="primary" v-show="!isShowFirstQuestion" label="Start interview" class="q-ma-md"
-        @click="onStartInterview" />
+      <q-btn
+        color="primary"
+        v-show="!isShowFirstQuestion"
+        label="Start interview"
+        class="q-ma-md"
+        @click="onStartInterview"
+      />
     </q-card>
 
-    <div class="text-h6 q-pt-md" v-show="topicName?.length">Topic: {{ topicName }}
-      <q-btn label="Change topic" color="primary" icon="add_comment" @click="isShowChangeTopicDialog = true"
-        class="q-ma-sm" :disable="isLoadingNextQuestion" />
+    <div
+      class="text-h6 q-pt-md"
+      v-show="topicName?.length"
+    >Topic: {{ topicName }}
+      <q-btn
+        label="Change topic"
+        color="primary"
+        icon="add_comment"
+        @click="isShowChangeTopicDialog = true"
+        class="q-ma-sm"
+        :disable="isLoadingNextQuestion"
+      />
     </div>
 
-    <InterviewChat v-show="topicName?.length" :questionText="questionText"
-      :isLoadingNextQuestion="isLoadingNextQuestion" @on-answer="onSendAnswer" />
+    <InterviewChat
+      v-show="topicName?.length"
+      :questionText="questionText"
+      :isLoadingNextQuestion="isLoadingNextQuestion"
+      @on-answer="onSendAnswer"
+    />
 
-    <InterviewTopicsList :topics="topics" @switch-topic="onSwitchTopicTo" />
+    <InterviewTopicsList
+      :topics="topics"
+      @switch-topic="onSwitchTopicTo"
+    />
 
     <q-dialog v-model="isShowChangeTopicDialog">
       <q-card>
         <q-card-section class="row items-center q-pb-none">
           <div class="text-h6">Please choose new topic</div>
           <q-space />
-          <q-btn icon="close" flat round dense v-close-popup />
+          <q-btn
+            icon="close"
+            flat
+            round
+            dense
+            v-close-popup
+          />
         </q-card-section>
 
         <q-card-section>
-          <q-btn v-for="topic in emptyTopicsList" color="secondary" :key="topic.EN"
-            :label="`${topic.emoji} ${topic[lang]}`" @click="newTopicName = topic[lang]" class="q-ma-sm" />
+          <q-btn
+            v-for="topic in emptyTopicsList"
+            color="secondary"
+            :key="topic.EN"
+            :label="`${topic.emoji} ${topic[lang]}`"
+            @click="newTopicName = topic[lang]"
+            class="q-ma-sm"
+          />
           <div>Other topic:</div>
-          <q-input v-model="newTopicName" label="Input new topic" filled type="textarea" />
+          <q-input
+            v-model="newTopicName"
+            label="Input new topic"
+            filled
+            type="textarea"
+          />
         </q-card-section>
         <div class="q-pa-md flex justify-end">
-          <q-btn @click="newTopicName = ''" color="negative" label="Cancel" v-close-popup class="q-mr-sm"
-            style="min-width: 130px" />
-          <q-btn @click="onNewTopicChosen" color="positive" label="Confirm change topic" v-close-popup
-            style="min-width: 130px;" />
+          <q-btn
+            @click="newTopicName = ''"
+            color="negative"
+            label="Cancel"
+            v-close-popup
+            class="q-mr-sm"
+            style="min-width: 130px"
+          />
+          <q-btn
+            @click="onNewTopicChosen"
+            color="positive"
+            label="Confirm change topic"
+            v-close-popup
+            style="min-width: 130px;"
+          />
         </div>
       </q-card>
     </q-dialog>

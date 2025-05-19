@@ -1,26 +1,56 @@
 <template>
   <div class="q-pa-md">
-    <div v-if="isLoadingReplicant" class="flex items-center">
-      <q-spinner size="20px" color="info" class="q-mr-sm" />
+    <div
+      v-if="isLoadingReplicant"
+      class="flex items-center"
+    >
+      <q-spinner
+        size="20px"
+        color="info"
+        class="q-mr-sm"
+      />
     </div>
 
-    <div v-else-if="isError" class="text-negative">
+    <div
+      v-else-if="isError"
+      class="text-negative"
+    >
       Error loading replicant
     </div>
     <div class="q-py-md text-h5">
-      <q-icon name="arrow_back" size="35px" class="q-mr-sm cursor-pointer" @click="$router.back()" />
+      <q-icon
+        name="arrow_back"
+        size="35px"
+        class="q-mr-sm cursor-pointer"
+        @click="$router.back()"
+      />
       Dashboard <b>{{ replicant?.name || '...' }}</b>
     </div>
     <div v-if="replicant?.id">
 
-      <q-btn @click="$router.push(replicantId + '/interview')" color="primary" label="Interview" icon="mic" />
-      <q-btn @click="$router.push(replicantId + '/chat')" color="primary" label="Chat" icon="chat" class ="q-ml-md" />
+      <q-btn
+        @click="$router.push(replicantId + '/interview')"
+        color="primary"
+        label="Interview"
+        icon="mic"
+      />
+      <q-btn
+        @click="$router.push(replicantId + '/chat')"
+        color="primary"
+        label="Chat"
+        icon="chat"
+        class ="q-ml-md"
+      />
 
       <div class="q-mt-md">
         <q-card>
           <q-card-section>
             <div class="text-h6">
-              <q-icon size="lg" color="positive" name="insights" /> Complete Summary of All Topics
+              <q-icon
+                size="lg"
+                color="positive"
+                name="insights"
+              /> Complete Summary of All Topics
             </div>
             <div class=" text-justify">
               This is a detailed summary that includes information from each topic gathered during the interview.
@@ -50,18 +80,36 @@
             </div>
 
           </q-card-section>
-          <q-btn color="primary"
-            :label="interview?.summary?.length ? 'Refresh topics snapshot' : 'Create topics snapshot'" icon="refresh"
-            class="q-ma-md" dense @click.stop="refreshInterviewSnapshot(replicantId, 'deepRefreshInterviewSnapshot')"
-            :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(replicantId)" />
+          <q-btn
+            color="primary"
+            :label="interview?.summary?.length ? 'Refresh topics snapshot' : 'Create topics snapshot'"
+            icon="refresh"
+            class="q-ma-md"
+            dense
+            @click.stop="refreshInterviewSnapshot(replicantId, 'deepRefreshInterviewSnapshot')"
+            :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(replicantId)"
+          />
         </q-card>
 
-        <q-list bordered class="rounded-borders" style="width: 100%; margin: 0 auto">
-          <q-expansion-item expand-separator icon="insights">
+        <q-list
+          bordered
+          class="rounded-borders"
+          style="width: 100%; margin: 0 auto"
+        >
+          <q-expansion-item
+            expand-separator
+            icon="insights"
+          >
             <template v-slot:header>
-              <div class="row items-center justify-between q-gutter-sm" style="width: 100%">
+              <div
+                class="row items-center justify-between q-gutter-sm"
+                style="width: 100%"
+              >
                 <div class="row items-center q-gutter-sm">
-                  <q-icon name="insights" size="lg" />
+                  <q-icon
+                    name="insights"
+                    size="lg"
+                  />
                   <div>
                     <div class="text-subtitle1"></div>
                     <div class="text-caption">
@@ -86,7 +134,11 @@
         <q-card>
           <q-card-section>
             <div class="text-h6">
-              <q-icon size="md" color="info" name="psychology" /> Holistic Personality Portrait
+              <q-icon
+                size="md"
+                color="info"
+                name="psychology"
+              /> Holistic Personality Portrait
             </div>
             <div class=" text-justify">
               The Holistic Personality Portrait is built from the complete summary of all topics,
@@ -120,18 +172,36 @@
             </div>
 
           </q-card-section>
-          <q-btn color="primary"
-            :label="interview?.summary?.length ? 'Refresh portrait' : 'Create portrait'" icon="refresh"
-            class="q-ma-md" dense @click.stop="refreshInterviewSnapshot(replicantId, 'refreshPortrait')"
-            :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(replicantId)" />
+          <q-btn
+            color="primary"
+            :label="interview?.summary?.length ? 'Refresh portrait' : 'Create portrait'"
+            icon="refresh"
+            class="q-ma-md"
+            dense
+            @click.stop="refreshInterviewSnapshot(replicantId, 'refreshPortrait')"
+            :loading="systemInfo?.inProcessingRefreshSnapshot?.includes(replicantId)"
+          />
         </q-card>
 
-        <q-list bordered class="rounded-borders" style="width: 100%; margin: 0 auto">
-          <q-expansion-item expand-separator icon="summarize">
+        <q-list
+          bordered
+          class="rounded-borders"
+          style="width: 100%; margin: 0 auto"
+        >
+          <q-expansion-item
+            expand-separator
+            icon="summarize"
+          >
             <template v-slot:header>
-              <div class="row items-center justify-between q-gutter-sm" style="width: 100%">
+              <div
+                class="row items-center justify-between q-gutter-sm"
+                style="width: 100%"
+              >
                 <div class="row items-center q-gutter-sm">
-                  <q-icon name="psychology" size="md" />
+                  <q-icon
+                    name="psychology"
+                    size="md"
+                  />
                   <div>
                     <div class="text-subtitle1"></div>
                     <div class="text-caption">
@@ -145,7 +215,7 @@
 
             <q-card>
               <div class="q-ma-md">
-               <Markdown :source="replicant?.snapshot || 'not created'" />
+                <Markdown :source="replicant?.snapshot || 'not created'" />
               </div>
             </q-card>
           </q-expansion-item>

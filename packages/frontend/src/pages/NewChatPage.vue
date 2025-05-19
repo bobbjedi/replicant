@@ -1,15 +1,30 @@
 <template>
   <div class="q-pa-md">
-    <div v-if="isLoading" class="flex items-center">
-      <q-spinner size="20px" color="info" class="q-mr-sm" />
+    <div
+      v-if="isLoading"
+      class="flex items-center"
+    >
+      <q-spinner
+        size="20px"
+        color="info"
+        class="q-mr-sm"
+      />
     </div>
 
-    <div v-else-if="isError" class="text-negative">
+    <div
+      v-else-if="isError"
+      class="text-negative"
+    >
       Error loading topics
     </div>
 
     <div class="q-py-md text-h5">
-      <q-icon name="arrow_back" size="35px" class="q-mr-sm cursor-pointer" @click="$router.back()" />
+      <q-icon
+        name="arrow_back"
+        size="35px"
+        class="q-mr-sm cursor-pointer"
+        @click="$router.back()"
+      />
       Create new chat of <b>{{ replicant?.name || '...' }}</b>
     </div>
 

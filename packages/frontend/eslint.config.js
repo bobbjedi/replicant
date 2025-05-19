@@ -32,7 +32,7 @@ export default defineConfigWithVueTs(
    * pluginVue.configs["flat/recommended"]
    *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
    */
-  pluginVue.configs[ 'flat/essential' ],
+  pluginVue.configs['flat/essential'],
 
   {
     files: ['**/*.ts', '**/*.vue'],
@@ -65,44 +65,62 @@ export default defineConfigWithVueTs(
 
     // add your custom rules here
     rules: {
+      'vue/first-attribute-linebreak': ['error', {
+        singleline: 'ignore',
+        multiline: 'below'
+      }],
+      'vue/max-attributes-per-line': ['error', {
+        singleline: 1,
+        multiline: 1
+      }],
+      'vue/html-closing-bracket-newline': ['error', {
+        singleline: 'never',
+        multiline: 'always'
+      }],
+      // Дополнительные правила для лучшего форматирования
+      'vue/html-indent': ['error', 2],
+      'vue/component-tags-order': ['error', {
+        order: ['template', 'script', 'style']
+      }],
+
       'prefer-promise-reject-errors': 'off',
-'space-before-function-paren': ['error', 'always'],
-    'no-trailing-spaces': 'error',
-    'spaced-comment': ['error', 'always'],
-    'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }],
-    'arrow-spacing': ['error', { 'before': true, 'after': true }],
-    'object-curly-spacing': ['error', 'always'],
-    'quotes': ['error', 'single'],
-    'semi': ['warn', 'never'],
-    'semi-spacing': ['error', { 'before': false, 'after': true }],
-    'indent': ['error', 2],
-    'space-infix-ops': 'error',
-    'eqeqeq': 'error',
-    'no-eq-null': 'error',
-    'curly': 'error',
-    'key-spacing': ['error', { 'mode': 'strict' }],
-    'eol-last': ['error', 'never'],
-    'space-in-parens': ['error', 'never'],
-    'computed-property-spacing': ['error', 'never'],
-    'array-bracket-spacing': ['error', 'never'],
-    'no-multi-spaces': 'error',
-    'no-sparse-arrays': 'warn',
-    'no-mixed-spaces-and-tabs': 'error',
-    'keyword-spacing': ['error', { 'after': true, 'before': true }],
-    'space-before-blocks': 'error',
-    'block-spacing': 'error',
-    'comma-spacing': ['error', { 'before': false, 'after': true }],
-    'no-undef': 'error',
-    'array-callback-return': 'error',
-    "comma-dangle": ["error", "always-multiline"],
+      'space-before-function-paren': ['error', 'always'],
+      'no-trailing-spaces': 'error',
+      'spaced-comment': ['error', 'always'],
+      'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0 }],
+      'arrow-spacing': ['error', { 'before': true, 'after': true }],
+      'object-curly-spacing': ['error', 'always'],
+      'quotes': ['error', 'single'],
+      'semi': ['warn', 'never'],
+      'semi-spacing': ['error', { 'before': false, 'after': true }],
+      'indent': ['error', 2],
+      'space-infix-ops': 'error',
+      'eqeqeq': 'error',
+      'no-eq-null': 'error',
+      'curly': 'error',
+      'key-spacing': ['error', { 'mode': 'strict' }],
+      'eol-last': ['error', 'never'],
+      'space-in-parens': ['error', 'never'],
+      'computed-property-spacing': ['error', 'never'],
+      'array-bracket-spacing': ['error', 'never'],
+      'no-multi-spaces': 'error',
+      'no-sparse-arrays': 'warn',
+      'no-mixed-spaces-and-tabs': 'error',
+      'keyword-spacing': ['error', { 'after': true, 'before': true }],
+      'space-before-blocks': 'error',
+      'block-spacing': 'error',
+      'comma-spacing': ['error', { 'before': false, 'after': true }],
+      'no-undef': 'error',
+      'array-callback-return': 'error',
+      "comma-dangle": ["error", "always-multiline"],
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-       "@typescript-eslint/no-misused-promises": "off"
+      "@typescript-eslint/no-misused-promises": "off"
     }
   },
 
   {
-    files: [ 'src-pwa/custom-service-worker.ts' ],
+    files: ['src-pwa/custom-service-worker.ts'],
     languageOptions: {
       globals: {
         ...globals.serviceworker,

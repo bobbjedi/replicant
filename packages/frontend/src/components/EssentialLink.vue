@@ -2,7 +2,7 @@
   <q-item
     clickable
     tag="a"
-@click="$router.push(link as string)"
+    @click="$router.push(link as string)"
   >
     <q-item-section
       v-if="icon"
@@ -31,5 +31,5 @@ withDefaults(defineProps<EssentialLinkProps>(), {
   caption: '',
   link: '#',
   icon: '',
-});
+})
 </script>
