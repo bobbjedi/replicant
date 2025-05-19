@@ -13,25 +13,17 @@
       Create new chat of <b>{{ replicant?.name || '...' }}</b>
     </div>
 
-
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useLanguageStore } from 'src/stores/langStorage';
-import useReplicant from 'src/api/queries/use-replicant';
-
-
+import useReplicant from 'src/api/queries/use-replicant'
 
 const route = useRoute()
 const replicantId = computed(() => Number(route.params.id))
 
-const { data: replicant, isError, isLoading } = useReplicant(replicantId);
-
-const languageStore = useLanguageStore();
-
+const { data: replicant, isError, isLoading } = useReplicant(replicantId)
 
 </script>

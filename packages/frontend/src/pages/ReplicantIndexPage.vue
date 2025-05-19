@@ -75,7 +75,7 @@
 
             <q-card>
               <div class="q-ma-md">
-                <Markdown :source="interview?.summary || 'not created'" /> 
+                <Markdown :source="interview?.summary || 'not created'" />
               </div>
             </q-card>
           </q-expansion-item>
@@ -145,7 +145,7 @@
 
             <q-card>
               <div class="q-ma-md">
-               <Markdown :source="replicant?.snapshot || 'not created'" /> 
+               <Markdown :source="replicant?.snapshot || 'not created'" />
               </div>
             </q-card>
           </q-expansion-item>
@@ -156,16 +156,15 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import Markdown from 'vue3-markdown-it'
 import useReplicant from '../api/queries/use-replicant'
-import useReplicantInterview from 'src/api/queries/use-replicant-interview';
-import { Notify } from 'quasar';
-import { frontClient } from 'src/api/frontClient';
-import useGetInfo from 'src/api/queries/use-get-info';
+import useReplicantInterview from 'src/api/queries/use-replicant-interview'
+import { Notify } from 'quasar'
+import { frontClient } from 'src/api/frontClient'
+import useGetInfo from 'src/api/queries/use-get-info'
 
 const { data: systemInfo } = useGetInfo()
 
@@ -175,8 +174,6 @@ const replicantId = computed(() => Number(route.params.id))
 const { data: replicant, isLoading: isLoadingReplicant, isError } = useReplicant(replicantId)
 const { data: interview } = useReplicantInterview(replicantId)
 
-
-
 const refreshInterviewSnapshot = (id: number, method: 'refreshPortrait' | 'deepRefreshInterviewSnapshot') => {
   frontClient.interview[method].mutate({ repId: id }).then((res) => {
     Notify.create({ message: res.message, color: res.success ? 'positive' : 'negative' })
@@ -185,6 +182,5 @@ const refreshInterviewSnapshot = (id: number, method: 'refreshPortrait' | 'deepR
     Notify.create({ message: 'Error update replicant model', color: 'negative' })
   })
 }
-
 
 </script>

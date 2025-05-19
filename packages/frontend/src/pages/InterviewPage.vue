@@ -59,34 +59,33 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { computed, ref, unref, watch, watchEffect } from 'vue'
 import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useInterviewTopicsList from 'src/api/queries/use-interview-topics-list'
 import { useRoute } from 'vue-router'
-import { useLanguageStore } from 'src/stores/langStorage';
+import { useLanguageStore } from 'src/stores/langStorage'
 import InterviewChat from 'src/components/InterviewChat.vue'
 import InterviewTopicsList from 'src/components/InterviewTopicsList.vue'
-import {  FIRST_TOPIC_NAME } from 'src/constants';
-import useCreateQuestion from 'src/api/mutations/use-create-question';
-import { Notify } from 'quasar';
-import { frontClient } from 'src/api/frontClient';
-import { DEFAULT_TOPICS_META } from '../../../shared/src/constants';
+import { FIRST_TOPIC_NAME } from 'src/constants'
+import useCreateQuestion from 'src/api/mutations/use-create-question'
+import { Notify } from 'quasar'
+import { frontClient } from 'src/api/frontClient'
+import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
 
 const { mutateAsync: createQuestion, isPending: isCreateQuestionPending } = useCreateQuestion()
 
 const route = useRoute()
 const replicantId = computed(() => Number(route.params.id))
 
-const { data: repList } = useReplicantsList();
+const { data: repList } = useReplicantsList()
 
 const replicant = computed(() => repList.value?.find(rep => rep.id === replicantId.value))
 const { data: topics, isLoading, isError } = useInterviewTopicsList(replicantId)
 
-const languageStore = useLanguageStore();
+const languageStore = useLanguageStore()
 
-const lang = computed(() => languageStore.lang);
+const lang = computed(() => languageStore.lang)
 const isShowFirstQuestion = ref(false)
 const isShowChangeTopicDialog = ref(false)
 const questionText = ref<string>('')
@@ -107,7 +106,7 @@ const onSendAnswer = async ({ answerText, emotion }: { answerText: string, emoti
     emotion: emotion,
     topicName: topicName.value,
     answerText: answerText,
-    questionText: questionText.value
+    questionText: questionText.value,
   }
   const resp = await createQuestion(req)
 

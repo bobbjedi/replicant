@@ -3,11 +3,11 @@ import { ref } from 'vue'
 import { Notify } from 'quasar'
 import useReplicantsList from 'src/api/queries/use-replicants-list'
 import useCreateReplicant from 'src/api/mutations/use-create-replicant'
-import { useRouter } from 'vue-router';
-import { useLanguageStore } from 'src/stores/langStorage';
+import { useRouter } from 'vue-router'
+import { useLanguageStore } from 'src/stores/langStorage'
 
-const languageStore = useLanguageStore();
-const { data: repList, isLoading, isError } = useReplicantsList();
+const languageStore = useLanguageStore()
+const { data: repList, isLoading, isError } = useReplicantsList()
 const { mutateAsync: createReplicant } = useCreateReplicant()
 
 const createDialog = ref(false)
@@ -18,7 +18,7 @@ const createReplicantHandler = async () => {
   const res = await createReplicant({
     name: newName.value,
     description: newDescription.value,
-    lang: languageStore.lang
+    lang: languageStore.lang,
     // password: newPassword.value
   })
   if (res.id) {
@@ -31,7 +31,7 @@ const createReplicantHandler = async () => {
   }
 }
 
-function submitCreate() {
+function submitCreate () {
   if (newName.value?.length > 5) {
     createReplicantHandler().catch(console.error)
     return
