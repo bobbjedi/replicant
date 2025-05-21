@@ -70,6 +70,14 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
     }
     let success = false
     let attempts = 0
+
+    const setSummary = async (summary: string) => {
+      await prismaDb.interviewTopic.update({
+        where: { id: topic.id },
+        data: { summary },
+      })
+    }
+
     while (!success && attempts < 3) { // Ограничиваем количество попыток
       try {
         attempts++
@@ -82,6 +90,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
           ]
           draft = await chat(req1) // Получаем первый черновик
           // console.log('draft', draft)
+          await setSummary(draft)
           success = true
           continue
         }
@@ -101,14 +110,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
 
         fs.writeFileSync('topicsDraft.md', draft)
 
-        await prismaDb.interviewTopic.update({
-          where: {
-            id: topic.id as number,
-          },
-          data: {
-            summary: topicPortrait,
-          },
-        })
+        await setSummary(topicPortrait)
 
         console.log('Topic snapshot done:', '#' + i, topic.name)
         // console.log('draft ' + '#' + i, draft)

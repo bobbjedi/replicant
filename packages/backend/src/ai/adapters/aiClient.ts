@@ -21,8 +21,8 @@ class ChatService {
 
   public chat (messages: Message[], options: ChatOptions = {}): Promise<string> {
     console.log('Size:', countMessagesTokens(messages))
-    console.log('System:', messages[0])
-    console.log('User:', messages[1])
+    // console.log('System:', messages[0])
+    // console.log('User:', messages[1])
 
     return new Promise((resolve, reject) => {
       this.queue.push({ messages, options, resolve, reject })
