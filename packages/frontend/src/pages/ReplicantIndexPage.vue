@@ -35,11 +35,18 @@
         icon="mic"
       />
       <q-btn
-        @click="$router.push(replicantId + '/chat')"
+        @click="$router.push(replicantId + '/chats')"
         color="primary"
         label="Chat"
         icon="chat"
         class ="q-ml-md"
+      />
+      <q-btn
+        @click="$router.push(replicantId + '/user-cards')"
+        color="primary"
+        label="User Cards"
+        icon="person"
+        class="q-ml-md"
       />
 
       <div class="q-mt-md">

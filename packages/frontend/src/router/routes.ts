@@ -9,7 +9,9 @@ const routes: RouteRecordRaw[] = [
       // { path: 'interview/:id', component: () => import('pages/InterviewPage.vue') },
       { path: '/:id', component: () => import('pages/ReplicantIndexPage.vue') },
       { path: '/:id/interview', component: () => import('pages/InterviewPage.vue') },
-      { path: '/:id/chat', component: () => import('pages/NewChatPage.vue') },
+      { path: '/:id/chats', component: () => import('pages/ChatsListPage.vue') },
+      { path: '/:id/chats/:chatId', component: () => import('pages/ChatPage.vue') },
+      { path: '/:id/user-cards', component: () => import('pages/UserCardsListPage.vue') },
     ],
   },
 

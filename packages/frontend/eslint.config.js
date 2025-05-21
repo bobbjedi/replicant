@@ -14,7 +14,7 @@ export default defineConfigWithVueTs(
      *
      * ESLint requires "ignores" key to be the only one in this object
      */
-    // ignores: []
+    ignores: ['./packages/backend/*'],
   },
 
   pluginQuasar.configs.recommended(),
@@ -39,9 +39,9 @@ export default defineConfigWithVueTs(
     rules: {
       '@typescript-eslint/consistent-type-imports': [
         'error',
-        { prefer: 'type-imports' }
+        { prefer: 'type-imports' },
       ],
-    }
+    },
   },
   // https://github.com/vuejs/eslint-config-typescript
   vueTsConfigs.recommendedTypeChecked,
@@ -59,28 +59,28 @@ export default defineConfigWithVueTs(
         cordova: 'readonly',
         Capacitor: 'readonly',
         chrome: 'readonly', // BEX related
-        browser: 'readonly' // BEX related
-      }
+        browser: 'readonly', // BEX related
+      },
     },
 
     // add your custom rules here
     rules: {
       'vue/first-attribute-linebreak': ['error', {
         singleline: 'ignore',
-        multiline: 'below'
+        multiline: 'below',
       }],
       'vue/max-attributes-per-line': ['error', {
         singleline: 1,
-        multiline: 1
+        multiline: 1,
       }],
       'vue/html-closing-bracket-newline': ['error', {
         singleline: 'never',
-        multiline: 'always'
+        multiline: 'always',
       }],
       // Дополнительные правила для лучшего форматирования
       'vue/html-indent': ['error', 2],
       'vue/component-tags-order': ['error', {
-        order: ['template', 'script', 'style']
+        order: ['template', 'script', 'style'],
       }],
 
       'prefer-promise-reject-errors': 'off',
@@ -112,11 +112,11 @@ export default defineConfigWithVueTs(
       'comma-spacing': ['error', { 'before': false, 'after': true }],
       'no-undef': 'error',
       'array-callback-return': 'error',
-      "comma-dangle": ["error", "always-multiline"],
+      'comma-dangle': ['error', 'always-multiline'],
       // allow debugger during development only
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-      "@typescript-eslint/no-misused-promises": "off"
-    }
+      '@typescript-eslint/no-misused-promises': 'off',
+    },
   },
 
   {
@@ -124,8 +124,8 @@ export default defineConfigWithVueTs(
     languageOptions: {
       globals: {
         ...globals.serviceworker,
-        webkitSpeechRecognition: 'readonly'
-      }
-    }
-  }
+        webkitSpeechRecognition: 'readonly',
+      },
+    },
+  },
 )

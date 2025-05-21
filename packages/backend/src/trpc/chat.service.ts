@@ -1,10 +1,16 @@
-import prismaDb from '@backend/prisma/prismaDb'
+import prismaDb from '../prisma/prismaDb'
 import t from './trcpInstance'
 import { z } from 'zod'
 
-const getReplicantUserCards = t.procedure.query(() => {
-  return prismaDb.userCard.findMany()
-})
+const getReplicantUserCards = t.procedure
+  .input(z.object({ repId: z.number() }))
+  .query(async ({ input }) => {
+    return prismaDb.userCard.findMany({
+      where: {
+        replicantId: input.repId,
+      },
+    })
+  })
 
 const getReplicantChats = t.procedure
   .input(z.object({ repId: z.number() }))
@@ -26,6 +32,14 @@ const getReplicantChats = t.procedure
         createdAt: 'desc',
       },
     })
+  })
+
+const getChatById = t.procedure
+  .input(z.object({
+    chatId: z.number(),
+  }))
+  .query(async ({ input }) => {
+    return prismaDb.chat.findUnique({ where: { id: input.chatId } })
   })
 
 const getMessagesByChatId = t.procedure
@@ -57,7 +71,7 @@ const createReplicantUserCard = t.procedure
         replicantId: input.repId,
         name: input.name,
         description: input.description,
-        role: input.role,
+        role: input.role || null,
       },
     })
   })
@@ -65,7 +79,7 @@ const createReplicantUserCard = t.procedure
 const createReplicantChat = t.procedure
   .input(z.object({
     repId: z.number(),
-    userCardId: z.number().optional(),
+    userCardId: z.number(),
   }))
   .mutation(async ({ input }) => {
     return prismaDb.chat.create({
@@ -76,10 +90,21 @@ const createReplicantChat = t.procedure
     })
   })
 
+const sendMessage = t.procedure
+  .input(z.object({
+    chatId: z.number(),
+    content: z.string(),
+  }))
+  .mutation(async ({ input }) => {
+    return 'message sent ' + input.content
+  })
+
 export const chatService = {
   getReplicantUserCards,
   getReplicantChats,
+  getChatById,
   getMessagesByChatId,
   createReplicantUserCard,
   createReplicantChat,
+  sendMessage,
 }
