@@ -101,8 +101,6 @@ const linksList: EssentialLinkProps[] = [
 <style scoped>
 .container {
   max-width: 1200px;
-  /* Ограничиваем максимальную ширину */
   margin: 0 auto;
-  /* Центрируем контент */
 }
 </style>

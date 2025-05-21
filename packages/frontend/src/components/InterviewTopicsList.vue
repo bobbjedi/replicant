@@ -42,7 +42,7 @@
               icon="start"
               color="positive"
               @click.stop="switchToTopic(topic.name)"
-              :title="'Переключиться на топик'"
+              title="Switch to topic"
             />
           </div>
         </template>

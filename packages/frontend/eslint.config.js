@@ -77,7 +77,6 @@ export default defineConfigWithVueTs(
         singleline: 'never',
         multiline: 'always',
       }],
-      // Дополнительные правила для лучшего форматирования
       'vue/html-indent': ['error', 2],
       'vue/component-tags-order': ['error', {
         order: ['template', 'script', 'style'],

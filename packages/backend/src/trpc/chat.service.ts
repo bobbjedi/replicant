@@ -100,10 +100,11 @@ const sendMessage = t.procedure
   .input(z.object({
     chatId: z.number(),
     content: z.string(),
+    lang: z.enum(['RU', 'EN']),
   }))
   .mutation(async ({ input }) => {
     console.log('sendMessage:', input)
-    const answer = await onNewMessage(input.chatId, input.content, 'RU')
+    const answer = await onNewMessage(input.chatId, input.content, input.lang)
     console.log('answer:', answer)
     return answer
   })

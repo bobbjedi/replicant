@@ -44,11 +44,11 @@ class ChatService {
         const answer = await this.provider.chat(messages, options)
         resolve(answer)
       } catch (error) {
-        console.error('Ошибка при вызове chat provider:', error)
+        console.error('Error calling chat provider:', error)
         reject(error)
       }
 
-      // Пауза между запросами, чтобы не перегружать API
+      // Pause between requests to avoid overloading the API
       await delay(1100)
     }
 

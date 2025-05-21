@@ -19,7 +19,7 @@
         >{{ questionText }}</span>
       </div>
 
-      <div class="q-mt-md text-subtitle1">Ответь на вопрос, поставь эмоцию и нажми кнопку "Отправить"</div>
+      <div class="q-mt-md text-subtitle1">Answer the question, choose an emotion and click the "Send" button</div>
     </div>
 
     <q-btn
@@ -171,8 +171,8 @@ const onSkipQuestion = () => {
   answerText.value = SKIP_REASON_PREFIX[lang.value] + skipReasonText.value
   isChoseEmotion.value = true
 }
-// Функция для переключения состояния голосового ввода
-const { isListening, toggleSpeechRecognition, stopRecognition, onTranscript } = initializeSpeechRecognition()
+// Function to toggle speech recognition
+const { isListening, toggleSpeechRecognition, stopRecognition, onTranscript } = initializeSpeechRecognition(lang.value)
 
 onTranscript(v => answerText.value += v)
 </script>

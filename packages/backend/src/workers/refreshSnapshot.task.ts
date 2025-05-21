@@ -78,24 +78,24 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
       })
     }
 
-    while (!success && attempts < 3) { // Ограничиваем количество попыток
+    while (!success && attempts < 3) { // Limit the number of attempts
       try {
         attempts++
 
         if (+i === 0) {
-          // Для первого топика просто инициализируем черновик
+          // For the first topic, simply initialize the draft
           const req1 = [
             { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
             { role: Role.USER, content: formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
           ]
-          draft = await useChat(req1) // Получаем первый черновик
+          draft = await useChat(req1) // Get the first draft
           // console.log('draft', draft)
           await setSummary(draft)
           success = true
           continue
         }
 
-        // Для последующих топиков интегрируем их в текущий черновик
+        // For subsequent topics, integrate them into the current draft
         const req = [
           { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
           { role: Role.USER, content: appendPrompt + draft + `\n\n--- TOPIC ${topic.name} ---\n` + formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
@@ -105,7 +105,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
         const topicPortrait = await useChat(req)
         // console.log('topicPortrait ' + '#' + i, topicPortrait)
 
-        // Конкатенируем новый топик с разделителями
+        // Concatenate the new topic with separators
         draft += `\n\n--- TOPIC ${topic.name} ---\n` + topicPortrait
 
         fs.writeFileSync('topicsDraft.md', draft)
@@ -115,7 +115,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
         console.log('Topic snapshot done:', '#' + i, topic.name)
         // console.log('draft ' + '#' + i, draft)
 
-        success = true // Если все прошло успешно, выходим из цикла
+        success = true // If everything went well, exit the loop
       } catch (error) {
         console.error(`Error processing topic ${topic.name} on attempt ${attempts}:`, error)
         if (attempts >= 3) {
@@ -217,7 +217,7 @@ const generatePortrait = async (topicSummaries: string) => {
       try {
         attempts++
         console.log('generatePortrait:', partName, 'portraitDraft.len:', portraitDraft.length)
-        // Формируем промпт для первой части или для остальных
+        // Form the prompt for the first part or for the rest
         const partPrompt = [
           { role: Role.SYSTEM, content: PORTRAIT_PROMPTS[partName] + COMMON_PART_OF_PORTRAIT_PROMPTS },
           { role: Role.USER, content:
@@ -231,7 +231,7 @@ const generatePortrait = async (topicSummaries: string) => {
         const partContent = await useChat(partPrompt)
         // console.log('portrait part ' + '#' + i, partContent)
 
-        // Добавляем эту часть к текущему драфту
+        // Add this part to the current draft
         portraitDraft += `\n\n--- Portrait Part: ${partName} ---\n` + partContent
 
         // console.log('portraitDraft ' + '#' + i, portraitDraft)
@@ -258,7 +258,7 @@ const generatePortrait = async (topicSummaries: string) => {
 //   console.log('Start generate final portrait')
 //   return chat([
 //     { role: Role.SYSTEM, content: portraitDrafts },
-//     { role: Role.USER, content: `Холисический портрет личности для рефакторинга: ${portraitDrafts}` },
+//     { role: Role.USER, content: `Holistic portrait of a person for refactoring: ${portraitDrafts}` },
 //   ])
 
 // }

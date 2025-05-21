@@ -11,19 +11,19 @@ export type QuestionModel = Question
 export type TopicModel = InterviewTopic & { questions: QuestionModel[] }
 
 export enum EMainTopicType {
-  GREETING = 'GREETING', // Начало общения, установка контакта
-  CLOSE_ONES = 'CLOSE_ONES', // Люди из ближайшего окружения, близкие отношения
-  CHILDHOOD_MEMORIES = 'CHILDHOOD_MEMORIES', // Воспоминания из детства, формирование личности
-  EDUCATION = 'EDUCATION', // Образование, личностное развитие
-  WORK_AND_CAREER = 'WORK_AND_CAREER', // Карьера, профессиональные достижения
-  HOBBIES_AND_INTERESTS = 'HOBBIES_AND_INTERESTS', // Хобби и интересы
-  LIFE_EVENTS = 'LIFE_EVENTS', // Важные жизненные события, опыт
-  TECHNOLOGY_ATTITUDE = 'TECHNOLOGY_ATTITUDE', // Отношение к технологиям, инновациям
-  OPINION_LEADERS = 'OPINION_LEADERS', // Влияние авторитетов, мнение лидеров
-  RELIGION = 'RELIGION', // Религиозные взгляды
-  POLITICS = 'POLITICS', // Политические взгляды
-  VALUES_AND_MORALITY = 'VALUES_AND_MORALITY', // Моральные и этические убеждения
-  FEARS_AND_CONCERNS = 'FEARS_AND_CONCERNS', // Страхи и беспокойства
-  LIFE_PRINCIPLES = 'LIFE_PRINCIPLES', // Жизненные принципы и философия
-  PLACES_AND_TRAVEL = 'PLACES_AND_TRAVEL', // Места, города, путешествия и переезды, эмоциональное отношение к ним
+  GREETING = 'GREETING', // Greeting, setting contact
+  CLOSE_ONES = 'CLOSE_ONES', // People from the immediate environment, close relationships
+  CHILDHOOD_MEMORIES = 'CHILDHOOD_MEMORIES', // Childhood memories, forming personality
+  EDUCATION = 'EDUCATION', // Education, personal development
+  WORK_AND_CAREER = 'WORK_AND_CAREER', // Career, professional achievements
+  HOBBIES_AND_INTERESTS = 'HOBBIES_AND_INTERESTS', // Hobbies and interests
+  LIFE_EVENTS = 'LIFE_EVENTS', // Important life events, experience
+  TECHNOLOGY_ATTITUDE = 'TECHNOLOGY_ATTITUDE', // Attitude to technologies, innovations
+  OPINION_LEADERS = 'OPINION_LEADERS', // Influence of authorities, opinion leaders
+  RELIGION = 'RELIGION', // Religious views
+  POLITICS = 'POLITICS', // Political views
+  VALUES_AND_MORALITY = 'VALUES_AND_MORALITY', // Moral and ethical beliefs
+  FEARS_AND_CONCERNS = 'FEARS_AND_CONCERNS', // Fears and concerns
+  LIFE_PRINCIPLES = 'LIFE_PRINCIPLES', // Life principles and philosophy
+  PLACES_AND_TRAVEL = 'PLACES_AND_TRAVEL', // Places, cities, travel and relocation, emotional attitude to them
 }

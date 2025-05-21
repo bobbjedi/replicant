@@ -1,218 +1,218 @@
 export const PORTRAIT_PROMPTS = {
   'Core beliefs': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выделить и подробно зафиксировать все ключевые установки, убеждения, ценности и взгляды человека по данной теме на основе интервью.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify and record in detail all key attitudes, beliefs, values, and views of the person on this topic based on the interview.
 
-**Важно:**  
-Ты должен учитывать только фактические данные из интервью. Любые предположения, догадки или домыслы запрещены.
+**Important:**  
+You must only consider factual data from the interview. Any assumptions, guesses, or speculations are prohibited.
 
-**Обязательные требования:**  
-- Вывод должен быть максимально подробным, полным и обширным.
-- Нельзя сокращать или упрощать формулировки в угоду компактности.
-- Все детали, раскрывающие установки и взгляды человека по теме, должны быть сохранены. Допускается удаление только прямых повторов.
-- **На выходе формируется часть холистического портрета личности, поэтому каждая деталь имеет значение и должна быть зафиксирована. Нельзя опускать или обобщать нюансы.**
+**Required requirements:**  
+- The output must be as detailed, complete, and extensive as possible.
+- Do not shorten or simplify formulations for the sake of compactness.
+- All details revealing the person's attitudes and views on the topic must be preserved. Only direct repetitions may be removed.
+- **The output forms part of the holistic personality portrait, so every detail matters and must be recorded. Do not omit or generalize nuances.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Основные установки и взгляды
-- [Первое ключевое убеждение/взгляд]
-- [Второе ключевое убеждение/взгляд]
-- [И так далее, пока все не будут зафиксированы]
+## Core Attitudes and Views
+- [First key belief/view]
+- [Second key belief/view]
+- [And so on until all are recorded]
 \`\`\`
 `,
 
   'Evolutions of views': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — зафиксировать все упомянутые изменения взглядов, установок и отношения человека по данной теме на разных этапах жизни.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to record all mentioned changes in views, attitudes, and the person's relationship to this topic at different stages of life.
 
-**Важно:**  
-Фиксируй только то, что явно сказано в интервью. Любые предположения или догадки запрещены.
+**Important:**  
+Record only what was explicitly stated in the interview. Any assumptions or guesses are prohibited.
 
-**Обязательные требования:**  
-- Указывай причины или поводы для перемен, если они названы.
-- Вывод должен быть максимально подробным.
-- **На выходе формируется часть холистического портрета личности. Каждая деталь, даже мелкая, имеет значение и должна быть сохранена.**
+**Required requirements:**  
+- Indicate reasons or occasions for changes if they were mentioned.
+- The output must be as detailed as possible.
+- **The output forms part of the holistic personality portrait. Every detail, even small ones, matters and must be preserved.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Эволюция взглядов и установок
-- [Описание изменения, время/возраст (если указано), причина (если указана)]
-- [Следующее изменение и его описание]
+## Evolution of Views and Attitudes
+- [Description of change, time/age (if specified), reason (if specified)]
+- [Next change and its description]
 \`\`\`
 `,
 
   'Emotional background': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — зафиксировать эмоциональный фон и настроение человека, которые сопровождали его высказывания по данной теме.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to record the emotional background and mood of the person that accompanied their statements on this topic.
 
-**Важно:**  
-Учитывай только фактические данные из интервью. Любые предположения или интерпретации запрещены.
+**Important:**  
+Only consider factual data from the interview. Any assumptions or interpretations are prohibited.
 
-**Обязательные требования:**  
-- Укажи, какие эмоции сопровождали ответы.
-- Отметь, если у человека есть особенности в эмоциональной манере общения.
-- Вывод должен быть максимально подробным.
-- **На выходе формируется часть холистического портрета личности. Каждая деталь имеет значение.**
+**Required requirements:**  
+- Indicate what emotions accompanied the responses.
+- Note if the person has any peculiarities in their emotional communication style.
+- The output must be as detailed as possible.
+- **The output forms part of the holistic personality portrait. Every detail matters.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Эмоциональный фон
-- [Описание эмоции или эмоционального состояния в конкретном высказывании]
-- [Дальше по каждому эпизоду]
+## Emotional Background
+- [Description of emotion or emotional state in a specific statement]
+- [Continue for each episode]
 \`\`\`
 `,
 
   'Key events and memories': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — перечислить все жизненные эпизоды, события и воспоминания, которые человек озвучил в интервью по данной теме.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to list all life episodes, events, and memories that the person mentioned in the interview on this topic.
 
-**Важно:**  
-Фиксируй только факты из интервью. Никаких предположений или интерпретаций.
+**Important:**  
+Record only facts from the interview. No assumptions or interpretations.
 
-**Обязательные требования:**  
-- Укажи, если событие связано с другим топиком.
-- Вывод должен быть максимально подробным.
-- **На выходе формируется часть холистического портрета личности. Каждая деталь важна.**
+**Required requirements:**  
+- Indicate if the event is related to another topic.
+- The output must be as detailed as possible.
+- **The output forms part of the holistic personality portrait. Every detail is important.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Ключевые события и воспоминания
-- [Описание события или воспоминания, дата или возраст (если есть)]
-- [Следующее событие]
+## Key Events and Memories
+- [Description of event or memory, date or age (if available)]
+- [Next event]
 \`\`\`
 `,
 
   'Causal links': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — построить причинно-следственные связи между событиями, переживаниями и изменениями взглядов, если эти связи явно следуют из интервью.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to build cause-and-effect relationships between events, experiences, and changes in views if these connections are explicitly evident from the interview.
 
-**Важно:**  
-Фиксируй только то, что явно сказано или логически вытекает по прямому смыслу из интервью. Никаких предположений или интерпретаций.
+**Important:**  
+Record only what was explicitly stated or logically follows directly from the interview. No assumptions or interpretations.
 
-**Обязательные требования:**  
-- Указывай связи между топиками, если они явно упомянуты.
-- Вывод должен быть максимально подробным.
-- **На выходе формируется часть холистического портрета личности. Нельзя терять даже мелкие детали.**
+**Required requirements:**  
+- Indicate connections between topics if they were explicitly mentioned.
+- The output must be as detailed as possible.
+- **The output forms part of the holistic personality portrait. Even small details cannot be lost.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Причинно-следственные связи
-- [Описание связи: событие — причина — следствие]
+## Cause-and-Effect Relationships
+- [Description of connection: event — cause — effect]
 \`\`\`
 `,
 
   'Speech patterns': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выделить характерные речевые паттерны, манеру общения, любимые обороты, выражения и интонации человека по данной теме.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify characteristic speech patterns, communication style, favorite phrases, expressions, and intonations of the person on this topic.
 
-**Важно:**  
-Фиксируй только то, что явно звучало в интервью. Никаких предположений.
+**Important:**  
+Record only what was explicitly heard in the interview. No assumptions.
 
-**Обязательные требования:**  
-- Отмечай пересечения паттернов с другими топиками.
-- Вывод должен быть максимально подробным.
-- **На выходе формируется часть холистического портрета личности. Каждая особенность речи имеет значение.**
+**Required requirements:**  
+- Note intersections of patterns with other topics.
+- The output must be as detailed as possible.
+- **The output forms part of the holistic personality portrait. Every speech characteristic matters.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Речевые паттерны и манера общения
-- [Описание особенностей речи, оборотов, выражений]
+## Speech Patterns and Communication Style
+- [Description of speech features, phrases, expressions]
 \`\`\`
 `,
 
   'Inner contradictions': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выявить внутренние противоречия в интервью по данной теме: несовпадения между актуальными взглядами и прошлыми установками, нестыковки в логике или эмоциональных оценках.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify internal contradictions in the interview on this topic: mismatches between current views and past attitudes, inconsistencies in logic or emotional assessments.
 
-**Важно:**  
-Фиксируй только то, что явно сказано в интервью. Никаких предположений.
+**Important:**  
+Record only what was explicitly stated in the interview. No assumptions.
 
-**Обязательные требования:**  
-- Вывод должен быть максимально подробным.
-- **На выходе формируется часть холистического портрета личности. Каждое противоречие имеет значение.**
+**Required requirements:**  
+- The output must be as detailed as possible.
+- **The output forms part of the holistic personality portrait. Every contradiction matters.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Внутренние противоречия
-- [Описание противоречия: что противоречит чему]
+## Internal Contradictions
+- [Description of contradiction: what contradicts what]
 \`\`\`
 `,
   'Biographical summary': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — выделить и зафиксировать все биографические данные человека, озвученные в интервью по данной теме и другим топикам, если они упомянуты.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify and record all biographical data of the person mentioned in the interview on this topic and other topics if they were mentioned.
 
-**Важно:**  
-Фиксируй только явно сказанные данные. Никаких предположений.
+**Important:**  
+Record only explicitly stated data. No assumptions.
 
-**Что необходимо зафиксировать:**  
-- Имя (если указано)
-- Пол (если озвучен)
-- Возраст или дата рождения (если сказано)
-- Город/страна рождения
-- Образование (место, факультет, специальность)
-- Перечень ближайших родственников и значимых людей:
-  - Формат записи: **[роль] — [имя]**
-  - Например: *Отец — Пётр Иванович*, *Друг детства — Михал*, *Первая девушка — Анастасия*
-- Города и места, в которых бывал человек:
-  - Формат записи: **[город/место] — [цель пребывания или события], [эмоции или отношение к месту, если озвучено]**
-  - Например: *Москва — учеба в университете, теплые воспоминания*, *Париж — туристическая поездка в 2018, восторг и ощущение свободы*
-- Переезды:
-  - Формат записи: **[откуда] → [куда], [возраст или дата] (если указано), причина (если указана), [эмоции или отношение к переезду, если сказано]**
-  - Например: *Новосибирск → Москва, в 20 лет, поступление в университет, ощущение тревоги и волнения*
+**What needs to be recorded:**  
+- Name (if specified)
+- Gender (if mentioned)
+- Age or date of birth (if stated)
+- City/country of birth
+- Education (institution, faculty, specialty)
+- List of close relatives and significant people:
+  - Recording format: **[role] — [name]**
+  - Example: *Father — Peter Ivanovich*, *Childhood friend — Michael*, *First girlfriend — Anastasia*
+- Cities and places the person has visited:
+  - Recording format: **[city/place] — [purpose of stay or events], [emotions or attitude to the place, if mentioned]**
+  - Example: *Moscow — university studies, warm memories*, *Paris — tourist trip in 2018, delight and feeling of freedom*
+- Relocations:
+  - Recording format: **[from] → [to], [age or date] (if specified), reason (if specified), [emotions or attitude to relocation, if mentioned]**
+  - Example: *Novosibirsk → Moscow, at age 20, university admission, feeling of anxiety and excitement*
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Биографические данные
-- Имя: [если указано]
-- Пол: [если озвучен]
-- Возраст или дата рождения: [если указано]
-- Город/страна рождения: [если сказано]
-- Образование: [если есть информация]
-- Ближайшие родственники и значимые люди:
-  - [роль] — [имя]
-  - [следующий человек]
-- Города и места, в которых бывал:
-  - [город/место] — [цель пребывания или событие], [эмоции или отношение]
-- Переезды:
-  - [откуда] → [куда], [возраст или дата] (если указано), причина (если сказана), [эмоции или отношение]
+## Biographical Data
+- Name: [if specified]
+- Gender: [if mentioned]
+- Age or date of birth: [if specified]
+- City/country of birth: [if stated]
+- Education: [if information available]
+- Close relatives and significant people:
+  - [role] — [name]
+  - [next person]
+- Cities and places visited:
+  - [city/place] — [purpose of stay or event], [emotions or attitude]
+- Relocations:
+  - [from] → [to], [age or date] (if specified), reason (if stated), [emotions or attitude]
 \`\`\`
 `
   ,
 
   'Personality summary': `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — обобщить выводы о человеке по данной теме на основе интервью.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to summarize conclusions about the person on this topic based on the interview.
 
-**Важно:**  
-Фиксируй только фактические данные из интервью.
+**Important:**  
+Record only factual data from the interview.
 
-**Обязательные требования:**  
-- Вывод должен быть максимально подробным.
-- Укажи черты характера, установки, особенности восприятия темы.
-- **На выходе формируется часть холистического портрета личности. Нельзя опускать детали.**
+**Required requirements:**  
+- The output must be as detailed as possible.
+- Indicate character traits, attitudes, peculiarities of topic perception.
+- **The output forms part of the holistic personality portrait. Details cannot be omitted.**
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура вывода:
+Output structure:
 
 \`\`\`markdown
-## Вывод о личности по этому топику
-- [Вывод на основе интервью]
+## Personality Summary for this Topic
+- [Conclusion based on interview]
 \`\`\`
 `,
 
@@ -220,5 +220,5 @@ export const PORTRAIT_PROMPTS = {
 
 export const COMMON_PART_OF_PORTRAIT_PROMPTS = `
 \n
-**ПРИОРИТЕТ:** Требуется Генерировать максимально подробные данные, фиксировать все, даже мелкие и незначительные детали
+**PRIORITY:** Generate maximally detailed data, record everything, even small and insignificant details
 `

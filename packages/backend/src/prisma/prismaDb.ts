@@ -1,5 +1,4 @@
-import { PrismaClient, Replicant, Interview, Question } from './client' // Путь, соответствующий твоей структуре проекта
-
+import { PrismaClient, Replicant, Interview, Question } from './client' // Path to the client
 export default new PrismaClient()
 
 export type ReplicantModel = Replicant

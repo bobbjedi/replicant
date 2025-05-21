@@ -93,7 +93,7 @@
       unelevated
     />
 
-    <!-- Диалог создания репликанта -->
+    <!-- Dialog for creating a replicant -->
     <q-dialog v-model="createDialog">
       <q-card style="min-width: 400px">
         <q-card-section>

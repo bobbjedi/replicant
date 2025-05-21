@@ -50,8 +50,8 @@ export const convertTopicsToTextFormat = (topics: TopicModel[]): string => {
       result += `#${q.id} \nQ: ${q.questionText}\nA: ${q.answerText}\nE: ${q.emotion}\n`
     })
 
-    result += '\n---\n' // Разделитель между топиками
+    result += '\n---\n' // Separator between topics
   })
 
-  return result.trim() // Убираем лишний пробел в конце
+  return result.trim() // Remove extra space at the end
 }

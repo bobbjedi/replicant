@@ -1,64 +1,64 @@
 export default `
-Проект "Digital Replicant" создает цифрового двойника на основе личности пользователя. Твоя задача — составить максимально подробное и живое описание (холистический портрет личности) по текущему топику интервью, чтобы по нему было возможно представить, как именно этот человек говорит и рассуждает на эту тему. Необходимо учитывать только фактические данные из интервью. Нельзя придумывать или дополнять информацию, которая отсутствует в интервью. Любые предположения, догадки или домыслы запрещены.
+The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to create the most detailed and vivid description (a holistic personality portrait) for the current interview topic, so that it is possible to imagine how exactly this person speaks and reasons on this topic. You must only use factual data from the interview. You must not invent or add information that is not present in the interview. Any assumptions, guesses, or speculations are strictly prohibited.
 
-**Важно:**  
-Допускается удаление явных повторов и избыточных формулировок, но все ключевые детали, раскрывающие установки, переживания, воспоминания и особенности личности человека, должны быть сохранены.
+**Important:**  
+You may remove obvious repetitions and redundant wording, but all key details revealing the person's attitudes, experiences, memories, and personality traits must be preserved.
 
-Если в процессе анализа обнаруживаются связи с другими топиками — укажи их. Самостоятельно придумывать или додумывать связи запрещено, указывай только те, которые прямо или косвенно следуют из интервью.
+If, during the analysis, you find connections with other topics — indicate them. You must not invent or guess connections, only mention those that directly or indirectly follow from the interview.
 
-**Особое требование:**  
-Фиксируй не только актуальные взгляды и ценности человека по теме, но и любые упоминания о том, как они менялись на разных этапах жизни. Если человек сообщает, что раньше думал одно, а позже изменил мнение — зафиксируй это изменение, укажи, когда оно произошло (если известно), и что послужило причиной или поводом для перемены. Нельзя додумывать изменения, фиксируй только те, что явно озвучены в интервью.
+**Special requirement:**  
+Record not only the person's current views and values on the topic, but also any mentions of how they changed at different stages of life. If the person says they used to think one way and later changed their mind — record this change, indicate when it happened (if known), and what caused or triggered the change. Do not invent changes, only record those explicitly mentioned in the interview.
 
-**Формат результата — markdown.**
+**Output format — markdown.**
 
-Структура описания для топика:
+Description structure for the topic:
 
 \`\`\`markdown
-# Холистический личностный портрет по топику: [Название текущего топика]
+# Holistic Personality Portrait for Topic: [Current Topic Name]
 
-## Основные установки и взгляды
-[Опиши только те ключевые установки, убеждения и ценности человека по этой теме, которые явно присутствуют в интервью.]
+## Core Attitudes and Views
+[Describe only those key attitudes, beliefs, and values of the person on this topic that are clearly present in the interview.]
 
-## Эволюция взглядов и установок
-[Зафиксируй все упомянутые изменения взглядов, отношения и установок по этой теме на разных этапах жизни. Укажи причины или поводы для перемен, если они названы.]
+## Evolution of Views and Attitudes
+[Record all mentioned changes in views, attitudes, and beliefs on this topic at different stages of life. Indicate reasons or occasions for changes if they are mentioned.]
 
-## Эмоциональный фон
-[Зафиксируй, какие эмоции сопровождали его высказывания по данной теме. Укажи особенности эмоциональности, если они есть. Если эмоциональный фон менялся в течение интервью по этой теме — зафиксируй эти изменения и что их спровоцировало (если это явно следует из интервью).]
+## Emotional Background
+[Record what emotions accompanied their statements on this topic. Indicate any emotional features if present. If the emotional background changed during the interview on this topic — record these changes and what triggered them (if this clearly follows from the interview).]
 
-## Ключевые события и воспоминания
-[Перечисли только те жизненные эпизоды и воспоминания, которые человек озвучил в интервью по этой теме. Если топик связан с другими топиками — укажи ссылку.]
+## Key Events and Memories
+[List only those life episodes and memories that the person mentioned in the interview on this topic. If the topic is related to other topics — indicate the reference.]
 
-## Причинно-следственные связи
-[Построй связи между событиями, переживаниями и изменениями взглядов из разных топиков, если они явно следуют из интервью. Никаких предположений.]
+## Cause-and-Effect Relationships
+[Build connections between events, experiences, and changes in views from different topics, if they clearly follow from the interview. No assumptions.]
 
-## Речевые паттерны и манера общения
-[Опиши характерные особенности речи человека в интервью по этому топику:
-- Каков общий стиль его речи в рамках этой темы? Например: ясный, обстоятельный, эмоциональный, с оттенками иронии, философский, отстранённый, агрессивный, аналитический и т.д.
-- Какие акценты он делает в подаче мыслей (например: подчёркивает важность критического мышления, задаётся вопросами, размышляет о последствиях).
-- Приведи конкретные слова, словосочетания, устойчивые фразы и речевые паттерны, которые он использует по этой теме.
-- Зафиксируй наличие слов-паразитов, любимых выражений, вводных слов (например: "по сути", "как бы", "на самом деле", "ну вот", "если честно").
-- Опиши, как он строит предложения: короткими фразами, длинными развернутыми конструкциями, с эмоциональными оценками, риторическими вопросами и т.д.
-- Использует ли профессиональный сленг, термины, эмоционально окрашенные выражения.
-- Укажи, если некоторые паттерны или выражения встречались и в других топиках.
-- Если возможно, опиши общую интонацию и темп речи по этой теме (например: говорит размеренно и вдумчиво, или быстро, с эмоциональными всплесками, или отрывисто и лаконично). Укажи это только если это явно следует из формулировок и структуры интервью.]
+## Speech Patterns and Communication Style
+[Describe the person's characteristic speech features in the interview on this topic:
+- What is the general style of their speech on this topic? For example: clear, detailed, emotional, with shades of irony, philosophical, detached, aggressive, analytical, etc.
+- What accents do they make in presenting their thoughts (for example: emphasizing the importance of critical thinking, asking questions, reflecting on consequences).
+- Give specific words, phrases, set expressions, and speech patterns they use on this topic.
+- Record the presence of filler words, favorite expressions, introductory words (for example: "in fact", "kind of", "actually", "well", "to be honest").
+- Describe how they build sentences: with short phrases, long detailed constructions, with emotional evaluations, rhetorical questions, etc.
+- Do they use professional slang, terms, emotionally colored expressions.
+- Indicate if some patterns or expressions were also found in other topics.
+- If possible, describe the general intonation and speech tempo on this topic (for example: speaks measuredly and thoughtfully, or quickly, with emotional outbursts, or abruptly and concisely). Indicate this only if it clearly follows from the wording and structure of the interview.]
 
-Важно: общее описание манеры речи должно быть привязано к текущей теме интервью и соответствовать эмоциональному и смысловому содержанию высказанного.
+Important: the general description of the speech manner should be tied to the current interview topic and correspond to the emotional and semantic content of what was said.
 
-## Внутренние противоречия
-[Если в интервью по этой теме есть несостыковки, противоречия или нестыковки между актуальными взглядами и прошлыми установками — выдели их и поясни. Ничего не придумывай.]
+## Internal Contradictions
+[If there are inconsistencies, contradictions, or mismatches between current views and past attitudes in the interview on this topic — highlight and explain them. Do not invent anything.]
 
-## Вывод о личности по этому топику
-[Обобщи выводы только по данной теме, строго на основе интервью. Какие черты характера проявляются здесь? Как человек воспринимает эту тему?]
+## Personality Summary for this Topic
+[Summarize conclusions only for this topic, strictly based on the interview. What character traits are manifested here? How does the person perceive this topic?]
 
-[Ссылка на другие топики, если есть явная связь]
+[Reference to other topics if there is a clear connection]
 \`\`\`
 
-**Примечания:**
-- КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО придумывать, дополнять или интерпретировать данные за рамками интервью.
-- КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО терять информацию, которая несет данные о личности и воспоминаниях.
-- Объединённая финальная схема по всем топикам на этом этапе не требуется, только по текущему топику.
-- Любые связи между топиками указываются только если они прямо или косвенно проявляются в интервью.
-- При составлении описания ориентируйся на то, чтобы по нему можно было представить эффект реального общения с этим человеком по этой теме.
-- Формат вывода — строго markdown.
-- Объём описания должен быть полным, без сокращений, кроме удаления очевидных повторов.
+**Notes:**
+- IT IS STRICTLY FORBIDDEN to invent, add, or interpret data beyond the interview.
+- IT IS STRICTLY FORBIDDEN to lose information that carries data about the personality and memories.
+- The combined final scheme for all topics is not required at this stage, only for the current topic.
+- Any connections between topics are indicated only if they are directly or indirectly manifested in the interview.
+- When composing the description, focus on making it possible to imagine the effect of real communication with this person on this topic.
+- Output format — strictly markdown.
+- The description volume must be complete, without omissions, except for the removal of obvious repetitions.
 `

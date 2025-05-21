@@ -100,6 +100,7 @@ import useSendMessage from 'src/api/mutations/use-send-message'
 import type { TMessage } from 'src/api/queries/use-get-messages'
 import type { InfiniteData } from '@tanstack/vue-query'
 import useGetChat from 'src/api/queries/use-get-chat'
+import { useLanguageStore } from 'src/stores/langStorage'
 
 const route = useRoute()
 const $q = useQuasar()
@@ -148,6 +149,7 @@ const handleScroll = async (e: Event) => {
 
   }
 }
+const langStore = useLanguageStore()
 
 const sendMessage = () => {
   if (!newMessage.value) { return }
@@ -155,6 +157,7 @@ const sendMessage = () => {
   sendMessageMutation.mutate({
     chatId: chatId.value,
     content: newMessage.value,
+    lang: langStore.lang,
   }, {
     onSuccess: (response) => {
       console.log('response:', response)
@@ -182,7 +185,6 @@ onMounted(() => {
 const scrollToBottom = (isSmooth = true) => {
 
   void nextTick(() => {
-    // TODO: добавить плавную анимацию скролла
     if (messagesContainer.value) {
       messagesContainer.value.scrollTo({
         top: messagesContainer.value.scrollHeight,

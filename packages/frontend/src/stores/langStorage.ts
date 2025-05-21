@@ -2,14 +2,14 @@ import { defineStore } from 'pinia'
 import { useQuasar } from 'quasar'
 import { FIRST_QUESTION, INTRO, INTRO_PATH_2 } from 'src/constants'
 
-type MessageLanguages = 'EN' | 'RU';
+export type MessageLanguages = 'EN' | 'RU';
 
 const FIELD = 'lang'
 localStorage.setItem(FIELD, 'RU')
 
 export const useLanguageStore = defineStore('language', {
   state: () => ({
-    currentLang: localStorage.getItem(FIELD) || 'en' as MessageLanguages, // Можно задать начальную локаль
+    currentLang: localStorage.getItem(FIELD) || 'en' as MessageLanguages, // You can set the initial language
   }),
   actions: {
     setLanguage (lang: MessageLanguages) {
@@ -18,7 +18,7 @@ export const useLanguageStore = defineStore('language', {
     },
     loadLanguageFromQuasar () {
       const $q = useQuasar()
-      const lang = ($q.lang.getLocale()?.toUpperCase() || 'EN') as MessageLanguages // Получаем текущую локаль из Quasar
+      const lang = ($q.lang.getLocale()?.toUpperCase() || 'EN') as MessageLanguages // Get the current locale from Quasar
       this.currentLang = lang
       localStorage.setItem(FIELD, lang)
     },

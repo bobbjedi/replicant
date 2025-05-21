@@ -124,7 +124,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- <q-btn flat dense icon="start" color="positive" :title="'Переключиться на топик'" /> -->
+                <!-- <q-btn flat dense icon="start" color="positive" :title="'Switch to topic'" /> -->
               </div>
             </template>
 
@@ -216,7 +216,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- <q-btn flat dense icon="start" color="positive" :title="'Переключиться на топик'" /> -->
+                <!-- <q-btn flat dense icon="start" color="positive" :title="'Switch to topic'" /> -->
               </div>
             </template>
 

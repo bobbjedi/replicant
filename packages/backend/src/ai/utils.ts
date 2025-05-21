@@ -6,13 +6,11 @@ export function countMessagesTokens (messages: { role: string, content: string }
   let tokensCount = 0
 
   for (const message of messages) {
-    // +4 токена на роль и спец-токены для каждого сообщения
     tokensCount += 4
-    // токены в контенте
     tokensCount += encoding.encode(message.content).length
   }
 
-  // +2 токена на assistant ответ
+  // +2 tokens for assistant answer
   tokensCount += 2
 
   return tokensCount
