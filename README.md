@@ -1,107 +1,193 @@
-# 📡 Digital Replicant — Open-Source Project
+# Digital Replicant
 
-## 📖 Project Overview
-
-**Digital Replicant** is an open platform for creating a personal digital twin based on a person’s beliefs, speech patterns, and life experience.  
-The project allows you to collect data about a person’s worldview, manner of speaking, emotions, and reactions in various situations — and then use this data to generate personalized responses on their behalf in text or voice form.
+**Digital Replicant** is an open-source platform for creating a highly accurate cognitive replication of a person based on interviews, narratives, memories, and personalized moral models. The goal of the project is to create a **digital twin as close to the original person as possible**, enabling third parties to interact as if they were speaking to the actual person, not an algorithm.
 
 ---
 
-## 🎯 Project Objectives
+## Installation and Launch (in development)
 
-- Develop an open tool for creating a **digital personality portrait**.
-- Collect a user's **personal beliefs** on topics such as philosophy, religion, politics, etc.
-- Capture **speech patterns**, including filler words, sentence structure, and intonations.
-- Preserve **life experiences** and stories of how personal views evolved.
-- Build an **ethical, private digital twin**, accessible only to its owner.
+# Digital Replicant
+
+**Digital Replicant** — это open-source проект, задача которого создать максимально точный, глубокий и когнитивно достоверный цифровой портрет личности человека (Оригинала). Полученный портрет используется в качестве системного промпта для GPT, что позволяет другим людям (Третьим лицам) общаться с моделью так, как если бы они общались с этим человеком напрямую.
 
 ---
 
-## 🛠️ How It Works
+## Install and run
 
-### 📥 1. Data Collection (Snapshot)
+For local use:
 
-The user goes through a guided interview across different topics. The interview is led by GPT, which dynamically generates the next question based on previous answers, within the chosen theme.
+```bash
+# install dependencies
+pnpm install
 
-Example topic — **"Religion"**:
+# initialize DB
+pnpm init-db
 
-- What is your general attitude towards religion?
-- How did you perceive religion as a child?
-- How has your attitude changed over time?
-- What influenced this change?
+# run server in dev mode 
+pnpm back
 
-There are also situational questions such as:
+# run front in develop mode
+pnpm front
 
-- *Your child comes home from school with a black eye. How do you respond?*
-- *You witness injustice on public transport. What do you do?*
+# open web
+http://localhost:9000/#/
+```
 
-The user answers **by voice** (with subsequent speech-to-text transcription) and marks the **emotional tone** of the response (e.g. joy, irritation, sadness).
+## Project Idea
 
-**Flexibility:** the user can:
-- Add custom topics.
-- Initiate custom situational questions.
+Digital Replicant aims to go beyond simple "chatbots" that mimic conversational style and move towards building a **deep holistic cognitive portrait of a personality**, taking into account:
 
-### 💾 2. Data Storage
+- beliefs and core values,
+- emotions and reaction patterns,
+- past experiences and memories,
+- evolution of views over time,
+- moral structures and inner contradictions.
 
-- All data is stored **locally** on the user’s device.
-- **Password-based encryption** is applied.
-- **Snapshot export and import** options are available.
+The project is based on the idea that **a person is not a sum of answers**, but a **dynamic system of memory, emotions, experience, speech patterns, and the connections between them**. In this sense, Digital Replicant is not just a chatbot but a **reproducible model of a personality**, which can be applied in:
 
-### 🤖 3. Response Generation (Replicant)
-
-- **Light Mode:** The system searches for relevant Q&A pairs within the snapshot database. Several most relevant examples (RAG find) are selected and sent to a language model (GPT) along with the instruction:  
-  *"Generate a response to the current question on behalf of the user, considering their answers to similar questions, maintaining their style, emotional tone, and core values."*
-
-- **Heavy Mode:** An open-source language model (such as LLaMA, Mistral, or equivalent) is fine-tuned on the user's personal snapshot.  
-  The response generation follows the same scheme as Light Mode:
-  - Relevant Q&A pairs are retrieved.
-  - A prompt is formed, incorporating the fine-tuned model’s answer to this topic.
-  - The final response is generated via GPT, blending the fine-tuned model’s patterns for maximum personalization.
+- digital legacy projects,
+- cognitive research,
+- humanistic AI architecture,
+- healthcare (e.g. cognitive therapy, dementia support),
+- dialogue agents shaped by the cognitive and emotional profile of a specific person.
 
 ---
 
-## 🧩 Example Situational Questions
+## Architecture
 
-- *Your friend asks to borrow a significant sum of money. What do you do?*
-- *Your work team makes a serious mistake. How do you handle it?*
-- *Your son wants to drop out of university. How do you react?*
+### Key Concepts
 
-These questions help reveal moral values, principles, and behavioral patterns.
-
----
-
-## 📜 Ethical Manifesto
-
-We believe that personality modeling is a delicate and responsible task. This project follows these core principles:
-
-- **Privacy:** All user data is stored locally and encrypted.
-- **Transparency:** All source code is open and available for review.
-- **Control:** The user alone decides what to store and when to delete.
-- **Voluntariness:** Participation and the use of the digital twin is entirely consensual.
-- **Responsible Use:** It is forbidden to use a digital twin for deception, manipulation, or impersonation without explicit permission.
+- **Original** — the person whose cognitive portrait is being recorded.
+- **Replicant** — a GPT model + system prompt + assembled cognitive portrait of the Original.
+- **Third Party** — a user interacting with the Replicant, expecting realistic, human-like behavior.
 
 ---
 
-## 📌 Why This Matters
+## Data Structure
 
-Today, AI models create synthetic personalities without a person’s knowledge.  
-**Digital Replicant** offers an alternative:  
-**your digital self belongs only to you.**
+### Interviews
+
+- A Replicant is created via a "Create Replicant" interface.
+- Interviews are the primary data collection format.
+- Each interview consists of **topics**.
+- Each topic contains **questions, answers**, and **emotions**.
+- There are required topics: _Introduction_, _Close Ones_, _Authorities_, _Politics_, _Religion_, and others.
+- The Original can add **custom topics** that are personally important (e.g. "Marxism," "Military Service," "Crisis 2014," etc.).
+- Each question is accompanied by: **question text, answer, and selected emotion**.
+
+### Interview Stages
+
+1. GPT generates a question based on previous answers and context.
+2. The Original answers and selects an emotion.
+3. The question, answer, and emotion are recorded.
+4. Option to skip a question with a reason.
+5. Ability to switch between topics.
+6. Ability to add new topics.
 
 ---
 
-## 📊 Current Status
+## Portrait Formation
 
-- 📄 Project in concept development phase.
-- 📚 Preparing topic maps and interview question banks.
-- 🔒 Developing a system for local, encrypted snapshot storage.
-- 🤖 Exploring integrations with open-source RAG solutions and models like LLaMA, Mistral.
+After completing the interview process, a **step-by-step holistic personality portrait** is generated.
+
+### Step 1: Portrait by Topic
+
+For each topic, a report is generated containing:
+
+- Core beliefs and views
+- Evolution of views
+- Emotional background
+- Key memories
+- Causal links and motivations
+- Speech patterns
+- Internal contradictions
+- Personality summary for the topic
+
+Each topic summary is used as context for the next, ensuring **cumulative cohesion** in the final model.
+
+### Step 2: Global Holistic Portrait
+
+A **unified cognitive portrait** is assembled from all topics, providing a more compact but deeply structured overview:
+
+- Core beliefs
+- Evolutions of views
+- Emotional background
+- Key events and memories
+- Causal connections
+- Speech patterns
+- Inner contradictions
+- Biographical summary
+- Final personality summary
+
+This result becomes the Replicant’s **main system prompt** and is used in conversations with third parties.
 
 ---
 
-## 📬 Contact
+## How the Replicant Works
 
-If you'd like to join the project or share ideas — open an issue in the repo!
+1. The holistic portrait is used as a system prompt.
+2. A third party sends a message.
+3. GPT generates a response **as close as possible to the Original’s personality**.
+4. The response includes an **emotion**, which can be visualized.
+5. The interface displays text + emotion.
+6. Optionally: voice-over, video avatar, synchronous articulation (external modules).
 
-(Quasar + Vue 3 / Node.js + Express + Zod) SQLite, Plasma, RAG (ChromaDB)
+---
 
+## Additional Features
+
+### Interaction with Third Parties
+
+- Ability to specify who is interacting with the Replicant (e.g. _Wife Anna_, _Brother Peter_).
+- These details are injected into the prompt and can adjust the tone or content of the conversation.
+- Topics related to close people are linked to individual third-party profiles.
+
+### Evolution of Views
+
+- Daily monitoring of news relevant to the Original’s core beliefs.
+- When potentially significant events are detected — an option to update or adjust opinions and values.
+
+### Memories
+
+- All mentioned stories and events are collected in a dedicated database.
+- RAG-based access to memories is available during response generation.
+
+### Evaluator System
+
+- Before each response, an "evaluator" layer runs:
+  - Analyzes the query for the need to fetch current news.
+  - Checks for relevant memories.
+  - Suggests contextual elements that can be added to the response (weather, mood, references to past events, etc.).
+
+---
+
+## Technical Details
+
+- **Backend:** Node.js, Express, TypeScript, Zod
+- **Frontend:** Vue 3, Quasar
+- **Database:** Plasma DB + SQLite
+
+---
+
+## 📄 License
+
+[MIT License](LICENSE)
+
+---
+
+## Contributing
+
+Any developer, researcher, philosopher, or psychologist interested in digital twins, cognitive modeling, and humanistic AI is welcome.
+
+We would appreciate:
+
+- new feature proposals,
+- UI/UX improvements,
+- hypothesis validation based on collected data,
+- integration development (voice-over, video, voice avatars, etc.).
+
+---
+
+## Contacts
+
+Create issue
