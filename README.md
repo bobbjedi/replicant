@@ -33,6 +33,23 @@ pnpm front
 http://localhost:9000/#/
 ```
 
+## Environment Variables
+
+Before running the project, create a `.env` file in the root directory and add the following environment variables:
+```bash
+OPENAI_API_KEY=your_api_key_here
+OPENAI_BASE_URL=https://api.openai.io
+OPENAI_API_MODEL=gpt-4o-mini
+```
+
+
+```
+- `OPENAI_API_KEY` — your API key for accessing the language model.
+- `OPENAI_BASE_URL` — the base URL of your API endpoint.
+- `OPENAI_API_MODEL` — the model identifier you want to use for generating responses.
+```
+**Note:** Replace `your_api_key_here` with your actual API key.
+
 ## Project Idea
 
 Digital Replicant aims to go beyond simple "chatbots" that mimic conversational style and move towards building a **deep holistic cognitive portrait of a personality**, taking into account:
