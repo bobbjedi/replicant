@@ -66,7 +66,7 @@ model UserCard {
   name        String
   role        String?
   description String?
-  snapshot    String
+  snapshot    String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   chats       Chat[]    @relation("UserCardChats")
@@ -79,6 +79,7 @@ model Chat {
   id          Int       @id @default(autoincrement())
   replicantId Int
   userCardId  Int?
+  description String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   userCard    UserCard? @relation("UserCardChats", fields: [userCardId], references: [id])

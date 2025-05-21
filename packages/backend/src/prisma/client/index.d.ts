@@ -6299,7 +6299,7 @@ export namespace Prisma {
     name: string
     role: string | null
     description: string | null
-    snapshot: string
+    snapshot: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCardCountAggregateOutputType | null
@@ -6397,7 +6397,7 @@ export namespace Prisma {
       name: string
       role: string | null
       description: string | null
-      snapshot: string
+      snapshot: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["userCard"]>
@@ -7297,6 +7297,7 @@ export namespace Prisma {
     id: number | null
     replicantId: number | null
     userCardId: number | null
+    description: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7305,6 +7306,7 @@ export namespace Prisma {
     id: number | null
     replicantId: number | null
     userCardId: number | null
+    description: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -7313,6 +7315,7 @@ export namespace Prisma {
     id: number
     replicantId: number
     userCardId: number
+    description: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -7335,6 +7338,7 @@ export namespace Prisma {
     id?: true
     replicantId?: true
     userCardId?: true
+    description?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7343,6 +7347,7 @@ export namespace Prisma {
     id?: true
     replicantId?: true
     userCardId?: true
+    description?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -7351,6 +7356,7 @@ export namespace Prisma {
     id?: true
     replicantId?: true
     userCardId?: true
+    description?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7446,6 +7452,7 @@ export namespace Prisma {
     id: number
     replicantId: number
     userCardId: number | null
+    description: string | null
     createdAt: Date
     updatedAt: Date
     _count: ChatCountAggregateOutputType | null
@@ -7473,6 +7480,7 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     userCardId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userCard?: boolean | Chat$userCardArgs<ExtArgs>
@@ -7485,6 +7493,7 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     userCardId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userCard?: boolean | Chat$userCardArgs<ExtArgs>
@@ -7495,6 +7504,7 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     userCardId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userCard?: boolean | Chat$userCardArgs<ExtArgs>
@@ -7505,11 +7515,12 @@ export namespace Prisma {
     id?: boolean
     replicantId?: boolean
     userCardId?: boolean
+    description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ChatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "replicantId" | "userCardId" | "createdAt" | "updatedAt", ExtArgs["result"]["chat"]>
+  export type ChatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "replicantId" | "userCardId" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["chat"]>
   export type ChatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     userCard?: boolean | Chat$userCardArgs<ExtArgs>
     replicant?: boolean | ReplicantDefaultArgs<ExtArgs>
@@ -7536,6 +7547,7 @@ export namespace Prisma {
       id: number
       replicantId: number
       userCardId: number | null
+      description: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["chat"]>
@@ -7967,6 +7979,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Chat", 'Int'>
     readonly replicantId: FieldRef<"Chat", 'Int'>
     readonly userCardId: FieldRef<"Chat", 'Int'>
+    readonly description: FieldRef<"Chat", 'String'>
     readonly createdAt: FieldRef<"Chat", 'DateTime'>
     readonly updatedAt: FieldRef<"Chat", 'DateTime'>
   }
@@ -9593,6 +9606,7 @@ export namespace Prisma {
     id: 'id',
     replicantId: 'replicantId',
     userCardId: 'userCardId',
+    description: 'description',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9929,7 +9943,7 @@ export namespace Prisma {
     name?: StringFilter<"UserCard"> | string
     role?: StringNullableFilter<"UserCard"> | string | null
     description?: StringNullableFilter<"UserCard"> | string | null
-    snapshot?: StringFilter<"UserCard"> | string
+    snapshot?: StringNullableFilter<"UserCard"> | string | null
     createdAt?: DateTimeFilter<"UserCard"> | Date | string
     updatedAt?: DateTimeFilter<"UserCard"> | Date | string
     chats?: ChatListRelationFilter
@@ -9942,7 +9956,7 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    snapshot?: SortOrder
+    snapshot?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     chats?: ChatOrderByRelationAggregateInput
@@ -9958,7 +9972,7 @@ export namespace Prisma {
     name?: StringFilter<"UserCard"> | string
     role?: StringNullableFilter<"UserCard"> | string | null
     description?: StringNullableFilter<"UserCard"> | string | null
-    snapshot?: StringFilter<"UserCard"> | string
+    snapshot?: StringNullableFilter<"UserCard"> | string | null
     createdAt?: DateTimeFilter<"UserCard"> | Date | string
     updatedAt?: DateTimeFilter<"UserCard"> | Date | string
     chats?: ChatListRelationFilter
@@ -9971,7 +9985,7 @@ export namespace Prisma {
     name?: SortOrder
     role?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    snapshot?: SortOrder
+    snapshot?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCardCountOrderByAggregateInput
@@ -9990,7 +10004,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"UserCard"> | string
     role?: StringNullableWithAggregatesFilter<"UserCard"> | string | null
     description?: StringNullableWithAggregatesFilter<"UserCard"> | string | null
-    snapshot?: StringWithAggregatesFilter<"UserCard"> | string
+    snapshot?: StringNullableWithAggregatesFilter<"UserCard"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"UserCard"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"UserCard"> | Date | string
   }
@@ -10002,6 +10016,7 @@ export namespace Prisma {
     id?: IntFilter<"Chat"> | number
     replicantId?: IntFilter<"Chat"> | number
     userCardId?: IntNullableFilter<"Chat"> | number | null
+    description?: StringNullableFilter<"Chat"> | string | null
     createdAt?: DateTimeFilter<"Chat"> | Date | string
     updatedAt?: DateTimeFilter<"Chat"> | Date | string
     userCard?: XOR<UserCardNullableScalarRelationFilter, UserCardWhereInput> | null
@@ -10013,6 +10028,7 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     userCardId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userCard?: UserCardOrderByWithRelationInput
@@ -10027,6 +10043,7 @@ export namespace Prisma {
     NOT?: ChatWhereInput | ChatWhereInput[]
     replicantId?: IntFilter<"Chat"> | number
     userCardId?: IntNullableFilter<"Chat"> | number | null
+    description?: StringNullableFilter<"Chat"> | string | null
     createdAt?: DateTimeFilter<"Chat"> | Date | string
     updatedAt?: DateTimeFilter<"Chat"> | Date | string
     userCard?: XOR<UserCardNullableScalarRelationFilter, UserCardWhereInput> | null
@@ -10038,6 +10055,7 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     userCardId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ChatCountOrderByAggregateInput
@@ -10054,6 +10072,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Chat"> | number
     replicantId?: IntWithAggregatesFilter<"Chat"> | number
     userCardId?: IntNullableWithAggregatesFilter<"Chat"> | number | null
+    description?: StringNullableWithAggregatesFilter<"Chat"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Chat"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Chat"> | Date | string
   }
@@ -10362,7 +10381,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     chats?: ChatCreateNestedManyWithoutUserCardInput
@@ -10375,7 +10394,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     chats?: ChatUncheckedCreateNestedManyWithoutUserCardInput
@@ -10385,7 +10404,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chats?: ChatUpdateManyWithoutUserCardNestedInput
@@ -10398,7 +10417,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chats?: ChatUncheckedUpdateManyWithoutUserCardNestedInput
@@ -10410,7 +10429,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10419,7 +10438,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10430,12 +10449,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ChatCreateInput = {
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userCard?: UserCardCreateNestedOneWithoutChatsInput
@@ -10447,12 +10467,14 @@ export namespace Prisma {
     id?: number
     replicantId: number
     userCardId?: number | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     messages?: MessageUncheckedCreateNestedManyWithoutChatInput
   }
 
   export type ChatUpdateInput = {
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userCard?: UserCardUpdateOneWithoutChatsNestedInput
@@ -10464,6 +10486,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
     userCardId?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     messages?: MessageUncheckedUpdateManyWithoutChatNestedInput
@@ -10473,11 +10496,13 @@ export namespace Prisma {
     id?: number
     replicantId: number
     userCardId?: number | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ChatUpdateManyMutationInput = {
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10486,6 +10511,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
     userCardId?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10934,6 +10960,7 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     userCardId?: SortOrder
+    description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10948,6 +10975,7 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     userCardId?: SortOrder
+    description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10956,6 +10984,7 @@ export namespace Prisma {
     id?: SortOrder
     replicantId?: SortOrder
     userCardId?: SortOrder
+    description?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11627,6 +11656,7 @@ export namespace Prisma {
   }
 
   export type ChatCreateWithoutReplicantInput = {
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userCard?: UserCardCreateNestedOneWithoutChatsInput
@@ -11636,6 +11666,7 @@ export namespace Prisma {
   export type ChatUncheckedCreateWithoutReplicantInput = {
     id?: number
     userCardId?: number | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     messages?: MessageUncheckedCreateNestedManyWithoutChatInput
@@ -11672,7 +11703,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     chats?: ChatCreateNestedManyWithoutUserCardInput
@@ -11683,7 +11714,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     chats?: ChatUncheckedCreateNestedManyWithoutUserCardInput
@@ -11721,6 +11752,7 @@ export namespace Prisma {
     id?: IntFilter<"Chat"> | number
     replicantId?: IntFilter<"Chat"> | number
     userCardId?: IntNullableFilter<"Chat"> | number | null
+    description?: StringNullableFilter<"Chat"> | string | null
     createdAt?: DateTimeFilter<"Chat"> | Date | string
     updatedAt?: DateTimeFilter<"Chat"> | Date | string
   }
@@ -11774,7 +11806,7 @@ export namespace Prisma {
     name?: StringFilter<"UserCard"> | string
     role?: StringNullableFilter<"UserCard"> | string | null
     description?: StringNullableFilter<"UserCard"> | string | null
-    snapshot?: StringFilter<"UserCard"> | string
+    snapshot?: StringNullableFilter<"UserCard"> | string | null
     createdAt?: DateTimeFilter<"UserCard"> | Date | string
     updatedAt?: DateTimeFilter<"UserCard"> | Date | string
   }
@@ -12039,6 +12071,7 @@ export namespace Prisma {
   }
 
   export type ChatCreateWithoutUserCardInput = {
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     replicant: ReplicantCreateNestedOneWithoutChatsInput
@@ -12048,6 +12081,7 @@ export namespace Prisma {
   export type ChatUncheckedCreateWithoutUserCardInput = {
     id?: number
     replicantId: number
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     messages?: MessageUncheckedCreateNestedManyWithoutChatInput
@@ -12136,7 +12170,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     replicant: ReplicantCreateNestedOneWithoutUserCardsInput
@@ -12148,7 +12182,7 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12219,7 +12253,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replicant?: ReplicantUpdateOneRequiredWithoutUserCardsNestedInput
@@ -12231,7 +12265,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12294,6 +12328,7 @@ export namespace Prisma {
   }
 
   export type ChatCreateWithoutMessagesInput = {
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     userCard?: UserCardCreateNestedOneWithoutChatsInput
@@ -12304,6 +12339,7 @@ export namespace Prisma {
     id?: number
     replicantId: number
     userCardId?: number | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12325,6 +12361,7 @@ export namespace Prisma {
   }
 
   export type ChatUpdateWithoutMessagesInput = {
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userCard?: UserCardUpdateOneWithoutChatsNestedInput
@@ -12335,6 +12372,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
     userCardId?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12342,6 +12380,7 @@ export namespace Prisma {
   export type ChatCreateManyReplicantInput = {
     id?: number
     userCardId?: number | null
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12351,12 +12390,13 @@ export namespace Prisma {
     name: string
     role?: string | null
     description?: string | null
-    snapshot: string
+    snapshot?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ChatUpdateWithoutReplicantInput = {
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userCard?: UserCardUpdateOneWithoutChatsNestedInput
@@ -12366,6 +12406,7 @@ export namespace Prisma {
   export type ChatUncheckedUpdateWithoutReplicantInput = {
     id?: IntFieldUpdateOperationsInput | number
     userCardId?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     messages?: MessageUncheckedUpdateManyWithoutChatNestedInput
@@ -12374,6 +12415,7 @@ export namespace Prisma {
   export type ChatUncheckedUpdateManyWithoutReplicantInput = {
     id?: IntFieldUpdateOperationsInput | number
     userCardId?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12382,7 +12424,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chats?: ChatUpdateManyWithoutUserCardNestedInput
@@ -12393,7 +12435,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chats?: ChatUncheckedUpdateManyWithoutUserCardNestedInput
@@ -12404,7 +12446,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     role?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    snapshot?: StringFieldUpdateOperationsInput | string
+    snapshot?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12480,11 +12522,13 @@ export namespace Prisma {
   export type ChatCreateManyUserCardInput = {
     id?: number
     replicantId: number
+    description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type ChatUpdateWithoutUserCardInput = {
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     replicant?: ReplicantUpdateOneRequiredWithoutChatsNestedInput
@@ -12494,6 +12538,7 @@ export namespace Prisma {
   export type ChatUncheckedUpdateWithoutUserCardInput = {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     messages?: MessageUncheckedUpdateManyWithoutChatNestedInput
@@ -12502,6 +12547,7 @@ export namespace Prisma {
   export type ChatUncheckedUpdateManyWithoutUserCardInput = {
     id?: IntFieldUpdateOperationsInput | number
     replicantId?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
