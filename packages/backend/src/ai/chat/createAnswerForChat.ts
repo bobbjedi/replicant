@@ -53,10 +53,8 @@ const createAnswerForChat = async (chatId: number, message: string, language: 'R
       emoji,
     },
   })
-  console.log('messageIncome:', messageIncome)
-  console.log('messageOut:', messageOut)
 
-  return 'Ok'
+  return [messageIncome, messageOut]
 }
 
 export default createAnswerForChat

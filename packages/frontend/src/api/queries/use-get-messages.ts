@@ -5,13 +5,15 @@ import { computed, type Ref } from 'vue'
 export default function useGetMessages (query: Ref<TMessagesRequest>) {
   return useInfiniteQuery({
     queryKey: ['messages', query.value],
-    queryFn: () => frontClient.chat.getMessagesByChatId.query({
-      chatId: query.value.chatId,
-      page: query.value.page,
-      limit: query.value.limit,
-    }),
+    queryFn: () => {
+      return frontClient.chat.getMessagesByChatId.query({
+        chatId: query.value.chatId,
+        beforeId: query.value.beforeId,
+        count: query.value.count,
+      })
+    },
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === query.value.limit ? allPages.length + 1 : undefined
+      return lastPage.length === query.value.count ? allPages.length + 1 : undefined
     },
     initialPageParam: 1,
     enabled: computed(() => !!query.value.chatId),

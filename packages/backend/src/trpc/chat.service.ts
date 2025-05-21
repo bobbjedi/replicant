@@ -46,16 +46,19 @@ const getChatById = t.procedure
 const getMessagesByChatId = t.procedure
   .input(z.object({
     chatId: z.number(),
-    page: z.number().default(1),
-    limit: z.number().default(20),
+    beforeId: z.number().default(10000000000000000),
+    count: z.number().default(20),
   }))
   .query(async ({ input }) => {
-    const skip = (input.page - 1) * input.limit
     return prismaDb.message.findMany({
-      where: { chatId: input.chatId },
+      where: {
+        chatId: input.chatId,
+        id: {
+          lt: input.beforeId,
+        },
+      },
       orderBy: { createdAt: 'desc' },
-      skip,
-      take: input.limit,
+      take: input.count,
     })
   })
 

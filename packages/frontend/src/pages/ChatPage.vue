@@ -53,6 +53,12 @@
           >
             <div class="message-content">
               {{ message.content }}
+              <div
+                v-if="message.authorIsReplicant"
+                class="text-secondary"
+              >
+                [ {{ message.emoji }} {{ message.emotion }} ]
+              </div>
             </div>
             <div class="message-time text-caption">
               {{ formatDate(message.createdAt) }}
@@ -64,16 +70,21 @@
           <q-input
             v-model="newMessage"
             type="textarea"
+            max-rows="2"
             placeholder="Type a message..."
-            :rules="[val => !!val || 'Message is required']"
             @keyup.enter.ctrl="sendMessage"
+            :disable="isPendingAnswer"
+            hint="Press Ctrl+Enter to send message"
+            class="full-width"
           />
           <q-btn
             color="primary"
             icon="send"
-            :disable="!newMessage"
+            :loading="isPendingAnswer"
+            :disable="!newMessage || isPendingAnswer"
             @click="sendMessage"
-          />
+          >
+          </q-btn>
         </div>
       </div>
     </div>
@@ -81,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, watch } from 'vue'
+import { computed, ref, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
 import useGetMessages from 'src/api/queries/use-get-messages'
@@ -95,15 +106,15 @@ const $q = useQuasar()
 const chatId = computed(() => Number(route.params.chatId))
 const messagesContainer = ref<HTMLElement | null>(null)
 const newMessage = ref('')
-const page = ref(1)
-const pageSize = 5
+const beforeId = ref(10000000000000000)
+const count = 5
 
 const { data: chat, isLoading: isChatLoading, isError: isChatError } = useGetChat(chatId)
 
 const query = ref({
   chatId: chatId.value,
-  page: 1,
-  limit: pageSize,
+  beforeId: beforeId.value,
+  count: count,
 })
 
 const {
@@ -115,10 +126,12 @@ const {
 
 const messages = computed(() => {
   const data = messagesData.value as InfiniteData<TMessage[]> | undefined
-  return data?.pages.flat() || []
+  const allMessages = data?.pages.flat() || []
+  return [...allMessages].reverse()
 })
 
 const sendMessageMutation = useSendMessage()
+const isPendingAnswer = computed(() => sendMessageMutation.isPending.value)
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
@@ -127,8 +140,12 @@ const formatDate = (date: string) => {
 const handleScroll = async (e: Event) => {
   const target = e.target as HTMLElement
   if (target.scrollTop === 0 && hasNextPage.value && !isLoadingMore.value) {
-    page.value++
+    query.value = {
+      ...query.value,
+      beforeId: messages.value[0]?.id || 10000000000000000,
+    }
     await fetchNextPage()
+
   }
 }
 
@@ -139,11 +156,12 @@ const sendMessage = () => {
     chatId: chatId.value,
     content: newMessage.value,
   }, {
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log('response:', response)
+      const messages_ = response as TMessage[]
+      messages.value.push(...messages_)
       newMessage.value = ''
-      if (messagesContainer.value) {
-        messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
-      }
+      scrollToBottom(true)
     },
     onError: (error) => {
       $q.notify({
@@ -161,11 +179,21 @@ onMounted(() => {
   }
 })
 
-watch(messages, () => {
-  if (messagesContainer.value && page.value === 1) {
-    messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
-  }
-})
+const scrollToBottom = (isSmooth = true) => {
+
+  void nextTick(() => {
+    // TODO: добавить плавную анимацию скролла
+    if (messagesContainer.value) {
+      messagesContainer.value.scrollTo({
+        top: messagesContainer.value.scrollHeight,
+        behavior: isSmooth ? 'smooth' : 'instant',
+      })
+    }
+  })
+}
+
+watch(messages, () => scrollToBottom(false), { deep: true, once: true })
+
 </script>
 
 <style scoped>
@@ -215,9 +243,11 @@ watch(messages, () => {
   padding: 16px;
   border-top: 1px solid #ddd;
   background: white;
+  width: 100%;
 }
 
 .input-container .q-input {
   flex: 1;
+  width: 100%;
 }
 </style>
