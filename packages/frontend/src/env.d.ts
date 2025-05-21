@@ -6,9 +6,11 @@ declare namespace NodeJS {
   }
 }
 
-declare let SpeechRecognition;
+declare let SpeechRecognition
 interface Window {
+  // eslint-disable-next-line no-undef
   webkitSpeechRecognition: SpeechRecognition;
 }
 
-declare let webkitSpeechRecognition: SpeechRecognition;
+// eslint-disable-next-line no-undef
+declare let webkitSpeechRecognition: SpeechRecognition
