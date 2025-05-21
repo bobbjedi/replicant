@@ -176,6 +176,8 @@ exports.Prisma.MessageScalarFieldEnum = {
   chatId: 'chatId',
   authorIsReplicant: 'authorIsReplicant',
   content: 'content',
+  emotion: 'emotion',
+  emoji: 'emoji',
   createdAt: 'createdAt'
 };
 

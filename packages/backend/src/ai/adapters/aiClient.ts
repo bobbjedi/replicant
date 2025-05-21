@@ -19,7 +19,7 @@ class ChatService {
     this.provider = createChatProvider()
   }
 
-  public chat (messages: Message[], options: ChatOptions = {}): Promise<string> {
+  public useChat (messages: Message[], options: ChatOptions = {}): Promise<string> {
     console.log('Size:', countMessagesTokens(messages))
     // console.log('System:', messages[0])
     // console.log('User:', messages[1])
@@ -58,6 +58,6 @@ class ChatService {
 
 const chatService = new ChatService()
 
-export function chat (messages: Message[], options: ChatOptions = {}): Promise<string> {
-  return chatService.chat(messages, options)
+export function useChat (messages: Message[], options: ChatOptions = {}): Promise<string> {
+  return chatService.useChat(messages, options)
 }

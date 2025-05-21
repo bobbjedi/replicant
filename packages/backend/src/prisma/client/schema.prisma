@@ -94,6 +94,8 @@ model Message {
   chatId            Int
   authorIsReplicant Boolean
   content           String
+  emotion           String?
+  emoji             String?
   createdAt         DateTime @default(now())
   chat              Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 }

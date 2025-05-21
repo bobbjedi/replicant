@@ -8464,6 +8464,8 @@ export namespace Prisma {
     chatId: number | null
     authorIsReplicant: boolean | null
     content: string | null
+    emotion: string | null
+    emoji: string | null
     createdAt: Date | null
   }
 
@@ -8472,6 +8474,8 @@ export namespace Prisma {
     chatId: number | null
     authorIsReplicant: boolean | null
     content: string | null
+    emotion: string | null
+    emoji: string | null
     createdAt: Date | null
   }
 
@@ -8480,6 +8484,8 @@ export namespace Prisma {
     chatId: number
     authorIsReplicant: number
     content: number
+    emotion: number
+    emoji: number
     createdAt: number
     _all: number
   }
@@ -8500,6 +8506,8 @@ export namespace Prisma {
     chatId?: true
     authorIsReplicant?: true
     content?: true
+    emotion?: true
+    emoji?: true
     createdAt?: true
   }
 
@@ -8508,6 +8516,8 @@ export namespace Prisma {
     chatId?: true
     authorIsReplicant?: true
     content?: true
+    emotion?: true
+    emoji?: true
     createdAt?: true
   }
 
@@ -8516,6 +8526,8 @@ export namespace Prisma {
     chatId?: true
     authorIsReplicant?: true
     content?: true
+    emotion?: true
+    emoji?: true
     createdAt?: true
     _all?: true
   }
@@ -8611,6 +8623,8 @@ export namespace Prisma {
     chatId: number
     authorIsReplicant: boolean
     content: string
+    emotion: string | null
+    emoji: string | null
     createdAt: Date
     _count: MessageCountAggregateOutputType | null
     _avg: MessageAvgAggregateOutputType | null
@@ -8638,6 +8652,8 @@ export namespace Prisma {
     chatId?: boolean
     authorIsReplicant?: boolean
     content?: boolean
+    emotion?: boolean
+    emoji?: boolean
     createdAt?: boolean
     chat?: boolean | ChatDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -8647,6 +8663,8 @@ export namespace Prisma {
     chatId?: boolean
     authorIsReplicant?: boolean
     content?: boolean
+    emotion?: boolean
+    emoji?: boolean
     createdAt?: boolean
     chat?: boolean | ChatDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -8656,6 +8674,8 @@ export namespace Prisma {
     chatId?: boolean
     authorIsReplicant?: boolean
     content?: boolean
+    emotion?: boolean
+    emoji?: boolean
     createdAt?: boolean
     chat?: boolean | ChatDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
@@ -8665,10 +8685,12 @@ export namespace Prisma {
     chatId?: boolean
     authorIsReplicant?: boolean
     content?: boolean
+    emotion?: boolean
+    emoji?: boolean
     createdAt?: boolean
   }
 
-  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "chatId" | "authorIsReplicant" | "content" | "createdAt", ExtArgs["result"]["message"]>
+  export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "chatId" | "authorIsReplicant" | "content" | "emotion" | "emoji" | "createdAt", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     chat?: boolean | ChatDefaultArgs<ExtArgs>
   }
@@ -8689,6 +8711,8 @@ export namespace Prisma {
       chatId: number
       authorIsReplicant: boolean
       content: string
+      emotion: string | null
+      emoji: string | null
       createdAt: Date
     }, ExtArgs["result"]["message"]>
     composites: {}
@@ -9118,6 +9142,8 @@ export namespace Prisma {
     readonly chatId: FieldRef<"Message", 'Int'>
     readonly authorIsReplicant: FieldRef<"Message", 'Boolean'>
     readonly content: FieldRef<"Message", 'String'>
+    readonly emotion: FieldRef<"Message", 'String'>
+    readonly emoji: FieldRef<"Message", 'String'>
     readonly createdAt: FieldRef<"Message", 'DateTime'>
   }
     
@@ -9619,6 +9645,8 @@ export namespace Prisma {
     chatId: 'chatId',
     authorIsReplicant: 'authorIsReplicant',
     content: 'content',
+    emotion: 'emotion',
+    emoji: 'emoji',
     createdAt: 'createdAt'
   };
 
@@ -10085,6 +10113,8 @@ export namespace Prisma {
     chatId?: IntFilter<"Message"> | number
     authorIsReplicant?: BoolFilter<"Message"> | boolean
     content?: StringFilter<"Message"> | string
+    emotion?: StringNullableFilter<"Message"> | string | null
+    emoji?: StringNullableFilter<"Message"> | string | null
     createdAt?: DateTimeFilter<"Message"> | Date | string
     chat?: XOR<ChatScalarRelationFilter, ChatWhereInput>
   }
@@ -10094,6 +10124,8 @@ export namespace Prisma {
     chatId?: SortOrder
     authorIsReplicant?: SortOrder
     content?: SortOrder
+    emotion?: SortOrderInput | SortOrder
+    emoji?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     chat?: ChatOrderByWithRelationInput
   }
@@ -10106,6 +10138,8 @@ export namespace Prisma {
     chatId?: IntFilter<"Message"> | number
     authorIsReplicant?: BoolFilter<"Message"> | boolean
     content?: StringFilter<"Message"> | string
+    emotion?: StringNullableFilter<"Message"> | string | null
+    emoji?: StringNullableFilter<"Message"> | string | null
     createdAt?: DateTimeFilter<"Message"> | Date | string
     chat?: XOR<ChatScalarRelationFilter, ChatWhereInput>
   }, "id">
@@ -10115,6 +10149,8 @@ export namespace Prisma {
     chatId?: SortOrder
     authorIsReplicant?: SortOrder
     content?: SortOrder
+    emotion?: SortOrderInput | SortOrder
+    emoji?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: MessageCountOrderByAggregateInput
     _avg?: MessageAvgOrderByAggregateInput
@@ -10131,6 +10167,8 @@ export namespace Prisma {
     chatId?: IntWithAggregatesFilter<"Message"> | number
     authorIsReplicant?: BoolWithAggregatesFilter<"Message"> | boolean
     content?: StringWithAggregatesFilter<"Message"> | string
+    emotion?: StringNullableWithAggregatesFilter<"Message"> | string | null
+    emoji?: StringNullableWithAggregatesFilter<"Message"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Message"> | Date | string
   }
 
@@ -10519,6 +10557,8 @@ export namespace Prisma {
   export type MessageCreateInput = {
     authorIsReplicant: boolean
     content: string
+    emotion?: string | null
+    emoji?: string | null
     createdAt?: Date | string
     chat: ChatCreateNestedOneWithoutMessagesInput
   }
@@ -10528,12 +10568,16 @@ export namespace Prisma {
     chatId: number
     authorIsReplicant: boolean
     content: string
+    emotion?: string | null
+    emoji?: string | null
     createdAt?: Date | string
   }
 
   export type MessageUpdateInput = {
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     chat?: ChatUpdateOneRequiredWithoutMessagesNestedInput
   }
@@ -10543,6 +10587,8 @@ export namespace Prisma {
     chatId?: IntFieldUpdateOperationsInput | number
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10551,12 +10597,16 @@ export namespace Prisma {
     chatId: number
     authorIsReplicant: boolean
     content: string
+    emotion?: string | null
+    emoji?: string | null
     createdAt?: Date | string
   }
 
   export type MessageUpdateManyMutationInput = {
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10565,6 +10615,8 @@ export namespace Prisma {
     chatId?: IntFieldUpdateOperationsInput | number
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11026,6 +11078,8 @@ export namespace Prisma {
     chatId?: SortOrder
     authorIsReplicant?: SortOrder
     content?: SortOrder
+    emotion?: SortOrder
+    emoji?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11039,6 +11093,8 @@ export namespace Prisma {
     chatId?: SortOrder
     authorIsReplicant?: SortOrder
     content?: SortOrder
+    emotion?: SortOrder
+    emoji?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11047,6 +11103,8 @@ export namespace Prisma {
     chatId?: SortOrder
     authorIsReplicant?: SortOrder
     content?: SortOrder
+    emotion?: SortOrder
+    emoji?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12219,6 +12277,8 @@ export namespace Prisma {
   export type MessageCreateWithoutChatInput = {
     authorIsReplicant: boolean
     content: string
+    emotion?: string | null
+    emoji?: string | null
     createdAt?: Date | string
   }
 
@@ -12226,6 +12286,8 @@ export namespace Prisma {
     id?: number
     authorIsReplicant: boolean
     content: string
+    emotion?: string | null
+    emoji?: string | null
     createdAt?: Date | string
   }
 
@@ -12324,6 +12386,8 @@ export namespace Prisma {
     chatId?: IntFilter<"Message"> | number
     authorIsReplicant?: BoolFilter<"Message"> | boolean
     content?: StringFilter<"Message"> | string
+    emotion?: StringNullableFilter<"Message"> | string | null
+    emoji?: StringNullableFilter<"Message"> | string | null
     createdAt?: DateTimeFilter<"Message"> | Date | string
   }
 
@@ -12556,12 +12620,16 @@ export namespace Prisma {
     id?: number
     authorIsReplicant: boolean
     content: string
+    emotion?: string | null
+    emoji?: string | null
     createdAt?: Date | string
   }
 
   export type MessageUpdateWithoutChatInput = {
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12569,6 +12637,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12576,6 +12646,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     authorIsReplicant?: BoolFieldUpdateOperationsInput | boolean
     content?: StringFieldUpdateOperationsInput | string
+    emotion?: NullableStringFieldUpdateOperationsInput | string | null
+    emoji?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

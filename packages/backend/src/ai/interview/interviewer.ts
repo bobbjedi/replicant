@@ -1,6 +1,6 @@
 import { DEFAULT_TOPICS_META } from '../../../../shared/src/constants'
 import { EMainTopicType, TopicModel } from '../../../../shared/src/types'
-import { chat } from '../adapters/aiClient'
+import { useChat } from '../adapters/aiClient'
 import { Role } from '../adapters/gpt.types'
 import { buildPromptForTopic } from './getSystemPromptInterview'
 
@@ -19,7 +19,7 @@ export const generateNextQuestionByQuestionsListFromChat = ({ greetingTopic, cur
     topics.unshift(greetingTopic)
   }
 
-  return chat([
+  return useChat([
     { role: Role.SYSTEM, content: systemPrompt },
     { role: Role.USER, content: convertTopicsToTextFormat(topics) },
   ])
@@ -34,7 +34,7 @@ export const generateFirstQuestionOfNewTopicFromChat = async ({ greetingTopic, t
   const topicType = DEFAULT_TOPICS_META.find(t => t[nativeLanguage] === topicName)?.type as EMainTopicType
 
   const systemPrompt = buildPromptForTopic(topicName, topicType, nativeLanguage)
-  return chat([
+  return useChat([
     { role: Role.SYSTEM, content: systemPrompt },
     { role: Role.USER, content: convertTopicsToTextFormat([greetingTopic]) },
   ])

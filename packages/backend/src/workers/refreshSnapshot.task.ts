@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import { chat } from '../ai/adapters/aiClient'
+import { useChat } from '../ai/adapters/aiClient'
 import { convertTopicsToTextFormat } from '../ai/interview/interviewer'
 import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_TEMPLATE'
 import prismaDb from '../prisma/prismaDb'
@@ -88,7 +88,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
             { role: Role.SYSTEM, content: TOPIC_SNAPSHOT_PROMPT },
             { role: Role.USER, content: formatDescription + convertTopicsToTextFormat([topic as TopicModel]) },
           ]
-          draft = await chat(req1) // Получаем первый черновик
+          draft = await useChat(req1) // Получаем первый черновик
           // console.log('draft', draft)
           await setSummary(draft)
           success = true
@@ -102,7 +102,7 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
         ]
         // console.log('req ' + '#' + i, req[1])
 
-        const topicPortrait = await chat(req)
+        const topicPortrait = await useChat(req)
         // console.log('topicPortrait ' + '#' + i, topicPortrait)
 
         // Конкатенируем новый топик с разделителями
@@ -228,7 +228,7 @@ const generatePortrait = async (topicSummaries: string) => {
           },
         ]
 
-        const partContent = await chat(partPrompt)
+        const partContent = await useChat(partPrompt)
         // console.log('portrait part ' + '#' + i, partContent)
 
         // Добавляем эту часть к текущему драфту

@@ -1,3 +1,4 @@
+import { createMessageChatPrompt } from '../ai/chat/MESSAGE_CHAT_TEMPLATE'
 import prismaDb from '../prisma/prismaDb'
 import t from './trcpInstance'
 import { z } from 'zod'
@@ -98,6 +99,9 @@ const sendMessage = t.procedure
     content: z.string(),
   }))
   .mutation(async ({ input }) => {
+    console.log('sendMessage:', input)
+    const msgPrompt = await createMessageChatPrompt(input.chatId, input.content, 'RU')
+    console.log('msgPrompt:', msgPrompt)
     return 'message sent ' + input.content
   })
 
