@@ -80,12 +80,14 @@ const createReplicantChat = t.procedure
   .input(z.object({
     repId: z.number(),
     userCardId: z.number(),
+    description: z.string(),
   }))
   .mutation(async ({ input }) => {
     return prismaDb.chat.create({
       data: {
         replicantId: input.repId,
         userCardId: input.userCardId,
+        description: input.description,
       },
     })
   })
@@ -99,6 +101,15 @@ const sendMessage = t.procedure
     return 'message sent ' + input.content
   })
 
+const deleteChat = t.procedure
+  .input(z.object({
+    repId: z.number(),
+    chatId: z.number(),
+  }))
+  .mutation(async ({ input }) => {
+    return prismaDb.chat.delete({ where: { id: input.chatId, replicantId: input.repId } })
+  })
+
 export const chatService = {
   getReplicantUserCards,
   getReplicantChats,
@@ -107,4 +118,5 @@ export const chatService = {
   createReplicantUserCard,
   createReplicantChat,
   sendMessage,
+  deleteChat,
 }

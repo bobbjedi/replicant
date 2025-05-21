@@ -7,5 +7,6 @@ export default (replicantId: Ref<number>) => useQuery({
   queryFn: () => frontClient.chat.getReplicantUserCards.query({ repId: replicantId.value }),
   refetchOnWindowFocus: true,
   placeholderData: (previousData) => previousData,
-  refetchInterval: 3000,
 })
+
+export type TUserCard = Awaited<ReturnType<typeof frontClient.chat.getReplicantUserCards.query>>[number]

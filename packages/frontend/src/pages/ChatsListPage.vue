@@ -56,6 +56,15 @@
           >
             <q-tooltip>Edit</q-tooltip>
           </q-btn>
+          <q-btn
+            flat
+            round
+            color="primary"
+            icon="delete"
+            @click.stop="deleteChat(props.row)"
+          >
+            <q-tooltip>Delete</q-tooltip>
+          </q-btn>
         </q-td>
       </template>
     </q-table>
@@ -73,17 +82,15 @@
             :rules="[val => !!val || 'Description is required']"
           />
           <q-select
-            v-model="newChat.userCardId"
+            v-model="newChat.userCard"
             :options="userCards"
             option-label="name"
             option-value="id"
-            @update:model-value="(val) => newChat.userCardId = val?.id"
             label="User Card"
             :rules="[val => !!val || 'User card is required']"
           />
         </q-card-section>
 
-        DEGUG: [{{ newChat }}]
         <q-card-actions align="right">
           <q-btn
             flat
@@ -108,10 +115,12 @@ import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
 import useReplicant from 'src/api/queries/use-replicant'
+import type { TUserCard } from 'src/api/queries/use-get-user-cards'
 import useGetUserCards from 'src/api/queries/use-get-user-cards'
 import useCreateChat from 'src/api/mutations/use-create-replicant-chat'
 import useGetChats from 'src/api/queries/use-get-chats'
 import type { TChat } from 'src/api/queries/use-get-chats'
+import useDeleteChat from 'src/api/mutations/use-delete-chat'
 const route = useRoute()
 const router = useRouter()
 const $q = useQuasar()
@@ -126,17 +135,31 @@ const createChatMutation = useCreateChat()
 
 const columns = [
   {
-    name: 'name',
-    required: true,
-    label: 'Name',
+    name: 'id',
+    label: 'ID',
     align: 'left' as const,
-    field: 'name',
+    field: 'id',
+  },
+
+  {
+    name: 'description',
+    required: true,
+    label: 'Description',
+    align: 'left' as const,
+    field: 'description',
   },
   {
     name: 'userCard',
     label: 'User Card',
     align: 'left' as const,
     field: row => userCards?.value?.find(card => card.id === row.userCardId)?.name || '',
+  },
+  {
+    name: 'createdAt',
+    label: 'Created At',
+    align: 'left' as const,
+    field: 'createdAt',
+    format: (val: string) => new Date(val).toLocaleString(),
   },
   {
     name: 'actions',
@@ -146,9 +169,12 @@ const columns = [
   },
 ]
 
-const newChat = ref({
+const newChat = ref<{
+  description: string
+  userCard?: TUserCard
+}>({
   description: '',
-  userCardId: null as number | null,
+  userCard: undefined as unknown as TUserCard,
 })
 
 const onRowClick = (_: unknown, row: TChat) => {
@@ -160,11 +186,36 @@ const editChat = (chat: TChat) => {
   console.log('Edit chat:', chat)
 }
 
+const deleteChatMutation = useDeleteChat()
+
+const deleteChat = (chat: TChat) => {
+  deleteChatMutation.mutate({
+    repId: replicantId.value,
+    chatId: chat.id,
+  }, {
+    onSuccess: () => {
+      $q.notify({
+        type: 'positive',
+        message: 'Chat deleted successfully',
+        position: 'top',
+      })
+    },
+    onError: (error) => {
+      $q.notify({
+        type: 'negative',
+        message: `Error deleting chat: ${error}`,
+        position: 'top',
+      })
+    },
+  })
+}
+
 const handleCreateChat = () => {
-  if (newChat.value.userCardId) {
+  if (newChat.value.userCard) {
     createChatMutation.mutate({
       repId: replicantId.value,
-      userCardId: newChat.value.userCardId,
+      userCardId: newChat.value.userCard.id,
+      description: newChat.value.description,
     }, {
       onSuccess: () => {
         $q.notify({
@@ -175,7 +226,7 @@ const handleCreateChat = () => {
         showCreateDialog.value = false
         newChat.value = {
           description: '',
-          userCardId: null,
+          userCard: undefined as unknown as TUserCard,
         }
       },
       onError: (error) => {

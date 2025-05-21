@@ -7,7 +7,7 @@ export default () => {
   return useMutation({
     mutationFn: (data: TCreateReplicantChatMutationData) => frontClient.chat.createReplicantChat.mutate(data),
     onSuccess (data) {
-      queryClient.invalidateQueries({ queryKey: ['replicant-chats', data.replicantId] }).catch(console.error)
+      void queryClient.invalidateQueries({ queryKey: ['chats', data.replicantId] })
     },
   })
 }

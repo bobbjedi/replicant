@@ -7,6 +7,7 @@ export default function useGetChats (replicantId: Ref<number>) {
     queryKey: ['chats', replicantId],
     queryFn: () => frontClient.chat.getReplicantChats.query({ repId: replicantId.value }),
     enabled: !!replicantId.value,
+    refetchOnWindowFocus: true,
   })
 }
 export type TChat = Awaited<ReturnType<typeof frontClient.chat.getReplicantChats.query>>[number]
