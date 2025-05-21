@@ -7,7 +7,7 @@ export default (queryParams: Ref<TGetChatMessagesQueryParams>) => useQuery({
   queryFn: () => frontClient.chat.getMessagesByChatId.query(queryParams.value),
   refetchOnWindowFocus: true,
   placeholderData: (previousData) => previousData,
-  refetchInterval: 3000,
+  // refetchInterval: 3000,
 })
 
 export type TGetChatMessagesQueryParams = Parameters<typeof frontClient.chat.getMessagesByChatId.query>[0]

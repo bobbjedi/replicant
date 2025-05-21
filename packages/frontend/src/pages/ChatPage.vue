@@ -96,7 +96,7 @@ const chatId = computed(() => Number(route.params.chatId))
 const messagesContainer = ref<HTMLElement | null>(null)
 const newMessage = ref('')
 const page = ref(1)
-const pageSize = 20
+const pageSize = 5
 
 const { data: chat, isLoading: isChatLoading, isError: isChatError } = useGetChat(chatId)
 

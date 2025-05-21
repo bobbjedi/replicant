@@ -6,8 +6,8 @@ export default function useSendMessage () {
 
   return useMutation({
     mutationFn: (message: TSendMessageMutationData) => frontClient.chat.sendMessage.mutate(message),
-    onSuccess: async (_, variables) => {
-      await queryClient.invalidateQueries({ queryKey: ['messages', { chatId: variables.chatId }] })
+    onSuccess: (_, variables) => {
+      void queryClient.invalidateQueries({ queryKey: ['messages', { chatId: variables.chatId }] })
     },
   })
 }
