@@ -186,6 +186,24 @@ This result becomes the Replicant’s **main system prompt** and is used in conv
 
 ---
 
+## Ethics and Privacy
+
+Digital Replicant strictly follows ethical and privacy principles:
+
+- All interviews, memories, and replicant data are stored exclusively on the user’s side.
+- Data is not transmitted or stored on third-party servers or cloud services without explicit consent.
+- Users have full control over their data, with options to delete or export at any time.
+- The project is committed to respecting personality, protecting privacy, and transparency in data handling.
+- Any use of the model for third-party interactions must comply with ethical standards and data protection laws.
+- Replicating a personality raises important issues of privacy, consent, and autonomy.
+- A digital twin is not just data, but a reflection of someone’s unique identity.
+- It is critical to strictly respect the rights and freedoms of the original person, and ensure user control over their data.
+- The technology must not be used for manipulation, deception, or breaching trust.
+- All information is stored solely on the user’s side and is not shared with third parties without explicit consent.
+
+---
+
+
 ## 📄 License
 
 [MIT License](LICENSE)
