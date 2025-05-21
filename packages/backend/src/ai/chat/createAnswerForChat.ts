@@ -4,7 +4,7 @@ import { Role } from '../adapters/gpt.types'
 import prismaDb from '../../prisma/prismaDb'
 
 const createAnswerForChat = async (chatId: number, message: string, language: 'RU' | 'EN' = 'EN') => {
-  const msgPrompt = await createMessageChatPrompt(chatId, message, language)
+  const msgPrompt = await createMessageChatPrompt(chatId, language)
   const msg = await useChat([
     {
       role: Role.SYSTEM,

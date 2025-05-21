@@ -83,7 +83,7 @@ ${formattedHistory}
   `.trim()
 }
 
-export const createMessageChatPrompt = async (chatId: number, incomeMessageText: string, language: string) => {
+export const createMessageChatPrompt = async (chatId: number, language: string) => {
   const chat = await prismaDb.chat.findUnique({
     where: {
       id: chatId,
