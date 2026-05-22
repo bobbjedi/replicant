@@ -2,9 +2,9 @@ import { useChat } from '../ai/adapters/aiClient'
 import { convertTopicsToTextFormat } from '../ai/interview/interviewer'
 import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_TEMPLATE'
 import prismaDb from '../prisma/prismaDb'
-import { TopicModel } from '../../../shared/src/types'
-import { delay } from '../../../shared/src/utils'
-import { COMMON_PART_OF_PORTRAIT_PROMPTS, PORTRAIT_PROMPTS } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
+import { TopicModel } from '@shared/types'
+import { delay } from '@shared/utils'
+import { PORTRAIT_PROMPTS } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
 import FINAL_PORTRAIT_PROMPT from '../ai/interview/prompts/FINAL_PORTRAIT_PROMPT'
 import { Role } from '../ai/adapters/gpt.types'
 
@@ -211,7 +211,7 @@ const generatePortrait = async (topicSummaries: string) => {
         console.log('generatePortrait:', partName, 'portraitDraft.len:', portraitDraft.length)
         // Form the prompt for the first part or for the rest
         const partPrompt = [
-          { role: Role.SYSTEM, content: PORTRAIT_PROMPTS[partName] + COMMON_PART_OF_PORTRAIT_PROMPTS },
+          { role: Role.SYSTEM, content: PORTRAIT_PROMPTS[partName] },
           { role: Role.USER, content:
               `Interview topic summaries:\n${topicSummaries}\n\n` +
               (i === '0'

@@ -1,4 +1,4 @@
-import { EMainTopicType } from '../../../../shared/src/types'
+import { EMainTopicType } from '@shared/types'
 import { TOPIC_PROMPT_PARTS, CUSTOM_TOPIC_PROMPT_TEMPLATE, INTERVIEWER_ROLE_PART, COMMON_PROMPT_PART, LANG_PART } from './prompts/NEW_QUESTION_TEMPLATES'
 
 const languageMapper = {

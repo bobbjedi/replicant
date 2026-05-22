@@ -76,6 +76,7 @@ const createReplicantUserCard = t.procedure
         name: input.name,
         description: input.description,
         role: input.role || null,
+        snapshot: '',
       },
     })
   })

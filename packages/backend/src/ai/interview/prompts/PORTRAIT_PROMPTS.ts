@@ -1,17 +1,19 @@
-export const PORTRAIT_PROMPTS = {
-  'Core beliefs': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify and record in detail all key attitudes, beliefs, values, and views of the person on this topic based on the interview.
+const PREAMBLE = `The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to analyse the interview and produce a detailed output for the section described below.
 
-**Important:**  
+**Important:**
 You must only consider factual data from the interview. Any assumptions, guesses, or speculations are prohibited.
 
-**Required requirements:**  
+**Required requirements:**
 - The output must be as detailed, complete, and extensive as possible.
 - Do not shorten or simplify formulations for the sake of compactness.
-- All details revealing the person's attitudes and views on the topic must be preserved. Only direct repetitions may be removed.
+- All details revealing the person's attitudes and views must be preserved. Only direct repetitions may be removed.
 - **The output forms part of the holistic personality portrait, so every detail matters and must be recorded. Do not omit or generalize nuances.**
 
-**Output format — markdown.**
+**Output format — markdown.**`
+
+export const PORTRAIT_PROMPTS = {
+  'Core beliefs': `
+${PREAMBLE}
 
 Output structure:
 
@@ -24,17 +26,11 @@ Output structure:
 `,
 
   'Evolutions of views': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to record all mentioned changes in views, attitudes, and the person's relationship to this topic at different stages of life.
+${PREAMBLE}
 
-**Important:**  
-Record only what was explicitly stated in the interview. Any assumptions or guesses are prohibited.
-
-**Required requirements:**  
+Additional guidance:
 - Indicate reasons or occasions for changes if they were mentioned.
-- The output must be as detailed as possible.
-- **The output forms part of the holistic personality portrait. Every detail, even small ones, matters and must be preserved.**
-
-**Output format — markdown.**
+- Record all mentioned changes in views, attitudes, and the person's relationship to this topic at different stages of life.
 
 Output structure:
 
@@ -46,18 +42,11 @@ Output structure:
 `,
 
   'Emotional background': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to record the emotional background and mood of the person that accompanied their statements on this topic.
+${PREAMBLE}
 
-**Important:**  
-Only consider factual data from the interview. Any assumptions or interpretations are prohibited.
-
-**Required requirements:**  
+Additional guidance:
 - Indicate what emotions accompanied the responses.
 - Note if the person has any peculiarities in their emotional communication style.
-- The output must be as detailed as possible.
-- **The output forms part of the holistic personality portrait. Every detail matters.**
-
-**Output format — markdown.**
 
 Output structure:
 
@@ -69,17 +58,11 @@ Output structure:
 `,
 
   'Key events and memories': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to list all life episodes, events, and memories that the person mentioned in the interview on this topic.
+${PREAMBLE}
 
-**Important:**  
-Record only facts from the interview. No assumptions or interpretations.
-
-**Required requirements:**  
+Additional guidance:
+- List all life episodes, events, and memories that the person mentioned in the interview on this topic.
 - Indicate if the event is related to another topic.
-- The output must be as detailed as possible.
-- **The output forms part of the holistic personality portrait. Every detail is important.**
-
-**Output format — markdown.**
 
 Output structure:
 
@@ -91,17 +74,11 @@ Output structure:
 `,
 
   'Causal links': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to build cause-and-effect relationships between events, experiences, and changes in views if these connections are explicitly evident from the interview.
+${PREAMBLE}
 
-**Important:**  
-Record only what was explicitly stated or logically follows directly from the interview. No assumptions or interpretations.
-
-**Required requirements:**  
+Additional guidance:
+- Build cause-and-effect relationships between events, experiences, and changes in views if these connections are explicitly evident from the interview.
 - Indicate connections between topics if they were explicitly mentioned.
-- The output must be as detailed as possible.
-- **The output forms part of the holistic personality portrait. Even small details cannot be lost.**
-
-**Output format — markdown.**
 
 Output structure:
 
@@ -112,17 +89,11 @@ Output structure:
 `,
 
   'Speech patterns': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify characteristic speech patterns, communication style, favorite phrases, expressions, and intonations of the person on this topic.
+${PREAMBLE}
 
-**Important:**  
-Record only what was explicitly heard in the interview. No assumptions.
-
-**Required requirements:**  
+Additional guidance:
+- Identify characteristic speech patterns, communication style, favorite phrases, expressions, and intonations of the person on this topic.
 - Note intersections of patterns with other topics.
-- The output must be as detailed as possible.
-- **The output forms part of the holistic personality portrait. Every speech characteristic matters.**
-
-**Output format — markdown.**
 
 Output structure:
 
@@ -133,16 +104,10 @@ Output structure:
 `,
 
   'Inner contradictions': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify internal contradictions in the interview on this topic: mismatches between current views and past attitudes, inconsistencies in logic or emotional assessments.
+${PREAMBLE}
 
-**Important:**  
-Record only what was explicitly stated in the interview. No assumptions.
-
-**Required requirements:**  
-- The output must be as detailed as possible.
-- **The output forms part of the holistic personality portrait. Every contradiction matters.**
-
-**Output format — markdown.**
+Additional guidance:
+- Identify internal contradictions in the interview on this topic: mismatches between current views and past attitudes, inconsistencies in logic or emotional assessments.
 
 Output structure:
 
@@ -152,12 +117,9 @@ Output structure:
 \`\`\`
 `,
   'Biographical summary': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to identify and record all biographical data of the person mentioned in the interview on this topic and other topics if they were mentioned.
+${PREAMBLE}
 
-**Important:**  
-Record only explicitly stated data. No assumptions.
-
-**What needs to be recorded:**  
+**What needs to be recorded (only if explicitly stated in the interview, otherwise skip the field):**
 - Name (if specified)
 - Gender (if mentioned)
 - Age or date of birth (if stated)
@@ -172,8 +134,6 @@ Record only explicitly stated data. No assumptions.
 - Relocations:
   - Recording format: **[from] → [to], [age or date] (if specified), reason (if specified), [emotions or attitude to relocation, if mentioned]**
   - Example: *Novosibirsk → Moscow, at age 20, university admission, feeling of anxiety and excitement*
-
-**Output format — markdown.**
 
 Output structure:
 
@@ -192,21 +152,14 @@ Output structure:
 - Relocations:
   - [from] → [to], [age or date] (if specified), reason (if stated), [emotions or attitude]
 \`\`\`
-`
-  ,
+`,
 
   'Personality summary': `
-The "Digital Replicant" project creates a digital twin based on the user's personality. Your task is to summarize conclusions about the person on this topic based on the interview.
+${PREAMBLE}
 
-**Important:**  
-Record only factual data from the interview.
-
-**Required requirements:**  
-- The output must be as detailed as possible.
+Additional guidance:
+- Summarize conclusions about the person on this topic based on the interview.
 - Indicate character traits, attitudes, peculiarities of topic perception.
-- **The output forms part of the holistic personality portrait. Details cannot be omitted.**
-
-**Output format — markdown.**
 
 Output structure:
 
@@ -215,10 +168,4 @@ Output structure:
 - [Conclusion based on interview]
 \`\`\`
 `,
-
-}
-
-export const COMMON_PART_OF_PORTRAIT_PROMPTS = `
-\n
-**PRIORITY:** Generate maximally detailed data, record everything, even small and insignificant details
-`
+} as const

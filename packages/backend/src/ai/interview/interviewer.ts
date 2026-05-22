@@ -1,5 +1,5 @@
-import { DEFAULT_TOPICS_META } from '../../../../shared/src/constants'
-import { EMainTopicType, TopicModel } from '../../../../shared/src/types'
+import { DEFAULT_TOPICS_META } from '@shared/constants'
+import { EMainTopicType, TopicModel } from '@shared/types'
 import { useChat } from '../adapters/aiClient'
 import { Role } from '../adapters/gpt.types'
 import { buildPromptForTopic } from './getSystemPromptInterview'

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "back": "ts-node-dev packages/backend/src",
+    "back": "tsx watch packages/backend/src/index.ts",
     "front": "cd packages/frontend && quasar dev",
     "init-db": "cd packages/backend && npx prisma migrate dev --name init --schema=./src/prisma/schema.prisma",
     "gen-db-client": "cd packages/backend && npx prisma generate --schema=./src/prisma/schema.prisma"

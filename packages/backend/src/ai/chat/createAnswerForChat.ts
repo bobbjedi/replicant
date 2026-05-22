@@ -17,9 +17,9 @@ const createAnswerForChat = async (chatId: number, message: string, language: 'R
   ])
   console.log('msg:', msg)
 
-  const answer = msg.match(/<answer>(.*?)<\/answer>/)?.[1]?.trim()
-  const emotion = msg.match(/<emotion>(.*?)<\/emotion>/)?.[1]?.trim() as string | null
-  const emoji = msg.match(/<emoji>(.*?)<\/emoji>/)?.[1]?.trim() as string | null
+  const answer = msg.match(/<answer>([\s\S]*?)<\/answer>/i)?.[1]?.trim()
+  const emotion = msg.match(/<emotion>([\s\S]*?)<\/emotion>/i)?.[1]?.trim() ?? null
+  const emoji = msg.match(/<emoji>([\s\S]*?)<\/emoji>/i)?.[1]?.trim() ?? null
   console.log('parsed:', {
     answer,
     emotion,

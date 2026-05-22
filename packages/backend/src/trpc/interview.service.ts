@@ -2,9 +2,9 @@ import prismaDb from '../prisma/prismaDb'
 import { z } from 'zod'
 import t from './trcpInstance'
 import { generateNextQuestionByQuestionsListFromChat, generateFirstQuestionOfNewTopicFromChat } from '../ai/interview/interviewer'
-import { EMainTopicType, TopicModel } from '../../../shared/src/types'
+import { EMainTopicType, TopicModel } from '@shared/types'
 import deepRefreshInterviewSnapshotTask, { refreshPortraitSnapshot } from '../workers/refreshSnapshot.task'
-import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
+import { DEFAULT_TOPICS_META } from '@shared/constants'
 
 const getInterviewTopicsWithQuestions = t.procedure
   .input(z.object({ repId: z.number() }))

@@ -1,5 +1,5 @@
 import { ChatProvider, Message, ChatOptions } from './gpt.types'
-import { delay } from '../../../../shared/src/utils'
+import { delay } from '@shared/utils'
 import { countMessagesTokens } from '../utils'
 import { createChatProvider } from './ChatProviderFactory'
 

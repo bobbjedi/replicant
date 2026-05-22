@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { ChatProvider, ChatProviderConfig, Message, ChatOptions } from './gpt.types'
-import { delay } from '../../../../shared/src/utils'
+import { delay } from '@shared/utils'
 
 export class OpenAIChatProvider implements ChatProvider {
   private config: ChatProviderConfig

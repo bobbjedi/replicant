@@ -32,7 +32,7 @@
       <div class="chat-container">
         <div
           ref="messagesContainer"
-          class="messages-container"
+          class="messages-container q-pa-md"
           @scroll="handleScroll"
         >
           <div
@@ -51,26 +51,33 @@
             class="message q-mb-md"
             :class="{ 'message-user': !message.authorIsReplicant }"
           >
-            <div class="message-content">
+            <div
+              class="message-content"
+              :class="message.authorIsReplicant ? 'message-replicant' : 'message-interlocutor'"
+            >
               {{ message.content }}
               <div
-                v-if="message.authorIsReplicant"
-                class="text-secondary"
+                v-if="message.authorIsReplicant && (message.emoji || message.emotion)"
+                class="message-meta"
               >
-                [ {{ message.emoji }} {{ message.emotion }} ]
+                {{ message.emoji }} {{ message.emotion }}
               </div>
             </div>
-            <div class="message-time text-caption">
+            <div class="message-time text-grey-5 text-caption">
               {{ formatDate(message.createdAt) }}
             </div>
           </div>
         </div>
 
-        <div class="input-container">
+        <div class="input-container q-pa-md">
           <q-input
             v-model="newMessage"
             type="textarea"
             max-rows="2"
+            filled
+            dark
+            bg-color="grey-9"
+            color="white"
             placeholder="Type a message..."
             @keyup.enter.ctrl="sendMessage"
             :disable="isPendingAnswer"
@@ -198,19 +205,20 @@ watch(messages, () => scrollToBottom(false), { deep: true, once: true })
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .chat-container {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 200px);
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
+  background: $card-background;
+  overflow: hidden;
 }
 
 .messages-container {
   flex: 1;
   overflow-y: auto;
-  padding: 16px;
 }
 
 .message {
@@ -224,27 +232,37 @@ watch(messages, () => scrollToBottom(false), { deep: true, once: true })
 }
 
 .message-content {
-  background: #e3f2fd;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 12px;
   word-break: break-word;
+  color: #fff;
+  line-height: 1.45;
 }
 
-.message-user .message-content {
-  background: #e8f5e9;
+.message-replicant {
+  background: $primary;
+}
+
+.message-interlocutor {
+  background: $secondary;
+}
+
+.message-meta {
+  margin-top: 6px;
+  font-size: 0.85em;
+  opacity: 0.85;
 }
 
 .message-time {
   margin-top: 4px;
-  opacity: 0.7;
 }
 
 .input-container {
   display: flex;
   gap: 8px;
-  padding: 16px;
-  border-top: 1px solid #ddd;
-  background: white;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: $dark-page;
   width: 100%;
 }
 

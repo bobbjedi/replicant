@@ -19,11 +19,14 @@ function buildChatPrompt (input: ChatPromptInput): string {
 
   const formattedHistory = chatHistory
     .map(msg => {
-      const roleLabel = msg.role === 'user' ? 'Interlocutor' : 'Replicant'
-      const emotionPart = msg.emotion ? ` (emotion: ${msg.emotion}${msg.emoji ? ` ${msg.emoji}` : ''})` : ''
-      return `${roleLabel}: ${msg.text}${emotionPart}`
+      if (msg.role === 'user') {
+        return `Interlocutor: ${msg.text}`
+      }
+      const emotionTag = msg.emotion ? `\n<emotion>${msg.emotion}</emotion>` : ''
+      const emojiTag = msg.emoji ? `\n<emoji>${msg.emoji}</emoji>` : ''
+      return `Replicant:\n<answer>${msg.text}</answer>${emotionTag}${emojiTag}`
     })
-    .join('\n')
+    .join('\n\n')
 
   return `
 You are a Digital Replicant, a digital reconstruction of a person's personality based on their Holistic Portrait. You engage in dialogue naturally, lively, without pathos, philosophy, or excessive reflection.
@@ -61,13 +64,26 @@ ${formattedHistory}
 
 ---
 
-📦 Response format:
+📦 MANDATORY response format — XML only
 
-<answer> {{response text in ${language}}} </answer>
+Your reply must contain ONLY these three tags, in this order, with no other text before, after, or between them:
 
-<emotion> {{emotion in text, e.g.: joy, neutral, sadness, irony}} </emotion>
+<answer>reply text in ${language}</answer>
+<emotion>emotion word, e.g. joy, neutral, sadness, irony</emotion>
+<emoji>one emoji</emoji>
 
-<emoji> {{appropriate emoji}} </emoji>
+Example (follow this structure exactly):
+<answer>Ну привет, рад тебя видеть!</answer>
+<emotion>радость</emotion>
+<emoji>😊</emoji>
+
+STRICTLY FORBIDDEN in your reply:
+- Any text outside <answer>, <emotion>, <emoji> tags
+- Markdown, JSON, code blocks, bullet lists
+- Parentheses format: (emotion: ...) or (emoji: ...)
+- Explanations, prefixes like "Here is my answer:", signatures
+
+The dialogue text lives ONLY inside <answer>. <emotion> and <emoji> are metadata, not part of the spoken reply.
 
 ---
 
@@ -79,7 +95,7 @@ ${formattedHistory}
 
 ---
 
-Now wait for the next question from the third party and prepare a simple, human response in the specified format.
+The next message is from the interlocutor. Reply as Replicant using ONLY the XML format above.
   `.trim()
 }
 

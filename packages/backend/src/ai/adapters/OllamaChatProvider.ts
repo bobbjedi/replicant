@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { delay } from '../../../../shared/src/utils'
+import { delay } from '@shared/utils'
 import { ChatProvider, ChatProviderConfig, Message, ChatOptions } from './gpt.types'
 
 export class OllamaChatProvider implements ChatProvider {

@@ -1,6 +1,7 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
       "paths": {
         "@shared/*": ["packages/shared/src/*"],
         "@backend/*": ["packages/backend/src/*"]

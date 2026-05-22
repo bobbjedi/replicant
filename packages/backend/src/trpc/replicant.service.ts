@@ -1,6 +1,6 @@
 import prismaDb from '../prisma/prismaDb'
-import { ReplicantModel } from '../../../shared/src/types'
-import { DEFAULT_TOPICS_META } from '../../../shared/src/constants'
+import { ReplicantModel } from '@shared/types'
+import { DEFAULT_TOPICS_META } from '@shared/constants'
 import { z } from 'zod'
 import t from './trcpInstance'
 
