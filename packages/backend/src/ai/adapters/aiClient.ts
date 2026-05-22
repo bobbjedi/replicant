@@ -20,9 +20,9 @@ class ChatService {
   }
 
   public useChat (messages: Message[], options: ChatOptions = {}): Promise<string> {
-    console.log('Size:', countMessagesTokens(messages))
-    console.log('System:', messages[0])
-    console.log('User:', messages[1])
+    console.log('Messages count:', messages.length, 'Size:', countMessagesTokens(messages))
+    // console.log('System:', messages[0])
+    // console.log('User:', messages[1])
 
     return new Promise((resolve, reject) => {
       this.queue.push({ messages, options, resolve, reject })
@@ -49,7 +49,7 @@ class ChatService {
       }
 
       // Pause between requests to avoid overloading the API
-      await delay(1100)
+      await delay(100)
     }
 
     this.isProcessing = false

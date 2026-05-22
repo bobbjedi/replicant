@@ -85,4 +85,10 @@ export const DEFAULT_TOPICS_META = [
     emoji: '📆',
     type: EMainTopicType.LIFE_EVENTS,
   },
+  {
+    RU: 'Места и путешествия',
+    EN: 'Places & Travel',
+    emoji: '🌍',
+    type: EMainTopicType.PLACES_AND_TRAVEL,
+  },
 ]

@@ -1,4 +1,3 @@
-import * as fs from 'fs'
 import { useChat } from '../ai/adapters/aiClient'
 import { convertTopicsToTextFormat } from '../ai/interview/interviewer'
 import TOPIC_SNAPSHOT_PROMPT from '../ai/interview/prompts/TOPIC_SNAPSHOT_TEMPLATE'
@@ -6,6 +5,7 @@ import prismaDb from '../prisma/prismaDb'
 import { TopicModel } from '../../../shared/src/types'
 import { delay } from '../../../shared/src/utils'
 import { COMMON_PART_OF_PORTRAIT_PROMPTS, PORTRAIT_PROMPTS } from '../ai/interview/prompts/PORTRAIT_PROMPTS'
+import FINAL_PORTRAIT_PROMPT from '../ai/interview/prompts/FINAL_PORTRAIT_PROMPT'
 import { Role } from '../ai/adapters/gpt.types'
 
 export const inProcessingRefreshSnapshot:Array<number> = []
@@ -108,8 +108,6 @@ const generateTopicSummaries = async (topics: TopicModel[], repId: number) => {
         // Concatenate the new topic with separators
         draft += `\n\n--- TOPIC ${topic.name} ---\n` + topicPortrait
 
-        fs.writeFileSync('topicsDraft.md', draft)
-
         await setSummary(topicPortrait)
 
         console.log('Topic snapshot done:', '#' + i, topic.name)
@@ -160,8 +158,6 @@ export const refreshPortraitSnapshot = (repId: number) => {
 
       const summaries = topics.map((topic) => topic.summary).join('\n --- \n')
 
-      fs.writeFileSync(`fullSummary_${repId}.md`, summaries)
-
       const portraitDrafts = await generatePortrait(summaries)
 
       await prismaDb.replicant.update({
@@ -173,20 +169,16 @@ export const refreshPortraitSnapshot = (repId: number) => {
         },
       })
 
-      fs.writeFileSync(`fullPortrait_${repId}.md`, portraitDrafts)
+      const finalPortrait = await generateFinalPortrait(portraitDrafts)
 
-      // const finalPortrait = await generateFinalPortrait(portraitDrafts)
-
-      // await prismaDb.replicant.update({
-      //   where: {
-      //     id: repId,
-      //   },
-      //   data: {
-      //     snapshot: finalPortrait,
-      //   },
-      // })
-
-      // fs.writeFileSync('portrait.md', finalPortrait)
+      await prismaDb.replicant.update({
+        where: {
+          id: repId,
+        },
+        data: {
+          snapshot: finalPortrait,
+        },
+      })
 
     } catch (error) {
       console.error('refreshPortraitSnapshot', error)
@@ -238,7 +230,6 @@ const generatePortrait = async (topicSummaries: string) => {
 
         console.log('Portrait part snapshot done:', '#' + i, partName)
 
-        fs.writeFileSync('portraitDraft.md', portraitDraft)
         success = true
       } catch (error) {
         console.error(`Error processing portrait part ${partName} on attempt ${attempts}:`, error)
@@ -254,11 +245,10 @@ const generatePortrait = async (topicSummaries: string) => {
   return portraitDraft
 }
 
-// const generateFinalPortrait = (portraitDrafts: string) => {
-//   console.log('Start generate final portrait')
-//   return chat([
-//     { role: Role.SYSTEM, content: portraitDrafts },
-//     { role: Role.USER, content: `Holistic portrait of a person for refactoring: ${portraitDrafts}` },
-//   ])
-
-// }
+const generateFinalPortrait = async (portraitDrafts: string) => {
+  console.log('Start generate final portrait')
+  return await useChat([
+    { role: Role.SYSTEM, content: FINAL_PORTRAIT_PROMPT },
+    { role: Role.USER, content: `Holistic portrait of a person for refactoring:\n${portraitDrafts}` },
+  ])
+}
