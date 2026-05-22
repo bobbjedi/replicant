@@ -1,19 +1,15 @@
 import axios from 'axios'
-import * as dotenv from 'dotenv'
 import { delay } from '../../../../shared/src/utils'
-import { ChatProvider, Message, ChatOptions } from './gpt.types'
-
-dotenv.config()
-
-const BASE_URL = process.env.OLLAMA_BASE_URL || 'http://localhost:11434'
-const DEFAULT_MODEL = process.env.OLLAMA_MODEL || 'llama3'
+import { ChatProvider, ChatProviderConfig, Message, ChatOptions } from './gpt.types'
 
 export class OllamaChatProvider implements ChatProvider {
+  private config: ChatProviderConfig
   private queue: (() => Promise<void>)[] = []
   private isProcessing = false
 
-  constructor () {
-    console.info('Use OllamaChatProvider, model: ' + DEFAULT_MODEL)
+  constructor (config: ChatProviderConfig) {
+    this.config = config
+    console.info(`Use OllamaChatProvider, baseUrl: ${config.baseUrl}, model: ${config.defaultModel}`)
   }
 
   async chat (messages: Message[], options: ChatOptions = {}): Promise<string> {
@@ -21,9 +17,9 @@ export class OllamaChatProvider implements ChatProvider {
       this.queue.push(async () => {
         try {
           const response = await axios.post(
-            `${BASE_URL}/api/chat`,
+            `${this.config.baseUrl}/api/chat`,
             {
-              model: options.model || DEFAULT_MODEL,
+              model: options.model || this.config.defaultModel,
               messages,
               options: {
                 temperature: options.temperature || 0.7,

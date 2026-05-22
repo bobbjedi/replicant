@@ -1,35 +1,31 @@
 import axios, { AxiosError } from 'axios'
-import { ChatProvider, Message, ChatOptions } from './gpt.types'
-import * as dotenv from 'dotenv'
+import { ChatProvider, ChatProviderConfig, Message, ChatOptions } from './gpt.types'
 import { delay } from '../../../../shared/src/utils'
 
-dotenv.config()
-
-const API_KEY = process.env.OPENAI_API_KEY
-const BASE_URL = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1'
-const DEFAULT_MODEL = process.env.OPENAI_API_MODEL || 'gpt-4o-mini'
-
 export class OpenAIChatProvider implements ChatProvider {
+  private config: ChatProviderConfig
   private queue: (() => Promise<void>)[] = []
   private isProcessing = false
 
-  constructor () {
-    console.info('Use OpenAIChatProvider, model: ' + DEFAULT_MODEL)
+  constructor (config: ChatProviderConfig) {
+    this.config = config
+    console.info(`Use OpenAIChatProvider (OpenAI-compatible), baseUrl: ${config.baseUrl}, model: ${config.defaultModel}`)
   }
+
   async chat (messages: Message[], options: ChatOptions = {}): Promise<string> {
     return new Promise((resolve, reject) => {
       this.queue.push(async () => {
         try {
           const response = await axios.post(
-            `${BASE_URL}/chat/completions`,
+            `${this.config.baseUrl}/chat/completions`,
             {
-              model: options.model || DEFAULT_MODEL,
+              model: options.model || this.config.defaultModel,
               messages,
               temperature: options.temperature || 0.7,
             },
             {
               headers: {
-                Authorization: `Bearer ${API_KEY}`,
+                Authorization: `Bearer ${this.config.apiKey}`,
                 'Content-Type': 'application/json',
                 ...options.headers,
               },
