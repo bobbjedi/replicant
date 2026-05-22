@@ -215,7 +215,7 @@ const generatePortrait = async (topicSummaries: string) => {
           { role: Role.USER, content:
               `Interview topic summaries:\n${topicSummaries}\n\n` +
               (i === '0'
-                ? `Generate the "${PORTRAIT_PROMPTS}" section for the final portrait based on the topic summaries above.`
+                ? `Generate the "${partName}" section for the final portrait based on the topic summaries above.`
                 : appendPrompt + portraitDraft + `\n\n--- Portrait Part: ${partName} ---\nGenerate this part based on the topic summaries above.`),
           },
         ]

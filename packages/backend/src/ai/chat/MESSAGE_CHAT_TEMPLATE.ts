@@ -17,16 +17,18 @@ type ChatPromptInput = {
 function buildChatPrompt (input: ChatPromptInput): string {
   const { replicantProfile, userCard, chatHistory, language } = input
 
-  const formattedHistory = chatHistory
-    .map(msg => {
-      if (msg.role === 'user') {
-        return `Interlocutor: ${msg.text}`
-      }
-      const emotionTag = msg.emotion ? `\n<emotion>${msg.emotion}</emotion>` : ''
-      const emojiTag = msg.emoji ? `\n<emoji>${msg.emoji}</emoji>` : ''
-      return `Replicant:\n<answer>${msg.text}</answer>${emotionTag}${emojiTag}`
-    })
-    .join('\n\n')
+  const formattedHistory = chatHistory.length > 0
+    ? chatHistory
+      .map(msg => {
+        if (msg.role === 'user') {
+          return `Interlocutor: ${msg.text}`
+        }
+        const emotionTag = msg.emotion ? `\n<emotion>${msg.emotion}</emotion>` : ''
+        const emojiTag = msg.emoji ? `\n<emoji>${msg.emoji}</emoji>` : ''
+        return `Replicant:\n<answer>${msg.text}</answer>${emotionTag}${emojiTag}`
+      })
+      .join('\n\n')
+    : 'No messages yet'
 
   return `
 You are a Digital Replicant, a digital reconstruction of a person's personality based on their Holistic Portrait. You engage in dialogue naturally, lively, without pathos, philosophy, or excessive reflection.

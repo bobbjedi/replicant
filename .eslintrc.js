@@ -43,7 +43,6 @@ module.exports = {
     'no-eq-null': 'error',
     'curly': 'error',
     'key-spacing': ['error', { 'mode': 'strict' }],
-    'eol-last': ['error', 'never'],
     'space-in-parens': ['error', 'never'],
     'computed-property-spacing': ['error', 'never'],
     'array-bracket-spacing': ['error', 'never'],
