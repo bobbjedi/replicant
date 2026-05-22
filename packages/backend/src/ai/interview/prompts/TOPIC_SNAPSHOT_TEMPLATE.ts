@@ -35,7 +35,7 @@ Description structure for the topic:
 [Describe the person's characteristic speech features in the interview on this topic:
 - What is the general style of their speech on this topic? For example: clear, detailed, emotional, with shades of irony, philosophical, detached, aggressive, analytical, etc.
 - What accents do they make in presenting their thoughts (for example: emphasizing the importance of critical thinking, asking questions, reflecting on consequences).
-- Give specific words, phrases, set expressions, and speech patterns they use on this topic.
+- **Quote at least 3–5 specific words, phrases, set expressions, and speech patterns they used verbatim on this topic.** Mark them as direct quotes with quotation marks.
 - Record the presence of filler words, favorite expressions, introductory words (for example: "in fact", "kind of", "actually", "well", "to be honest").
 - Describe how they build sentences: with short phrases, long detailed constructions, with emotional evaluations, rhetorical questions, etc.
 - Do they use professional slang, terms, emotionally colored expressions.

@@ -79,12 +79,14 @@ ${PREAMBLE}
 Additional guidance:
 - Build cause-and-effect relationships between events, experiences, and changes in views if these connections are explicitly evident from the interview.
 - Indicate connections between topics if they were explicitly mentioned.
+- Use the strict format for each link: **[Event A / Experience] → [Event B / Change in view or behaviour] → [Resulting attitude or belief]**. Only record links where both the cause and the effect are explicitly stated in the interview. Do not invent or speculate.
 
 Output structure:
 
 \`\`\`markdown
 ## Cause-and-Effect Relationships
-- [Description of connection: event — cause — effect]
+- [Event A] → [Event B] → [Resulting change in view/behaviour]
+- [Next relationship]
 \`\`\`
 `,
 
@@ -93,13 +95,19 @@ ${PREAMBLE}
 
 Additional guidance:
 - Identify characteristic speech patterns, communication style, favorite phrases, expressions, and intonations of the person on this topic.
+- **Quote at least 3–5 specific phrases, words, or expressions the person used verbatim in the interview on this topic.** Mark them as direct quotes.
 - Note intersections of patterns with other topics.
 
 Output structure:
 
 \`\`\`markdown
 ## Speech Patterns and Communication Style
-- [Description of speech features, phrases, expressions]
+- Style: [general communication style description]
+- Verbatim quotes from the interview:
+  - "[exact phrase or expression 1]"
+  - "[exact phrase or expression 2]"
+  - "[exact phrase or expression 3]"
+- [Additional speech features, phrases, expressions]
 \`\`\`
 `,
 
